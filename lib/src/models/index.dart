@@ -8,7 +8,7 @@ import 'package:food_delivery_admin/src/models/serializers.dart';
 
 export 'auth/index.dart';
 export 'companies/index.dart';
-export 'orders//index.dart';
+export 'orders/index.dart';
 
 
 part 'index.g.dart';

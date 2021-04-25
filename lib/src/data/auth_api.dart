@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:food_delivery_admin/src/data/search_index_all.dart';
 import 'package:food_delivery_admin/src/models/auth/index.dart';
 import 'package:food_delivery_admin/src/models/index.dart';
+import 'package:food_delivery_admin/src/models/orders/index.dart';
 
 class AuthApi {
   AuthApi({required FirebaseAuth auth, required FirebaseFirestore firestore})
@@ -24,6 +25,11 @@ class AuthApi {
     required String openHour,
     required String closeHour,
     required String city,
+    required double deliveryFeeThreshold,
+    required double deliveryFee,
+    required double deliveryThreshold,
+    required List<DeliveryOption> deliveryOptions,
+    required List<PaymentMethod> paymentMethods,
   }) async {
     final DocumentReference ref = _firestore.collection('NOT USE').doc();
     final Company newCompany = Company((CompanyBuilder b) {
@@ -34,7 +40,12 @@ class AuthApi {
         ..rating = 1
         ..closeHour = closeHour
         ..openHour = openHour
+        ..deliveryFeeThreshold = deliveryFeeThreshold
+        ..deliveryFee = deliveryFee
+        ..deliveryThreshold = deliveryThreshold
         ..image = null
+        ..deliveryOptions = ListBuilder<DeliveryOption>(deliveryOptions)
+        ..paymentMethods = ListBuilder<PaymentMethod>(paymentMethods)
         ..searchIndex = ListBuilder<String>(<String>[companyName].searchIndexAll);
     });
     await _firestore.doc('companies/${newCompany.id}').set(newCompany.json!);
