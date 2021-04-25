@@ -6,5 +6,5 @@ Reducer<AuthState> authReducer = combineReducers(<Reducer<AuthState>>[
   TypedReducer<AuthState, RegisterSuccessful>(_registerSuccessful),
 ]);
 AuthState _registerSuccessful(AuthState state, RegisterSuccessful action) {
-  return state.rebuild((AuthStateBuilder b) => null);
+  return state.rebuild((AuthStateBuilder b) => b.user = action.user.toBuilder());
 }
