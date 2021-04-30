@@ -29,6 +29,11 @@ final BuiltSet<DeliveryOption> _$values =
 Serializer<Company> _$companySerializer = new _$CompanySerializer();
 Serializer<DeliveryOption> _$deliveryOptionSerializer =
     new _$DeliveryOptionSerializer();
+Serializer<Dish> _$dishSerializer = new _$DishSerializer();
+Serializer<Meniu> _$meniuSerializer = new _$MeniuSerializer();
+Serializer<MeniuItem> _$meniuItemSerializer = new _$MeniuItemSerializer();
+Serializer<CompanyState> _$companyStateSerializer =
+    new _$CompanyStateSerializer();
 
 class _$CompanySerializer implements StructuredSerializer<Company> {
   @override
@@ -199,6 +204,248 @@ class _$DeliveryOptionSerializer
   DeliveryOption deserialize(Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       DeliveryOption.valueOf(serialized as String);
+}
+
+class _$DishSerializer implements StructuredSerializer<Dish> {
+  @override
+  final Iterable<Type> types = const [Dish, _$Dish];
+  @override
+  final String wireName = 'Dish';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Dish object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.id;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.description;
+    if (value != null) {
+      result
+        ..add('description')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.price;
+    if (value != null) {
+      result
+        ..add('price')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
+    }
+    value = object.quantity;
+    if (value != null) {
+      result
+        ..add('quantity')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    return result;
+  }
+
+  @override
+  Dish deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new DishBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'description':
+          result.description = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'price':
+          result.price = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double;
+          break;
+        case 'quantity':
+          result.quantity = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$MeniuSerializer implements StructuredSerializer<Meniu> {
+  @override
+  final Iterable<Type> types = const [Meniu, _$Meniu];
+  @override
+  final String wireName = 'Meniu';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Meniu object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'items',
+      serializers.serialize(object.items,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(MeniuItem)])),
+    ];
+
+    return result;
+  }
+
+  @override
+  Meniu deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new MeniuBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'items':
+          result.items.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(MeniuItem)]))!
+              as BuiltList<Object>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$MeniuItemSerializer implements StructuredSerializer<MeniuItem> {
+  @override
+  final Iterable<Type> types = const [MeniuItem, _$MeniuItem];
+  @override
+  final String wireName = 'MeniuItem';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, MeniuItem object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'category',
+      serializers.serialize(object.category,
+          specifiedType: const FullType(String)),
+      'dishes',
+      serializers.serialize(object.dishes,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(Dish)])),
+    ];
+
+    return result;
+  }
+
+  @override
+  MeniuItem deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new MeniuItemBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'category':
+          result.category = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'dishes':
+          result.dishes.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(Dish)]))!
+              as BuiltList<Object>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$CompanyStateSerializer implements StructuredSerializer<CompanyState> {
+  @override
+  final Iterable<Type> types = const [CompanyState, _$CompanyState];
+  @override
+  final String wireName = 'CompanyState';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, CompanyState object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.company;
+    if (value != null) {
+      result
+        ..add('company')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(Company)));
+    }
+    value = object.meniu;
+    if (value != null) {
+      result
+        ..add('meniu')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(Meniu)));
+    }
+    return result;
+  }
+
+  @override
+  CompanyState deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new CompanyStateBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'company':
+          result.company.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Company))! as Company);
+          break;
+        case 'meniu':
+          result.meniu.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Meniu))! as Meniu);
+          break;
+      }
+    }
+
+    return result.build();
+  }
 }
 
 class _$Company extends Company {
@@ -484,6 +731,448 @@ class CompanyBuilder implements Builder<Company, CompanyBuilder> {
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Company', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Dish extends Dish {
+  @override
+  final String? id;
+  @override
+  final String name;
+  @override
+  final String? description;
+  @override
+  final double? price;
+  @override
+  final int? quantity;
+
+  factory _$Dish([void Function(DishBuilder)? updates]) =>
+      (new DishBuilder()..update(updates)).build();
+
+  _$Dish._(
+      {this.id,
+      required this.name,
+      this.description,
+      this.price,
+      this.quantity})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(name, 'Dish', 'name');
+  }
+
+  @override
+  Dish rebuild(void Function(DishBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  DishBuilder toBuilder() => new DishBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Dish &&
+        id == other.id &&
+        name == other.name &&
+        description == other.description &&
+        price == other.price &&
+        quantity == other.quantity;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc($jc($jc(0, id.hashCode), name.hashCode), description.hashCode),
+            price.hashCode),
+        quantity.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('Dish')
+          ..add('id', id)
+          ..add('name', name)
+          ..add('description', description)
+          ..add('price', price)
+          ..add('quantity', quantity))
+        .toString();
+  }
+}
+
+class DishBuilder implements Builder<Dish, DishBuilder> {
+  _$Dish? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _description;
+  String? get description => _$this._description;
+  set description(String? description) => _$this._description = description;
+
+  double? _price;
+  double? get price => _$this._price;
+  set price(double? price) => _$this._price = price;
+
+  int? _quantity;
+  int? get quantity => _$this._quantity;
+  set quantity(int? quantity) => _$this._quantity = quantity;
+
+  DishBuilder();
+
+  DishBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _name = $v.name;
+      _description = $v.description;
+      _price = $v.price;
+      _quantity = $v.quantity;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Dish other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Dish;
+  }
+
+  @override
+  void update(void Function(DishBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$Dish build() {
+    final _$result = _$v ??
+        new _$Dish._(
+            id: id,
+            name: BuiltValueNullFieldError.checkNotNull(name, 'Dish', 'name'),
+            description: description,
+            price: price,
+            quantity: quantity);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Meniu extends Meniu {
+  @override
+  final String id;
+  @override
+  final BuiltList<MeniuItem> items;
+
+  factory _$Meniu([void Function(MeniuBuilder)? updates]) =>
+      (new MeniuBuilder()..update(updates)).build();
+
+  _$Meniu._({required this.id, required this.items}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, 'Meniu', 'id');
+    BuiltValueNullFieldError.checkNotNull(items, 'Meniu', 'items');
+  }
+
+  @override
+  Meniu rebuild(void Function(MeniuBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MeniuBuilder toBuilder() => new MeniuBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Meniu && id == other.id && items == other.items;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, id.hashCode), items.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('Meniu')
+          ..add('id', id)
+          ..add('items', items))
+        .toString();
+  }
+}
+
+class MeniuBuilder implements Builder<Meniu, MeniuBuilder> {
+  _$Meniu? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  ListBuilder<MeniuItem>? _items;
+  ListBuilder<MeniuItem> get items =>
+      _$this._items ??= new ListBuilder<MeniuItem>();
+  set items(ListBuilder<MeniuItem>? items) => _$this._items = items;
+
+  MeniuBuilder();
+
+  MeniuBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _items = $v.items.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Meniu other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Meniu;
+  }
+
+  @override
+  void update(void Function(MeniuBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$Meniu build() {
+    _$Meniu _$result;
+    try {
+      _$result = _$v ??
+          new _$Meniu._(
+              id: BuiltValueNullFieldError.checkNotNull(id, 'Meniu', 'id'),
+              items: items.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'items';
+        items.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Meniu', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$MeniuItem extends MeniuItem {
+  @override
+  final String id;
+  @override
+  final String category;
+  @override
+  final BuiltList<Dish> dishes;
+
+  factory _$MeniuItem([void Function(MeniuItemBuilder)? updates]) =>
+      (new MeniuItemBuilder()..update(updates)).build();
+
+  _$MeniuItem._(
+      {required this.id, required this.category, required this.dishes})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, 'MeniuItem', 'id');
+    BuiltValueNullFieldError.checkNotNull(category, 'MeniuItem', 'category');
+    BuiltValueNullFieldError.checkNotNull(dishes, 'MeniuItem', 'dishes');
+  }
+
+  @override
+  MeniuItem rebuild(void Function(MeniuItemBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  MeniuItemBuilder toBuilder() => new MeniuItemBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is MeniuItem &&
+        id == other.id &&
+        category == other.category &&
+        dishes == other.dishes;
+  }
+
+  @override
+  int get hashCode {
+    return $jf(
+        $jc($jc($jc(0, id.hashCode), category.hashCode), dishes.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('MeniuItem')
+          ..add('id', id)
+          ..add('category', category)
+          ..add('dishes', dishes))
+        .toString();
+  }
+}
+
+class MeniuItemBuilder implements Builder<MeniuItem, MeniuItemBuilder> {
+  _$MeniuItem? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _category;
+  String? get category => _$this._category;
+  set category(String? category) => _$this._category = category;
+
+  ListBuilder<Dish>? _dishes;
+  ListBuilder<Dish> get dishes => _$this._dishes ??= new ListBuilder<Dish>();
+  set dishes(ListBuilder<Dish>? dishes) => _$this._dishes = dishes;
+
+  MeniuItemBuilder();
+
+  MeniuItemBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _category = $v.category;
+      _dishes = $v.dishes.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(MeniuItem other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$MeniuItem;
+  }
+
+  @override
+  void update(void Function(MeniuItemBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$MeniuItem build() {
+    _$MeniuItem _$result;
+    try {
+      _$result = _$v ??
+          new _$MeniuItem._(
+              id: BuiltValueNullFieldError.checkNotNull(id, 'MeniuItem', 'id'),
+              category: BuiltValueNullFieldError.checkNotNull(
+                  category, 'MeniuItem', 'category'),
+              dishes: dishes.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'dishes';
+        dishes.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'MeniuItem', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$CompanyState extends CompanyState {
+  @override
+  final Company? company;
+  @override
+  final Meniu? meniu;
+
+  factory _$CompanyState([void Function(CompanyStateBuilder)? updates]) =>
+      (new CompanyStateBuilder()..update(updates)).build();
+
+  _$CompanyState._({this.company, this.meniu}) : super._();
+
+  @override
+  CompanyState rebuild(void Function(CompanyStateBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  CompanyStateBuilder toBuilder() => new CompanyStateBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CompanyState &&
+        company == other.company &&
+        meniu == other.meniu;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, company.hashCode), meniu.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('CompanyState')
+          ..add('company', company)
+          ..add('meniu', meniu))
+        .toString();
+  }
+}
+
+class CompanyStateBuilder
+    implements Builder<CompanyState, CompanyStateBuilder> {
+  _$CompanyState? _$v;
+
+  CompanyBuilder? _company;
+  CompanyBuilder get company => _$this._company ??= new CompanyBuilder();
+  set company(CompanyBuilder? company) => _$this._company = company;
+
+  MeniuBuilder? _meniu;
+  MeniuBuilder get meniu => _$this._meniu ??= new MeniuBuilder();
+  set meniu(MeniuBuilder? meniu) => _$this._meniu = meniu;
+
+  CompanyStateBuilder();
+
+  CompanyStateBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _company = $v.company?.toBuilder();
+      _meniu = $v.meniu?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(CompanyState other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$CompanyState;
+  }
+
+  @override
+  void update(void Function(CompanyStateBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$CompanyState build() {
+    _$CompanyState _$result;
+    try {
+      _$result = _$v ??
+          new _$CompanyState._(
+              company: _company?.build(), meniu: _meniu?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'company';
+        _company?.build();
+        _$failedField = 'meniu';
+        _meniu?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'CompanyState', _$failedField, e.toString());
       }
       rethrow;
     }

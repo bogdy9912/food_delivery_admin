@@ -17,8 +17,6 @@ abstract class RegistrationInfo implements Built<RegistrationInfo, RegistrationI
 
   String? get companyName;
 
-  String? get companyId;
-
   String? get image;
 
   String? get openHour;

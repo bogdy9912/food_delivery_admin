@@ -34,6 +34,8 @@ abstract class Company implements Built<Company, CompanyBuilder> {
   double? get deliveryFeeThreshold;
 
   BuiltList<String> get searchIndex;
+  
+
 
   Map<String, dynamic>? get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>?;
 

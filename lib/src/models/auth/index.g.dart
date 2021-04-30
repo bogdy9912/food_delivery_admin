@@ -158,17 +158,17 @@ class _$RegistrationInfoSerializer
               BuiltList, const [const FullType(DeliveryOption)])),
     ];
     Object? value;
-    value = object.uid;
-    if (value != null) {
-      result
-        ..add('uid')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.email;
     if (value != null) {
       result
         ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.password;
+    if (value != null) {
+      result
+        ..add('password')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -190,13 +190,6 @@ class _$RegistrationInfoSerializer
     if (value != null) {
       result
         ..add('companyName')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.companyId;
-    if (value != null) {
-      result
-        ..add('companyId')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -271,12 +264,12 @@ class _$RegistrationInfoSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'uid':
-          result.uid = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
         case 'email':
           result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'password':
+          result.password = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'firstName':
@@ -289,10 +282,6 @@ class _$RegistrationInfoSerializer
           break;
         case 'companyName':
           result.companyName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case 'companyId':
-          result.companyId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'image':
@@ -599,17 +588,15 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
 
 class _$RegistrationInfo extends RegistrationInfo {
   @override
-  final String? uid;
-  @override
   final String? email;
+  @override
+  final String? password;
   @override
   final String? firstName;
   @override
   final String? lastName;
   @override
   final String? companyName;
-  @override
-  final String? companyId;
   @override
   final String? image;
   @override
@@ -636,12 +623,11 @@ class _$RegistrationInfo extends RegistrationInfo {
       (new RegistrationInfoBuilder()..update(updates)).build();
 
   _$RegistrationInfo._(
-      {this.uid,
-      this.email,
+      {this.email,
+      this.password,
       this.firstName,
       this.lastName,
       this.companyName,
-      this.companyId,
       this.image,
       this.openHour,
       this.closeHour,
@@ -671,12 +657,11 @@ class _$RegistrationInfo extends RegistrationInfo {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is RegistrationInfo &&
-        uid == other.uid &&
         email == other.email &&
+        password == other.password &&
         firstName == other.firstName &&
         lastName == other.lastName &&
         companyName == other.companyName &&
-        companyId == other.companyId &&
         image == other.image &&
         openHour == other.openHour &&
         closeHour == other.closeHour &&
@@ -705,14 +690,12 @@ class _$RegistrationInfo extends RegistrationInfo {
                                                 $jc(
                                                     $jc(
                                                         $jc(
-                                                            $jc(
-                                                                $jc(0,
-                                                                    uid.hashCode),
+                                                            $jc(0,
                                                                 email.hashCode),
-                                                            firstName.hashCode),
-                                                        lastName.hashCode),
-                                                    companyName.hashCode),
-                                                companyId.hashCode),
+                                                            password.hashCode),
+                                                        firstName.hashCode),
+                                                    lastName.hashCode),
+                                                companyName.hashCode),
                                             image.hashCode),
                                         openHour.hashCode),
                                     closeHour.hashCode),
@@ -728,12 +711,11 @@ class _$RegistrationInfo extends RegistrationInfo {
   @override
   String toString() {
     return (newBuiltValueToStringHelper('RegistrationInfo')
-          ..add('uid', uid)
           ..add('email', email)
+          ..add('password', password)
           ..add('firstName', firstName)
           ..add('lastName', lastName)
           ..add('companyName', companyName)
-          ..add('companyId', companyId)
           ..add('image', image)
           ..add('openHour', openHour)
           ..add('closeHour', closeHour)
@@ -752,13 +734,13 @@ class RegistrationInfoBuilder
     implements Builder<RegistrationInfo, RegistrationInfoBuilder> {
   _$RegistrationInfo? _$v;
 
-  String? _uid;
-  String? get uid => _$this._uid;
-  set uid(String? uid) => _$this._uid = uid;
-
   String? _email;
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
+
+  String? _password;
+  String? get password => _$this._password;
+  set password(String? password) => _$this._password = password;
 
   String? _firstName;
   String? get firstName => _$this._firstName;
@@ -771,10 +753,6 @@ class RegistrationInfoBuilder
   String? _companyName;
   String? get companyName => _$this._companyName;
   set companyName(String? companyName) => _$this._companyName = companyName;
-
-  String? _companyId;
-  String? get companyId => _$this._companyId;
-  set companyId(String? companyId) => _$this._companyId = companyId;
 
   String? _image;
   String? get image => _$this._image;
@@ -827,12 +805,11 @@ class RegistrationInfoBuilder
   RegistrationInfoBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _uid = $v.uid;
       _email = $v.email;
+      _password = $v.password;
       _firstName = $v.firstName;
       _lastName = $v.lastName;
       _companyName = $v.companyName;
-      _companyId = $v.companyId;
       _image = $v.image;
       _openHour = $v.openHour;
       _closeHour = $v.closeHour;
@@ -865,12 +842,11 @@ class RegistrationInfoBuilder
     try {
       _$result = _$v ??
           new _$RegistrationInfo._(
-              uid: uid,
               email: email,
+              password: password,
               firstName: firstName,
               lastName: lastName,
               companyName: companyName,
-              companyId: companyId,
               image: image,
               openHour: openHour,
               closeHour: closeHour,
