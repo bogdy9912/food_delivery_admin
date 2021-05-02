@@ -11,3 +11,4 @@ part 'login.dart';
 part 'register.dart';
 part 'set.dart';
 part 'initialize_app.dart';
+part 'create_employee_account.dart';

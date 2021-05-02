@@ -19,6 +19,17 @@ class DailyMeniuPage extends StatelessWidget {
           appBar: AppBar(
             title: const Text('Meniul zilei'),
             centerTitle: true,
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  StoreProvider.of<AppState>(context).dispatch(const PublishMeniu());
+                },
+                child: const Text(
+                  'SALVEAZA',
+                  style: TextStyle(color: Colors.red),
+                ),
+              )
+            ],
           ),
           body: meniu == null
               ? Center(
@@ -29,7 +40,6 @@ class DailyMeniuPage extends StatelessWidget {
               : ListView.builder(
                   itemCount: meniu.items.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final MeniuItem category = meniu.items[index];
                     return Container(
                       child: CategoryWidget(index),
                     );

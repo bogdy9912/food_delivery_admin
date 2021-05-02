@@ -15,6 +15,7 @@ class AuthEpics {
         TypedEpic<AppState, InitializeApp$>(_initializeApp),
         TypedEpic<AppState, Login$>(_login),
         TypedEpic<AppState, Register$>(_register),
+        TypedEpic<AppState, CreateEmployeeAccount$>(_createEmployeeAccount),
       ]);
 
   Stream<AppAction> _register(Stream<Register$> actions, EpicStore<AppState> store) {
@@ -58,5 +59,17 @@ class AuthEpics {
             .asyncMap((InitializeApp$ action) => _api.initializeApp())
             .map((AdminUser user) => InitializeApp.successful(user))
             .onErrorReturnWith((dynamic error) => InitializeApp.error(error)));
+  }
+
+  Stream<AppAction> _createEmployeeAccount(Stream<CreateEmployeeAccount$> actions, EpicStore<AppState> store) {
+    return actions //
+        .flatMap((CreateEmployeeAccount$ action) => Stream<CreateEmployeeAccount$>.value(action)
+            .asyncMap((CreateEmployeeAccount$ action) => _api.createEmployeeAccount(
+                email: action.email,
+                password: action.password,
+                adminId: store.state.auth.user!.uid,
+                roles: action.roles))
+            .map((String employeeId) => CreateEmployeeAccount.successful(employeeId))
+            .onErrorReturnWith((dynamic error) => CreateEmployeeAccount.error(error)));
   }
 }

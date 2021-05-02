@@ -14,7 +14,6 @@ class AuthApi {
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
 
-
   Future<AdminUser> initializeApp() async {
     final User user = _auth.currentUser!;
     final DocumentSnapshot result = await _firestore.doc('admins/${user.uid}').get();
@@ -79,5 +78,30 @@ class AuthApi {
     await _firestore.doc('admins/${admin.uid}').set(admin.json);
 
     return admin;
+  }
+
+  Future<String> createEmployeeAccount({
+    required String email,
+    required String password,
+    required String adminId,
+    required List<Role> roles,
+  }) async {
+    final UserCredential user = await _auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+
+    final EmployeeUser newEmployee = EmployeeUser((EmployeeUserBuilder b) => b
+      ..uid = user.user!.uid
+      ..email = email
+      ..adminId = adminId
+      ..roles = ListBuilder<Role>(roles));
+    await _firestore.doc('employees/${user.user!.uid}').set(newEmployee.json);
+
+    await _firestore.doc('admins/$adminId').update(<String, dynamic>{
+      'employees': FieldValue.arrayUnion(<String>[user.user!.uid])
+    });
+
+    return user.user!.uid;
   }
 }

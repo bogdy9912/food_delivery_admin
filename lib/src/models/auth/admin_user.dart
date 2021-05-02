@@ -18,6 +18,7 @@ abstract class AdminUser implements Built<AdminUser, AdminUserBuilder> {
 
   String get companyId;
 
+  BuiltList<String> get employees;
 
 
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;

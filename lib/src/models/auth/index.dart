@@ -10,3 +10,5 @@ part 'index.g.dart';
 part 'admin_user.dart';
 part 'auth_state.dart';
 part 'registration_info.dart';
+part 'employee_user.dart';
+part 'role.dart';

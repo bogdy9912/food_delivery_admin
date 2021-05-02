@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:food_delivery_admin/src/actions/company/index.dart';
+import 'package:food_delivery_admin/src/models/index.dart';
 import 'package:food_delivery_admin/src/presentation/app_routes.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -12,6 +15,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Gestionare Meniul Zilei'),
             leading: const Icon(Icons.done),
             onTap: () {
+              StoreProvider.of<AppState>(context).dispatch(const GetDailyMeniu());
               Navigator.pushNamed(context, AppRoutes.dailyMeniu);
             },
           ),
@@ -40,7 +44,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Gestionare conturi angajati'),
             leading: const Icon(Icons.done),
             onTap: () {
-              Navigator.pushNamed(context, AppRoutes.dailyMeniu);
+              Navigator.pushNamed(context, AppRoutes.employeeAccounts);
             },
           ),
         ],

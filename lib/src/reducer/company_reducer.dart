@@ -1,4 +1,3 @@
-import 'package:built_collection/src/list.dart';
 import 'package:food_delivery_admin/src/actions/company/index.dart';
 import 'package:food_delivery_admin/src/models/companies/index.dart';
 import 'package:redux/redux.dart';
@@ -6,6 +5,7 @@ import 'package:redux/redux.dart';
 Reducer<CompanyState> companyReducer = combineReducers(<Reducer<CompanyState>>[
   TypedReducer<CompanyState, UpdateCategories$>(_updateCategories),
   TypedReducer<CompanyState, UpdateDishes$>(_updateDishes),
+  TypedReducer<CompanyState, GetDailyMeniuSuccessful>(_getDailyMeniuSuccessful),
 ]);
 
 CompanyState _updateCategories(CompanyState state, UpdateCategories$ action) {
@@ -26,14 +26,13 @@ CompanyState _updateDishes(CompanyState state, UpdateDishes$ action) {
     final int index = b.meniu.items.build().indexWhere((MeniuItem e) => e.id == action.categoryId);
 
     if (action.add != null) {
-//      print(action.add);
-//      final BuiltList<Dish> list = b.meniu.items[index].dishes;
-//      final BuiltList<Dish> a = list.rebuild((ListBuilder<Dish> e) => e.add(action.add!));
-//      print(a);
-      b.meniu.items[index] = b.meniu.items[index].rebuild((e) => e.dishes.add(action.add!));
-//      print(b.meniu.items[index].dishes);
+      b.meniu.items[index] = b.meniu.items[index].rebuild((MeniuItemBuilder e) => e.dishes.add(action.add!));
     } else if (action.remove != null) {
       b.meniu.items[index].dishes.toBuilder().remove(action.remove);
     }
   });
+}
+
+CompanyState _getDailyMeniuSuccessful(CompanyState state, GetDailyMeniuSuccessful action) {
+  return state.rebuild((CompanyStateBuilder b) => b.meniu = action.meniu.toBuilder());
 }

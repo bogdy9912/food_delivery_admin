@@ -6,3 +6,5 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'index.freezed.dart';
 part 'update_meniu.dart';
+part 'publish_meniu.dart';
+part 'get_daily_meniu.dart';
