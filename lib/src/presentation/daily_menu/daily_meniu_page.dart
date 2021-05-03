@@ -19,6 +19,8 @@ class DailyMeniuPage extends StatelessWidget {
           appBar: AppBar(
             title: const Text('Meniul zilei'),
             centerTitle: true,
+            elevation: 0,
+
             actions: <Widget>[
               TextButton(
                 onPressed: () {

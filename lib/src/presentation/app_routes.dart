@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:food_delivery_admin/src/presentation/daily_menu/add_saved_dish_page.dart';
 import 'package:food_delivery_admin/src/presentation/employee_accounts/employee_acounts_page.dart';
 import 'package:food_delivery_admin/src/presentation/home.dart';
 import 'package:food_delivery_admin/src/presentation/home_page/home_page.dart';
@@ -17,6 +18,7 @@ class AppRoutes {
   static const String login = '/login';
   static const String dailyMeniu = '/dailyMeniu';
   static const String employeeAccounts = '/employeeAccounts';
+  static const String addSavedDish = '/addSavedDish';
 
 
   static Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
@@ -27,6 +29,7 @@ class AppRoutes {
     login: (BuildContext context) => const LoginPage(),
     dailyMeniu: (BuildContext context) => const DailyMeniuPage(),
     employeeAccounts: (BuildContext context) => const EmployeeAccountsPage(),
+    addSavedDish: (BuildContext context) => const AddSavedDishPage(),
 
   };
 }

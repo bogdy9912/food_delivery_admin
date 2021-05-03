@@ -12,3 +12,6 @@ part 'register.dart';
 part 'set.dart';
 part 'initialize_app.dart';
 part 'create_employee_account.dart';
+part 'add_saved_dishes.dart';
+part 'remove_saved_dishes.dart';
+part 'edit_saved_dishes.dart';

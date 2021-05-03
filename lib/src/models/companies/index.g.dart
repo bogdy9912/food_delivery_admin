@@ -216,17 +216,18 @@ class _$DishSerializer implements StructuredSerializer<Dish> {
   Iterable<Object?> serialize(Serializers serializers, Dish object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'price',
+      serializers.serialize(object.price,
+          specifiedType: const FullType(double)),
+      'quantity',
+      serializers.serialize(object.quantity,
+          specifiedType: const FullType(int)),
     ];
     Object? value;
-    value = object.id;
-    if (value != null) {
-      result
-        ..add('id')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.description;
     if (value != null) {
       result
@@ -234,18 +235,12 @@ class _$DishSerializer implements StructuredSerializer<Dish> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.price;
+    value = object.image;
     if (value != null) {
       result
-        ..add('price')
+        ..add('image')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
-    }
-    value = object.quantity;
-    if (value != null) {
-      result
-        ..add('quantity')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -280,6 +275,10 @@ class _$DishSerializer implements StructuredSerializer<Dish> {
         case 'quantity':
           result.quantity = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
+          break;
+        case 'image':
+          result.image = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -741,27 +740,33 @@ class CompanyBuilder implements Builder<Company, CompanyBuilder> {
 
 class _$Dish extends Dish {
   @override
-  final String? id;
+  final String id;
   @override
   final String name;
   @override
   final String? description;
   @override
-  final double? price;
+  final double price;
   @override
-  final int? quantity;
+  final int quantity;
+  @override
+  final String? image;
 
   factory _$Dish([void Function(DishBuilder)? updates]) =>
       (new DishBuilder()..update(updates)).build();
 
   _$Dish._(
-      {this.id,
+      {required this.id,
       required this.name,
       this.description,
-      this.price,
-      this.quantity})
+      required this.price,
+      required this.quantity,
+      this.image})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, 'Dish', 'id');
     BuiltValueNullFieldError.checkNotNull(name, 'Dish', 'name');
+    BuiltValueNullFieldError.checkNotNull(price, 'Dish', 'price');
+    BuiltValueNullFieldError.checkNotNull(quantity, 'Dish', 'quantity');
   }
 
   @override
@@ -779,15 +784,20 @@ class _$Dish extends Dish {
         name == other.name &&
         description == other.description &&
         price == other.price &&
-        quantity == other.quantity;
+        quantity == other.quantity &&
+        image == other.image;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, id.hashCode), name.hashCode), description.hashCode),
-            price.hashCode),
-        quantity.hashCode));
+        $jc(
+            $jc(
+                $jc($jc($jc(0, id.hashCode), name.hashCode),
+                    description.hashCode),
+                price.hashCode),
+            quantity.hashCode),
+        image.hashCode));
   }
 
   @override
@@ -797,7 +807,8 @@ class _$Dish extends Dish {
           ..add('name', name)
           ..add('description', description)
           ..add('price', price)
-          ..add('quantity', quantity))
+          ..add('quantity', quantity)
+          ..add('image', image))
         .toString();
   }
 }
@@ -825,6 +836,10 @@ class DishBuilder implements Builder<Dish, DishBuilder> {
   int? get quantity => _$this._quantity;
   set quantity(int? quantity) => _$this._quantity = quantity;
 
+  String? _image;
+  String? get image => _$this._image;
+  set image(String? image) => _$this._image = image;
+
   DishBuilder();
 
   DishBuilder get _$this {
@@ -835,6 +850,7 @@ class DishBuilder implements Builder<Dish, DishBuilder> {
       _description = $v.description;
       _price = $v.price;
       _quantity = $v.quantity;
+      _image = $v.image;
       _$v = null;
     }
     return this;
@@ -855,11 +871,14 @@ class DishBuilder implements Builder<Dish, DishBuilder> {
   _$Dish build() {
     final _$result = _$v ??
         new _$Dish._(
-            id: id,
+            id: BuiltValueNullFieldError.checkNotNull(id, 'Dish', 'id'),
             name: BuiltValueNullFieldError.checkNotNull(name, 'Dish', 'name'),
             description: description,
-            price: price,
-            quantity: quantity);
+            price:
+                BuiltValueNullFieldError.checkNotNull(price, 'Dish', 'price'),
+            quantity: BuiltValueNullFieldError.checkNotNull(
+                quantity, 'Dish', 'quantity'),
+            image: image);
     replace(_$result);
     return _$result;
   }

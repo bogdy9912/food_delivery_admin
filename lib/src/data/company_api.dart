@@ -9,8 +9,7 @@ class CompanyApi {
   Future<Meniu> getDailyMeniu({required String companyId}) async {
     final QuerySnapshot meniu = await _firestore.collection('companies/$companyId/meniu').get();
     return meniu.docs.map((QueryDocumentSnapshot e) => Meniu.fromJson(e.data())).first;
-//    print(meniu.data());
-//    return Meniu.fromJson(meniu.data());
+
   }
 
   Future<void> publishMeniu({required String companyId, required Meniu meniu}) async {

@@ -11,6 +11,9 @@ Reducer<AuthState> authReducer = combineReducers(<Reducer<AuthState>>[
   TypedReducer<AuthState, RegisterSuccessful>(_registerSuccessful),
   TypedReducer<AuthState, UpdateRegistrationInfo$>(_updateRegistrationInfo),
   TypedReducer<AuthState, CreateEmployeeAccountSuccessful>(_createEmployeeAccountSuccessful),
+  TypedReducer<AuthState, AddSavedDishesSuccessful>(_addSavedDishesSuccessful),
+  TypedReducer<AuthState, RemoveSavedDishesSuccessful>(_removeSavedDishesSuccessful),
+  TypedReducer<AuthState, EditSavedDishesSuccessful>(_editSavedDishesSuccessful),
 ]);
 
 AuthState _registerSuccessful(AuthState state, RegisterSuccessful action) {
@@ -96,7 +99,20 @@ AuthState _initializeAppSuccessful(AuthState state, InitializeAppSuccessful acti
   return state.rebuild((AuthStateBuilder b) => b.user = action.user.toBuilder());
 }
 
-
 AuthState _createEmployeeAccountSuccessful(AuthState state, CreateEmployeeAccountSuccessful action) {
   return state.rebuild((AuthStateBuilder b) => b.user.employees.add(action.employeeId));
+}
+
+AuthState _addSavedDishesSuccessful(AuthState state, AddSavedDishesSuccessful action) {
+  return state.rebuild((AuthStateBuilder b) =>
+      b.user.savedDishes.addEntries(<MapEntry<String, Dish>>[MapEntry<String, Dish>(action.dish.id, action.dish)]));
+}
+
+AuthState _removeSavedDishesSuccessful(AuthState state, RemoveSavedDishesSuccessful action) {
+  return state.rebuild((AuthStateBuilder b) => b.user.savedDishes.remove(action.id));
+}
+
+AuthState _editSavedDishesSuccessful(AuthState state, EditSavedDishesSuccessful action) {
+  return state.rebuild((AuthStateBuilder b) => b.user.savedDishes
+      .updateValue(action.dish.id, (Dish dish) => dish.rebuild((DishBuilder e) => e = dish.toBuilder())));
 }

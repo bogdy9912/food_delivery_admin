@@ -64,6 +64,10 @@ class _$AdminUserSerializer implements StructuredSerializer<AdminUser> {
       serializers.serialize(object.employees,
           specifiedType:
               const FullType(BuiltList, const [const FullType(String)])),
+      'savedDishes',
+      serializers.serialize(object.savedDishes,
+          specifiedType: const FullType(
+              BuiltMap, const [const FullType(String), const FullType(Dish)])),
     ];
 
     return result;
@@ -109,6 +113,11 @@ class _$AdminUserSerializer implements StructuredSerializer<AdminUser> {
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
+          break;
+        case 'savedDishes':
+          result.savedDishes.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltMap,
+                  const [const FullType(String), const FullType(Dish)]))!);
           break;
       }
     }
@@ -463,6 +472,8 @@ class _$AdminUser extends AdminUser {
   final String companyId;
   @override
   final BuiltList<String> employees;
+  @override
+  final BuiltMap<String, Dish> savedDishes;
 
   factory _$AdminUser([void Function(AdminUserBuilder)? updates]) =>
       (new AdminUserBuilder()..update(updates)).build();
@@ -474,7 +485,8 @@ class _$AdminUser extends AdminUser {
       required this.lastName,
       required this.companyName,
       required this.companyId,
-      required this.employees})
+      required this.employees,
+      required this.savedDishes})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(uid, 'AdminUser', 'uid');
     BuiltValueNullFieldError.checkNotNull(email, 'AdminUser', 'email');
@@ -484,6 +496,8 @@ class _$AdminUser extends AdminUser {
         companyName, 'AdminUser', 'companyName');
     BuiltValueNullFieldError.checkNotNull(companyId, 'AdminUser', 'companyId');
     BuiltValueNullFieldError.checkNotNull(employees, 'AdminUser', 'employees');
+    BuiltValueNullFieldError.checkNotNull(
+        savedDishes, 'AdminUser', 'savedDishes');
   }
 
   @override
@@ -503,7 +517,8 @@ class _$AdminUser extends AdminUser {
         lastName == other.lastName &&
         companyName == other.companyName &&
         companyId == other.companyId &&
-        employees == other.employees;
+        employees == other.employees &&
+        savedDishes == other.savedDishes;
   }
 
   @override
@@ -512,12 +527,14 @@ class _$AdminUser extends AdminUser {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, uid.hashCode), email.hashCode),
-                        firstName.hashCode),
-                    lastName.hashCode),
-                companyName.hashCode),
-            companyId.hashCode),
-        employees.hashCode));
+                    $jc(
+                        $jc($jc($jc(0, uid.hashCode), email.hashCode),
+                            firstName.hashCode),
+                        lastName.hashCode),
+                    companyName.hashCode),
+                companyId.hashCode),
+            employees.hashCode),
+        savedDishes.hashCode));
   }
 
   @override
@@ -529,7 +546,8 @@ class _$AdminUser extends AdminUser {
           ..add('lastName', lastName)
           ..add('companyName', companyName)
           ..add('companyId', companyId)
-          ..add('employees', employees))
+          ..add('employees', employees)
+          ..add('savedDishes', savedDishes))
         .toString();
   }
 }
@@ -567,6 +585,12 @@ class AdminUserBuilder implements Builder<AdminUser, AdminUserBuilder> {
   set employees(ListBuilder<String>? employees) =>
       _$this._employees = employees;
 
+  MapBuilder<String, Dish>? _savedDishes;
+  MapBuilder<String, Dish> get savedDishes =>
+      _$this._savedDishes ??= new MapBuilder<String, Dish>();
+  set savedDishes(MapBuilder<String, Dish>? savedDishes) =>
+      _$this._savedDishes = savedDishes;
+
   AdminUserBuilder();
 
   AdminUserBuilder get _$this {
@@ -579,6 +603,7 @@ class AdminUserBuilder implements Builder<AdminUser, AdminUserBuilder> {
       _companyName = $v.companyName;
       _companyId = $v.companyId;
       _employees = $v.employees.toBuilder();
+      _savedDishes = $v.savedDishes.toBuilder();
       _$v = null;
     }
     return this;
@@ -613,12 +638,15 @@ class AdminUserBuilder implements Builder<AdminUser, AdminUserBuilder> {
                   companyName, 'AdminUser', 'companyName'),
               companyId: BuiltValueNullFieldError.checkNotNull(
                   companyId, 'AdminUser', 'companyId'),
-              employees: employees.build());
+              employees: employees.build(),
+              savedDishes: savedDishes.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'employees';
         employees.build();
+        _$failedField = 'savedDishes';
+        savedDishes.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'AdminUser', _$failedField, e.toString());

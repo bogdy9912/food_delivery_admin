@@ -2303,3 +2303,1514 @@ abstract class CreateEmployeeAccountError
   $CreateEmployeeAccountErrorCopyWith<CreateEmployeeAccountError>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+class _$AddSavedDishesTearOff {
+  const _$AddSavedDishesTearOff();
+
+  AddSavedDishes$ call(
+      {required String name,
+      required String? description,
+      required String price,
+      required String quantity,
+      required String? image}) {
+    return AddSavedDishes$(
+      name: name,
+      description: description,
+      price: price,
+      quantity: quantity,
+      image: image,
+    );
+  }
+
+  AddSavedDishesSuccessful successful(Dish dish) {
+    return AddSavedDishesSuccessful(
+      dish,
+    );
+  }
+
+  AddSavedDishesError error(Object error) {
+    return AddSavedDishesError(
+      error,
+    );
+  }
+}
+
+/// @nodoc
+const $AddSavedDishes = _$AddSavedDishesTearOff();
+
+/// @nodoc
+mixin _$AddSavedDishes {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String name, String? description, String price,
+            String quantity, String? image)
+        $default, {
+    required TResult Function(Dish dish) successful,
+    required TResult Function(Object error) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String name, String? description, String price,
+            String quantity, String? image)?
+        $default, {
+    TResult Function(Dish dish)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(AddSavedDishes$ value) $default, {
+    required TResult Function(AddSavedDishesSuccessful value) successful,
+    required TResult Function(AddSavedDishesError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(AddSavedDishes$ value)? $default, {
+    TResult Function(AddSavedDishesSuccessful value)? successful,
+    TResult Function(AddSavedDishesError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddSavedDishesCopyWith<$Res> {
+  factory $AddSavedDishesCopyWith(
+          AddSavedDishes value, $Res Function(AddSavedDishes) then) =
+      _$AddSavedDishesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$AddSavedDishesCopyWithImpl<$Res>
+    implements $AddSavedDishesCopyWith<$Res> {
+  _$AddSavedDishesCopyWithImpl(this._value, this._then);
+
+  final AddSavedDishes _value;
+  // ignore: unused_field
+  final $Res Function(AddSavedDishes) _then;
+}
+
+/// @nodoc
+abstract class $AddSavedDishes$CopyWith<$Res> {
+  factory $AddSavedDishes$CopyWith(
+          AddSavedDishes$ value, $Res Function(AddSavedDishes$) then) =
+      _$AddSavedDishes$CopyWithImpl<$Res>;
+  $Res call(
+      {String name,
+      String? description,
+      String price,
+      String quantity,
+      String? image});
+}
+
+/// @nodoc
+class _$AddSavedDishes$CopyWithImpl<$Res>
+    extends _$AddSavedDishesCopyWithImpl<$Res>
+    implements $AddSavedDishes$CopyWith<$Res> {
+  _$AddSavedDishes$CopyWithImpl(
+      AddSavedDishes$ _value, $Res Function(AddSavedDishes$) _then)
+      : super(_value, (v) => _then(v as AddSavedDishes$));
+
+  @override
+  AddSavedDishes$ get _value => super._value as AddSavedDishes$;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? price = freezed,
+    Object? quantity = freezed,
+    Object? image = freezed,
+  }) {
+    return _then(AddSavedDishes$(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String,
+      quantity: quantity == freezed
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+class _$AddSavedDishes$ implements AddSavedDishes$ {
+  const _$AddSavedDishes$(
+      {required this.name,
+      required this.description,
+      required this.price,
+      required this.quantity,
+      required this.image});
+
+  @override
+  final String name;
+  @override
+  final String? description;
+  @override
+  final String price;
+  @override
+  final String quantity;
+  @override
+  final String? image;
+
+  @override
+  String toString() {
+    return 'AddSavedDishes(name: $name, description: $description, price: $price, quantity: $quantity, image: $image)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is AddSavedDishes$ &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.quantity, quantity) ||
+                const DeepCollectionEquality()
+                    .equals(other.quantity, quantity)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(image);
+
+  @JsonKey(ignore: true)
+  @override
+  $AddSavedDishes$CopyWith<AddSavedDishes$> get copyWith =>
+      _$AddSavedDishes$CopyWithImpl<AddSavedDishes$>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String name, String? description, String price,
+            String quantity, String? image)
+        $default, {
+    required TResult Function(Dish dish) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return $default(name, description, price, quantity, image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String name, String? description, String price,
+            String quantity, String? image)?
+        $default, {
+    TResult Function(Dish dish)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(name, description, price, quantity, image);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(AddSavedDishes$ value) $default, {
+    required TResult Function(AddSavedDishesSuccessful value) successful,
+    required TResult Function(AddSavedDishesError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(AddSavedDishes$ value)? $default, {
+    TResult Function(AddSavedDishesSuccessful value)? successful,
+    TResult Function(AddSavedDishesError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddSavedDishes$ implements AddSavedDishes {
+  const factory AddSavedDishes$(
+      {required String name,
+      required String? description,
+      required String price,
+      required String quantity,
+      required String? image}) = _$AddSavedDishes$;
+
+  String get name => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String get price => throw _privateConstructorUsedError;
+  String get quantity => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AddSavedDishes$CopyWith<AddSavedDishes$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddSavedDishesSuccessfulCopyWith<$Res> {
+  factory $AddSavedDishesSuccessfulCopyWith(AddSavedDishesSuccessful value,
+          $Res Function(AddSavedDishesSuccessful) then) =
+      _$AddSavedDishesSuccessfulCopyWithImpl<$Res>;
+  $Res call({Dish dish});
+}
+
+/// @nodoc
+class _$AddSavedDishesSuccessfulCopyWithImpl<$Res>
+    extends _$AddSavedDishesCopyWithImpl<$Res>
+    implements $AddSavedDishesSuccessfulCopyWith<$Res> {
+  _$AddSavedDishesSuccessfulCopyWithImpl(AddSavedDishesSuccessful _value,
+      $Res Function(AddSavedDishesSuccessful) _then)
+      : super(_value, (v) => _then(v as AddSavedDishesSuccessful));
+
+  @override
+  AddSavedDishesSuccessful get _value =>
+      super._value as AddSavedDishesSuccessful;
+
+  @override
+  $Res call({
+    Object? dish = freezed,
+  }) {
+    return _then(AddSavedDishesSuccessful(
+      dish == freezed
+          ? _value.dish
+          : dish // ignore: cast_nullable_to_non_nullable
+              as Dish,
+    ));
+  }
+}
+
+/// @nodoc
+class _$AddSavedDishesSuccessful implements AddSavedDishesSuccessful {
+  const _$AddSavedDishesSuccessful(this.dish);
+
+  @override
+  final Dish dish;
+
+  @override
+  String toString() {
+    return 'AddSavedDishes.successful(dish: $dish)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is AddSavedDishesSuccessful &&
+            (identical(other.dish, dish) ||
+                const DeepCollectionEquality().equals(other.dish, dish)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(dish);
+
+  @JsonKey(ignore: true)
+  @override
+  $AddSavedDishesSuccessfulCopyWith<AddSavedDishesSuccessful> get copyWith =>
+      _$AddSavedDishesSuccessfulCopyWithImpl<AddSavedDishesSuccessful>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String name, String? description, String price,
+            String quantity, String? image)
+        $default, {
+    required TResult Function(Dish dish) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return successful(dish);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String name, String? description, String price,
+            String quantity, String? image)?
+        $default, {
+    TResult Function(Dish dish)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(dish);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(AddSavedDishes$ value) $default, {
+    required TResult Function(AddSavedDishesSuccessful value) successful,
+    required TResult Function(AddSavedDishesError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(AddSavedDishes$ value)? $default, {
+    TResult Function(AddSavedDishesSuccessful value)? successful,
+    TResult Function(AddSavedDishesError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddSavedDishesSuccessful implements AddSavedDishes {
+  const factory AddSavedDishesSuccessful(Dish dish) =
+      _$AddSavedDishesSuccessful;
+
+  Dish get dish => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AddSavedDishesSuccessfulCopyWith<AddSavedDishesSuccessful> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddSavedDishesErrorCopyWith<$Res> {
+  factory $AddSavedDishesErrorCopyWith(
+          AddSavedDishesError value, $Res Function(AddSavedDishesError) then) =
+      _$AddSavedDishesErrorCopyWithImpl<$Res>;
+  $Res call({Object error});
+}
+
+/// @nodoc
+class _$AddSavedDishesErrorCopyWithImpl<$Res>
+    extends _$AddSavedDishesCopyWithImpl<$Res>
+    implements $AddSavedDishesErrorCopyWith<$Res> {
+  _$AddSavedDishesErrorCopyWithImpl(
+      AddSavedDishesError _value, $Res Function(AddSavedDishesError) _then)
+      : super(_value, (v) => _then(v as AddSavedDishesError));
+
+  @override
+  AddSavedDishesError get _value => super._value as AddSavedDishesError;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(AddSavedDishesError(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Object,
+    ));
+  }
+}
+
+@Implements(ErrorAction)
+
+/// @nodoc
+class _$AddSavedDishesError implements AddSavedDishesError {
+  const _$AddSavedDishesError(this.error);
+
+  @override
+  final Object error;
+
+  @override
+  String toString() {
+    return 'AddSavedDishes.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is AddSavedDishesError &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+
+  @JsonKey(ignore: true)
+  @override
+  $AddSavedDishesErrorCopyWith<AddSavedDishesError> get copyWith =>
+      _$AddSavedDishesErrorCopyWithImpl<AddSavedDishesError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String name, String? description, String price,
+            String quantity, String? image)
+        $default, {
+    required TResult Function(Dish dish) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String name, String? description, String price,
+            String quantity, String? image)?
+        $default, {
+    TResult Function(Dish dish)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(AddSavedDishes$ value) $default, {
+    required TResult Function(AddSavedDishesSuccessful value) successful,
+    required TResult Function(AddSavedDishesError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(AddSavedDishes$ value)? $default, {
+    TResult Function(AddSavedDishesSuccessful value)? successful,
+    TResult Function(AddSavedDishesError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddSavedDishesError implements AddSavedDishes, ErrorAction {
+  const factory AddSavedDishesError(Object error) = _$AddSavedDishesError;
+
+  Object get error => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AddSavedDishesErrorCopyWith<AddSavedDishesError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$RemoveSavedDishesTearOff {
+  const _$RemoveSavedDishesTearOff();
+
+  RemoveSavedDishes$ call({required String id}) {
+    return RemoveSavedDishes$(
+      id: id,
+    );
+  }
+
+  RemoveSavedDishesSuccessful successful(String id) {
+    return RemoveSavedDishesSuccessful(
+      id,
+    );
+  }
+
+  RemoveSavedDishesError error(Object error) {
+    return RemoveSavedDishesError(
+      error,
+    );
+  }
+}
+
+/// @nodoc
+const $RemoveSavedDishes = _$RemoveSavedDishesTearOff();
+
+/// @nodoc
+mixin _$RemoveSavedDishes {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String id) $default, {
+    required TResult Function(String id) successful,
+    required TResult Function(Object error) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String id)? $default, {
+    TResult Function(String id)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(RemoveSavedDishes$ value) $default, {
+    required TResult Function(RemoveSavedDishesSuccessful value) successful,
+    required TResult Function(RemoveSavedDishesError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(RemoveSavedDishes$ value)? $default, {
+    TResult Function(RemoveSavedDishesSuccessful value)? successful,
+    TResult Function(RemoveSavedDishesError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RemoveSavedDishesCopyWith<$Res> {
+  factory $RemoveSavedDishesCopyWith(
+          RemoveSavedDishes value, $Res Function(RemoveSavedDishes) then) =
+      _$RemoveSavedDishesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$RemoveSavedDishesCopyWithImpl<$Res>
+    implements $RemoveSavedDishesCopyWith<$Res> {
+  _$RemoveSavedDishesCopyWithImpl(this._value, this._then);
+
+  final RemoveSavedDishes _value;
+  // ignore: unused_field
+  final $Res Function(RemoveSavedDishes) _then;
+}
+
+/// @nodoc
+abstract class $RemoveSavedDishes$CopyWith<$Res> {
+  factory $RemoveSavedDishes$CopyWith(
+          RemoveSavedDishes$ value, $Res Function(RemoveSavedDishes$) then) =
+      _$RemoveSavedDishes$CopyWithImpl<$Res>;
+  $Res call({String id});
+}
+
+/// @nodoc
+class _$RemoveSavedDishes$CopyWithImpl<$Res>
+    extends _$RemoveSavedDishesCopyWithImpl<$Res>
+    implements $RemoveSavedDishes$CopyWith<$Res> {
+  _$RemoveSavedDishes$CopyWithImpl(
+      RemoveSavedDishes$ _value, $Res Function(RemoveSavedDishes$) _then)
+      : super(_value, (v) => _then(v as RemoveSavedDishes$));
+
+  @override
+  RemoveSavedDishes$ get _value => super._value as RemoveSavedDishes$;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+  }) {
+    return _then(RemoveSavedDishes$(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$RemoveSavedDishes$ implements RemoveSavedDishes$ {
+  const _$RemoveSavedDishes$({required this.id});
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'RemoveSavedDishes(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RemoveSavedDishes$ &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+
+  @JsonKey(ignore: true)
+  @override
+  $RemoveSavedDishes$CopyWith<RemoveSavedDishes$> get copyWith =>
+      _$RemoveSavedDishes$CopyWithImpl<RemoveSavedDishes$>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String id) $default, {
+    required TResult Function(String id) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return $default(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String id)? $default, {
+    TResult Function(String id)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(RemoveSavedDishes$ value) $default, {
+    required TResult Function(RemoveSavedDishesSuccessful value) successful,
+    required TResult Function(RemoveSavedDishesError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(RemoveSavedDishes$ value)? $default, {
+    TResult Function(RemoveSavedDishesSuccessful value)? successful,
+    TResult Function(RemoveSavedDishesError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RemoveSavedDishes$ implements RemoveSavedDishes {
+  const factory RemoveSavedDishes$({required String id}) = _$RemoveSavedDishes$;
+
+  String get id => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RemoveSavedDishes$CopyWith<RemoveSavedDishes$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RemoveSavedDishesSuccessfulCopyWith<$Res> {
+  factory $RemoveSavedDishesSuccessfulCopyWith(
+          RemoveSavedDishesSuccessful value,
+          $Res Function(RemoveSavedDishesSuccessful) then) =
+      _$RemoveSavedDishesSuccessfulCopyWithImpl<$Res>;
+  $Res call({String id});
+}
+
+/// @nodoc
+class _$RemoveSavedDishesSuccessfulCopyWithImpl<$Res>
+    extends _$RemoveSavedDishesCopyWithImpl<$Res>
+    implements $RemoveSavedDishesSuccessfulCopyWith<$Res> {
+  _$RemoveSavedDishesSuccessfulCopyWithImpl(RemoveSavedDishesSuccessful _value,
+      $Res Function(RemoveSavedDishesSuccessful) _then)
+      : super(_value, (v) => _then(v as RemoveSavedDishesSuccessful));
+
+  @override
+  RemoveSavedDishesSuccessful get _value =>
+      super._value as RemoveSavedDishesSuccessful;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+  }) {
+    return _then(RemoveSavedDishesSuccessful(
+      id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$RemoveSavedDishesSuccessful implements RemoveSavedDishesSuccessful {
+  const _$RemoveSavedDishesSuccessful(this.id);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'RemoveSavedDishes.successful(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RemoveSavedDishesSuccessful &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+
+  @JsonKey(ignore: true)
+  @override
+  $RemoveSavedDishesSuccessfulCopyWith<RemoveSavedDishesSuccessful>
+      get copyWith => _$RemoveSavedDishesSuccessfulCopyWithImpl<
+          RemoveSavedDishesSuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String id) $default, {
+    required TResult Function(String id) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return successful(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String id)? $default, {
+    TResult Function(String id)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(RemoveSavedDishes$ value) $default, {
+    required TResult Function(RemoveSavedDishesSuccessful value) successful,
+    required TResult Function(RemoveSavedDishesError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(RemoveSavedDishes$ value)? $default, {
+    TResult Function(RemoveSavedDishesSuccessful value)? successful,
+    TResult Function(RemoveSavedDishesError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RemoveSavedDishesSuccessful implements RemoveSavedDishes {
+  const factory RemoveSavedDishesSuccessful(String id) =
+      _$RemoveSavedDishesSuccessful;
+
+  String get id => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RemoveSavedDishesSuccessfulCopyWith<RemoveSavedDishesSuccessful>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RemoveSavedDishesErrorCopyWith<$Res> {
+  factory $RemoveSavedDishesErrorCopyWith(RemoveSavedDishesError value,
+          $Res Function(RemoveSavedDishesError) then) =
+      _$RemoveSavedDishesErrorCopyWithImpl<$Res>;
+  $Res call({Object error});
+}
+
+/// @nodoc
+class _$RemoveSavedDishesErrorCopyWithImpl<$Res>
+    extends _$RemoveSavedDishesCopyWithImpl<$Res>
+    implements $RemoveSavedDishesErrorCopyWith<$Res> {
+  _$RemoveSavedDishesErrorCopyWithImpl(RemoveSavedDishesError _value,
+      $Res Function(RemoveSavedDishesError) _then)
+      : super(_value, (v) => _then(v as RemoveSavedDishesError));
+
+  @override
+  RemoveSavedDishesError get _value => super._value as RemoveSavedDishesError;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(RemoveSavedDishesError(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Object,
+    ));
+  }
+}
+
+@Implements(ErrorAction)
+
+/// @nodoc
+class _$RemoveSavedDishesError implements RemoveSavedDishesError {
+  const _$RemoveSavedDishesError(this.error);
+
+  @override
+  final Object error;
+
+  @override
+  String toString() {
+    return 'RemoveSavedDishes.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RemoveSavedDishesError &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+
+  @JsonKey(ignore: true)
+  @override
+  $RemoveSavedDishesErrorCopyWith<RemoveSavedDishesError> get copyWith =>
+      _$RemoveSavedDishesErrorCopyWithImpl<RemoveSavedDishesError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String id) $default, {
+    required TResult Function(String id) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String id)? $default, {
+    TResult Function(String id)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(RemoveSavedDishes$ value) $default, {
+    required TResult Function(RemoveSavedDishesSuccessful value) successful,
+    required TResult Function(RemoveSavedDishesError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(RemoveSavedDishes$ value)? $default, {
+    TResult Function(RemoveSavedDishesSuccessful value)? successful,
+    TResult Function(RemoveSavedDishesError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RemoveSavedDishesError
+    implements RemoveSavedDishes, ErrorAction {
+  const factory RemoveSavedDishesError(Object error) = _$RemoveSavedDishesError;
+
+  Object get error => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RemoveSavedDishesErrorCopyWith<RemoveSavedDishesError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$EditSavedDishesTearOff {
+  const _$EditSavedDishesTearOff();
+
+  EditSavedDishes$ call(
+      {required String id,
+      required String name,
+      required String description,
+      required String price,
+      required String quantity,
+      required String image}) {
+    return EditSavedDishes$(
+      id: id,
+      name: name,
+      description: description,
+      price: price,
+      quantity: quantity,
+      image: image,
+    );
+  }
+
+  EditSavedDishesSuccessful successful(Dish dish) {
+    return EditSavedDishesSuccessful(
+      dish,
+    );
+  }
+
+  EditSavedDishesError error(Object error) {
+    return EditSavedDishesError(
+      error,
+    );
+  }
+}
+
+/// @nodoc
+const $EditSavedDishes = _$EditSavedDishesTearOff();
+
+/// @nodoc
+mixin _$EditSavedDishes {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String id, String name, String description, String price,
+            String quantity, String image)
+        $default, {
+    required TResult Function(Dish dish) successful,
+    required TResult Function(Object error) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String id, String name, String description, String price,
+            String quantity, String image)?
+        $default, {
+    TResult Function(Dish dish)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EditSavedDishes$ value) $default, {
+    required TResult Function(EditSavedDishesSuccessful value) successful,
+    required TResult Function(EditSavedDishesError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EditSavedDishes$ value)? $default, {
+    TResult Function(EditSavedDishesSuccessful value)? successful,
+    TResult Function(EditSavedDishesError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EditSavedDishesCopyWith<$Res> {
+  factory $EditSavedDishesCopyWith(
+          EditSavedDishes value, $Res Function(EditSavedDishes) then) =
+      _$EditSavedDishesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$EditSavedDishesCopyWithImpl<$Res>
+    implements $EditSavedDishesCopyWith<$Res> {
+  _$EditSavedDishesCopyWithImpl(this._value, this._then);
+
+  final EditSavedDishes _value;
+  // ignore: unused_field
+  final $Res Function(EditSavedDishes) _then;
+}
+
+/// @nodoc
+abstract class $EditSavedDishes$CopyWith<$Res> {
+  factory $EditSavedDishes$CopyWith(
+          EditSavedDishes$ value, $Res Function(EditSavedDishes$) then) =
+      _$EditSavedDishes$CopyWithImpl<$Res>;
+  $Res call(
+      {String id,
+      String name,
+      String description,
+      String price,
+      String quantity,
+      String image});
+}
+
+/// @nodoc
+class _$EditSavedDishes$CopyWithImpl<$Res>
+    extends _$EditSavedDishesCopyWithImpl<$Res>
+    implements $EditSavedDishes$CopyWith<$Res> {
+  _$EditSavedDishes$CopyWithImpl(
+      EditSavedDishes$ _value, $Res Function(EditSavedDishes$) _then)
+      : super(_value, (v) => _then(v as EditSavedDishes$));
+
+  @override
+  EditSavedDishes$ get _value => super._value as EditSavedDishes$;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? price = freezed,
+    Object? quantity = freezed,
+    Object? image = freezed,
+  }) {
+    return _then(EditSavedDishes$(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as String,
+      quantity: quantity == freezed
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$EditSavedDishes$ implements EditSavedDishes$ {
+  const _$EditSavedDishes$(
+      {required this.id,
+      required this.name,
+      required this.description,
+      required this.price,
+      required this.quantity,
+      required this.image});
+
+  @override
+  final String id;
+  @override
+  final String name;
+  @override
+  final String description;
+  @override
+  final String price;
+  @override
+  final String quantity;
+  @override
+  final String image;
+
+  @override
+  String toString() {
+    return 'EditSavedDishes(id: $id, name: $name, description: $description, price: $price, quantity: $quantity, image: $image)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is EditSavedDishes$ &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.price, price) ||
+                const DeepCollectionEquality().equals(other.price, price)) &&
+            (identical(other.quantity, quantity) ||
+                const DeepCollectionEquality()
+                    .equals(other.quantity, quantity)) &&
+            (identical(other.image, image) ||
+                const DeepCollectionEquality().equals(other.image, image)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(price) ^
+      const DeepCollectionEquality().hash(quantity) ^
+      const DeepCollectionEquality().hash(image);
+
+  @JsonKey(ignore: true)
+  @override
+  $EditSavedDishes$CopyWith<EditSavedDishes$> get copyWith =>
+      _$EditSavedDishes$CopyWithImpl<EditSavedDishes$>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String id, String name, String description, String price,
+            String quantity, String image)
+        $default, {
+    required TResult Function(Dish dish) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return $default(id, name, description, price, quantity, image);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String id, String name, String description, String price,
+            String quantity, String image)?
+        $default, {
+    TResult Function(Dish dish)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(id, name, description, price, quantity, image);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EditSavedDishes$ value) $default, {
+    required TResult Function(EditSavedDishesSuccessful value) successful,
+    required TResult Function(EditSavedDishesError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EditSavedDishes$ value)? $default, {
+    TResult Function(EditSavedDishesSuccessful value)? successful,
+    TResult Function(EditSavedDishesError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EditSavedDishes$ implements EditSavedDishes {
+  const factory EditSavedDishes$(
+      {required String id,
+      required String name,
+      required String description,
+      required String price,
+      required String quantity,
+      required String image}) = _$EditSavedDishes$;
+
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get price => throw _privateConstructorUsedError;
+  String get quantity => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $EditSavedDishes$CopyWith<EditSavedDishes$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EditSavedDishesSuccessfulCopyWith<$Res> {
+  factory $EditSavedDishesSuccessfulCopyWith(EditSavedDishesSuccessful value,
+          $Res Function(EditSavedDishesSuccessful) then) =
+      _$EditSavedDishesSuccessfulCopyWithImpl<$Res>;
+  $Res call({Dish dish});
+}
+
+/// @nodoc
+class _$EditSavedDishesSuccessfulCopyWithImpl<$Res>
+    extends _$EditSavedDishesCopyWithImpl<$Res>
+    implements $EditSavedDishesSuccessfulCopyWith<$Res> {
+  _$EditSavedDishesSuccessfulCopyWithImpl(EditSavedDishesSuccessful _value,
+      $Res Function(EditSavedDishesSuccessful) _then)
+      : super(_value, (v) => _then(v as EditSavedDishesSuccessful));
+
+  @override
+  EditSavedDishesSuccessful get _value =>
+      super._value as EditSavedDishesSuccessful;
+
+  @override
+  $Res call({
+    Object? dish = freezed,
+  }) {
+    return _then(EditSavedDishesSuccessful(
+      dish == freezed
+          ? _value.dish
+          : dish // ignore: cast_nullable_to_non_nullable
+              as Dish,
+    ));
+  }
+}
+
+/// @nodoc
+class _$EditSavedDishesSuccessful implements EditSavedDishesSuccessful {
+  const _$EditSavedDishesSuccessful(this.dish);
+
+  @override
+  final Dish dish;
+
+  @override
+  String toString() {
+    return 'EditSavedDishes.successful(dish: $dish)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is EditSavedDishesSuccessful &&
+            (identical(other.dish, dish) ||
+                const DeepCollectionEquality().equals(other.dish, dish)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(dish);
+
+  @JsonKey(ignore: true)
+  @override
+  $EditSavedDishesSuccessfulCopyWith<EditSavedDishesSuccessful> get copyWith =>
+      _$EditSavedDishesSuccessfulCopyWithImpl<EditSavedDishesSuccessful>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String id, String name, String description, String price,
+            String quantity, String image)
+        $default, {
+    required TResult Function(Dish dish) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return successful(dish);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String id, String name, String description, String price,
+            String quantity, String image)?
+        $default, {
+    TResult Function(Dish dish)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(dish);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EditSavedDishes$ value) $default, {
+    required TResult Function(EditSavedDishesSuccessful value) successful,
+    required TResult Function(EditSavedDishesError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EditSavedDishes$ value)? $default, {
+    TResult Function(EditSavedDishesSuccessful value)? successful,
+    TResult Function(EditSavedDishesError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EditSavedDishesSuccessful implements EditSavedDishes {
+  const factory EditSavedDishesSuccessful(Dish dish) =
+      _$EditSavedDishesSuccessful;
+
+  Dish get dish => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $EditSavedDishesSuccessfulCopyWith<EditSavedDishesSuccessful> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EditSavedDishesErrorCopyWith<$Res> {
+  factory $EditSavedDishesErrorCopyWith(EditSavedDishesError value,
+          $Res Function(EditSavedDishesError) then) =
+      _$EditSavedDishesErrorCopyWithImpl<$Res>;
+  $Res call({Object error});
+}
+
+/// @nodoc
+class _$EditSavedDishesErrorCopyWithImpl<$Res>
+    extends _$EditSavedDishesCopyWithImpl<$Res>
+    implements $EditSavedDishesErrorCopyWith<$Res> {
+  _$EditSavedDishesErrorCopyWithImpl(
+      EditSavedDishesError _value, $Res Function(EditSavedDishesError) _then)
+      : super(_value, (v) => _then(v as EditSavedDishesError));
+
+  @override
+  EditSavedDishesError get _value => super._value as EditSavedDishesError;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(EditSavedDishesError(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Object,
+    ));
+  }
+}
+
+@Implements(ErrorAction)
+
+/// @nodoc
+class _$EditSavedDishesError implements EditSavedDishesError {
+  const _$EditSavedDishesError(this.error);
+
+  @override
+  final Object error;
+
+  @override
+  String toString() {
+    return 'EditSavedDishes.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is EditSavedDishesError &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+
+  @JsonKey(ignore: true)
+  @override
+  $EditSavedDishesErrorCopyWith<EditSavedDishesError> get copyWith =>
+      _$EditSavedDishesErrorCopyWithImpl<EditSavedDishesError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String id, String name, String description, String price,
+            String quantity, String image)
+        $default, {
+    required TResult Function(Dish dish) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String id, String name, String description, String price,
+            String quantity, String image)?
+        $default, {
+    TResult Function(Dish dish)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EditSavedDishes$ value) $default, {
+    required TResult Function(EditSavedDishesSuccessful value) successful,
+    required TResult Function(EditSavedDishesError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EditSavedDishes$ value)? $default, {
+    TResult Function(EditSavedDishesSuccessful value)? successful,
+    TResult Function(EditSavedDishesError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EditSavedDishesError implements EditSavedDishes, ErrorAction {
+  const factory EditSavedDishesError(Object error) = _$EditSavedDishesError;
+
+  Object get error => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $EditSavedDishesErrorCopyWith<EditSavedDishesError> get copyWith =>
+      throw _privateConstructorUsedError;
+}

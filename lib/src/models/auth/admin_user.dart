@@ -20,6 +20,8 @@ abstract class AdminUser implements Built<AdminUser, AdminUserBuilder> {
 
   BuiltList<String> get employees;
 
+  BuiltMap<String, Dish> get savedDishes;
+
 
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 

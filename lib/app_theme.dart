@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 ThemeData appThemeData(BuildContext context) {
   return ThemeData(
-  /*  primaryColor: Colors.white,
+    /*  primaryColor: Colors.white,
     accentColor: const Color(0xFF292B36),
     textTheme: const TextTheme(
       headline5: TextStyle(color: Colors.white),
@@ -15,14 +15,18 @@ ThemeData appThemeData(BuildContext context) {
     backgroundColor: const Color(0xFF383A47),
     buttonColor: const Color(0xFF5969FF),
     hintColor: Colors.white.withOpacity(0.6),
-    appBarTheme: AppBarTheme.of(context).copyWith(
-      color: const Color(0xFF292B36),
-//      titleTextStyle: const TextStyle(color: Colors.white),
-    ),
     scaffoldBackgroundColor: const Color(0xFFEDF2FB),
     dialogBackgroundColor: const Color(0xFF292B36),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(backgroundColor: MaterialStateProperty.all(const Color(0xFF5969FF))),
     ),*/
+    appBarTheme: AppBarTheme.of(context).copyWith(
+//      color: Colors.transparent,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.black),
+
+        textTheme: const TextTheme(headline6: TextStyle(color: Colors.black))
+        ),
   );
 }

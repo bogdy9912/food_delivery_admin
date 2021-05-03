@@ -1,18 +1,23 @@
+import 'dart:io';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:food_delivery_admin/src/data/search_index_all.dart';
 import 'package:food_delivery_admin/src/models/auth/index.dart';
 import 'package:food_delivery_admin/src/models/index.dart';
 import 'package:food_delivery_admin/src/models/orders/index.dart';
 
 class AuthApi {
-  AuthApi({required FirebaseAuth auth, required FirebaseFirestore firestore})
+  AuthApi({required FirebaseAuth auth, required FirebaseFirestore firestore, required FirebaseStorage storage})
       : _auth = auth,
-        _firestore = firestore;
+        _firestore = firestore,
+        _storage = storage;
 
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
+  final FirebaseStorage _storage;
 
   Future<AdminUser> initializeApp() async {
     final User user = _auth.currentUser!;
@@ -103,5 +108,67 @@ class AuthApi {
     });
 
     return user.user!.uid;
+  }
+
+  Future<Dish> addSavedDishes({
+    required String adminId,
+    required String name,
+    required String? description,
+    required String price,
+    required String quantity,
+    required String? image,
+  }) async {
+    final DocumentReference ref = _firestore.collection('NOT USE').doc();
+    String? downloadImage;
+    if (image != null) {
+      downloadImage = await _uploadImage(adminId, ref.id, image);
+    }
+    print('data add saved 1');
+    final Dish newDish = Dish((DishBuilder b) => b
+      ..id = ref.id
+      ..name = name
+      ..description = description
+      ..quantity = int.parse(quantity)
+      ..price = double.parse(price)
+      ..image = downloadImage);
+    print('data add saved 2');
+    await _firestore.doc('admins/$adminId').update(<String, dynamic>{'savedDishes.${ref.id}': newDish.json});
+    print('data add saved 3');
+    return newDish;
+  }
+
+  Future<String> _uploadImage(String adminId, String dishId, String path) async {
+    final Reference refResult = _storage.ref('admins/$adminId/savedDishes/$dishId');
+    await refResult.putFile(File(path));
+
+    final String url = await refResult.getDownloadURL();
+
+    return url;
+  }
+
+  Future<String> removeSavedDishes({required String adminId, required String id}) async {
+    await _firestore.doc('admins/$adminId').update(<String, dynamic>{'savedDishes.$id': FieldValue.delete()});
+    await _storage.ref('admins/$adminId/savedDishes/$id').delete();
+    return id;
+  }
+
+  Future<Dish> editSavedDishes(
+      {required String adminId,
+      required String id,
+      required String name,
+      required String description,
+      required String price,
+      required String quantity,
+      required String image}) async {
+    final String downloadImage = await _uploadImage(adminId, id, image);
+    final Dish newDish = Dish((DishBuilder b) => b
+      ..id = id
+      ..name = name
+      ..description = description
+      ..quantity = int.parse(quantity)
+      ..price = double.parse(price)
+      ..image = downloadImage);
+    await _firestore.doc('admins/$adminId').update(<String, dynamic>{'savedDishes.$id': newDish.json});
+    return newDish;
   }
 }
