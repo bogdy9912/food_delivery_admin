@@ -28,7 +28,7 @@ CompanyState _updateDishes(CompanyState state, UpdateDishes$ action) {
     if (action.add != null) {
       b.meniu.items[index] = b.meniu.items[index].rebuild((MeniuItemBuilder e) => e.dishes.add(action.add!));
     } else if (action.remove != null) {
-      b.meniu.items[index].dishes.toBuilder().remove(action.remove);
+      b.meniu.items[index]=  b.meniu.items[index].rebuild((MeniuItemBuilder e) => e.dishes.remove(action.remove));
     }
   });
 }
