@@ -64,8 +64,12 @@ class CategoryWidget extends StatelessWidget {
                                       },
                                     );
                                   }
+                                  final Dish dish = savedDishes.values.toList()[index - 1];
                                   return SavedDishWidget(
-                                      dish: savedDishes.values.toList()[index - 1], categoryId: item.id);
+                                    dish: dish,
+                                    categoryId: item.id,
+                                    isPressed: item.dishes.contains(dish),
+                                  );
                                 },
                               ),
                             ),
