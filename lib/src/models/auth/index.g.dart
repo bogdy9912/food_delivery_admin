@@ -136,6 +136,10 @@ class _$AuthStateSerializer implements StructuredSerializer<AuthState> {
   Iterable<Object?> serialize(Serializers serializers, AuthState object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
+      'employees',
+      serializers.serialize(object.employees,
+          specifiedType: const FullType(BuiltMap,
+              const [const FullType(String), const FullType(EmployeeUser)])),
       'info',
       serializers.serialize(object.info,
           specifiedType: const FullType(RegistrationInfo)),
@@ -165,6 +169,13 @@ class _$AuthStateSerializer implements StructuredSerializer<AuthState> {
         case 'user':
           result.user.replace(serializers.deserialize(value,
               specifiedType: const FullType(AdminUser))! as AdminUser);
+          break;
+        case 'employees':
+          result.employees.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltMap, const [
+                const FullType(String),
+                const FullType(EmployeeUser)
+              ]))!);
           break;
         case 'info':
           result.info.replace(serializers.deserialize(value,
@@ -394,6 +405,12 @@ class _$EmployeeUserSerializer implements StructuredSerializer<EmployeeUser> {
       'email',
       serializers.serialize(object.email,
           specifiedType: const FullType(String)),
+      'firstName',
+      serializers.serialize(object.firstName,
+          specifiedType: const FullType(String)),
+      'lastName',
+      serializers.serialize(object.lastName,
+          specifiedType: const FullType(String)),
       'roles',
       serializers.serialize(object.roles,
           specifiedType:
@@ -425,6 +442,14 @@ class _$EmployeeUserSerializer implements StructuredSerializer<EmployeeUser> {
           break;
         case 'email':
           result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'firstName':
+          result.firstName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'lastName':
+          result.lastName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'roles':
@@ -662,12 +687,16 @@ class _$AuthState extends AuthState {
   @override
   final AdminUser? user;
   @override
+  final BuiltMap<String, EmployeeUser> employees;
+  @override
   final RegistrationInfo info;
 
   factory _$AuthState([void Function(AuthStateBuilder)? updates]) =>
       (new AuthStateBuilder()..update(updates)).build();
 
-  _$AuthState._({this.user, required this.info}) : super._() {
+  _$AuthState._({this.user, required this.employees, required this.info})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(employees, 'AuthState', 'employees');
     BuiltValueNullFieldError.checkNotNull(info, 'AuthState', 'info');
   }
 
@@ -681,18 +710,23 @@ class _$AuthState extends AuthState {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is AuthState && user == other.user && info == other.info;
+    return other is AuthState &&
+        user == other.user &&
+        employees == other.employees &&
+        info == other.info;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, user.hashCode), info.hashCode));
+    return $jf(
+        $jc($jc($jc(0, user.hashCode), employees.hashCode), info.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('AuthState')
           ..add('user', user)
+          ..add('employees', employees)
           ..add('info', info))
         .toString();
   }
@@ -705,6 +739,12 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
   AdminUserBuilder get user => _$this._user ??= new AdminUserBuilder();
   set user(AdminUserBuilder? user) => _$this._user = user;
 
+  MapBuilder<String, EmployeeUser>? _employees;
+  MapBuilder<String, EmployeeUser> get employees =>
+      _$this._employees ??= new MapBuilder<String, EmployeeUser>();
+  set employees(MapBuilder<String, EmployeeUser>? employees) =>
+      _$this._employees = employees;
+
   RegistrationInfoBuilder? _info;
   RegistrationInfoBuilder get info =>
       _$this._info ??= new RegistrationInfoBuilder();
@@ -716,6 +756,7 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
     final $v = _$v;
     if ($v != null) {
       _user = $v.user?.toBuilder();
+      _employees = $v.employees.toBuilder();
       _info = $v.info.toBuilder();
       _$v = null;
     }
@@ -737,13 +778,18 @@ class AuthStateBuilder implements Builder<AuthState, AuthStateBuilder> {
   _$AuthState build() {
     _$AuthState _$result;
     try {
-      _$result =
-          _$v ?? new _$AuthState._(user: _user?.build(), info: info.build());
+      _$result = _$v ??
+          new _$AuthState._(
+              user: _user?.build(),
+              employees: employees.build(),
+              info: info.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'user';
         _user?.build();
+        _$failedField = 'employees';
+        employees.build();
         _$failedField = 'info';
         info.build();
       } catch (e) {
@@ -1054,6 +1100,10 @@ class _$EmployeeUser extends EmployeeUser {
   @override
   final String email;
   @override
+  final String firstName;
+  @override
+  final String lastName;
+  @override
   final BuiltList<Role> roles;
 
   factory _$EmployeeUser([void Function(EmployeeUserBuilder)? updates]) =>
@@ -1063,11 +1113,16 @@ class _$EmployeeUser extends EmployeeUser {
       {required this.uid,
       required this.adminId,
       required this.email,
+      required this.firstName,
+      required this.lastName,
       required this.roles})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(uid, 'EmployeeUser', 'uid');
     BuiltValueNullFieldError.checkNotNull(adminId, 'EmployeeUser', 'adminId');
     BuiltValueNullFieldError.checkNotNull(email, 'EmployeeUser', 'email');
+    BuiltValueNullFieldError.checkNotNull(
+        firstName, 'EmployeeUser', 'firstName');
+    BuiltValueNullFieldError.checkNotNull(lastName, 'EmployeeUser', 'lastName');
     BuiltValueNullFieldError.checkNotNull(roles, 'EmployeeUser', 'roles');
   }
 
@@ -1085,13 +1140,20 @@ class _$EmployeeUser extends EmployeeUser {
         uid == other.uid &&
         adminId == other.adminId &&
         email == other.email &&
+        firstName == other.firstName &&
+        lastName == other.lastName &&
         roles == other.roles;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, uid.hashCode), adminId.hashCode), email.hashCode),
+        $jc(
+            $jc(
+                $jc($jc($jc(0, uid.hashCode), adminId.hashCode),
+                    email.hashCode),
+                firstName.hashCode),
+            lastName.hashCode),
         roles.hashCode));
   }
 
@@ -1101,6 +1163,8 @@ class _$EmployeeUser extends EmployeeUser {
           ..add('uid', uid)
           ..add('adminId', adminId)
           ..add('email', email)
+          ..add('firstName', firstName)
+          ..add('lastName', lastName)
           ..add('roles', roles))
         .toString();
   }
@@ -1122,6 +1186,14 @@ class EmployeeUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  String? _firstName;
+  String? get firstName => _$this._firstName;
+  set firstName(String? firstName) => _$this._firstName = firstName;
+
+  String? _lastName;
+  String? get lastName => _$this._lastName;
+  set lastName(String? lastName) => _$this._lastName = lastName;
+
   ListBuilder<Role>? _roles;
   ListBuilder<Role> get roles => _$this._roles ??= new ListBuilder<Role>();
   set roles(ListBuilder<Role>? roles) => _$this._roles = roles;
@@ -1134,6 +1206,8 @@ class EmployeeUserBuilder
       _uid = $v.uid;
       _adminId = $v.adminId;
       _email = $v.email;
+      _firstName = $v.firstName;
+      _lastName = $v.lastName;
       _roles = $v.roles.toBuilder();
       _$v = null;
     }
@@ -1163,6 +1237,10 @@ class EmployeeUserBuilder
                   adminId, 'EmployeeUser', 'adminId'),
               email: BuiltValueNullFieldError.checkNotNull(
                   email, 'EmployeeUser', 'email'),
+              firstName: BuiltValueNullFieldError.checkNotNull(
+                  firstName, 'EmployeeUser', 'firstName'),
+              lastName: BuiltValueNullFieldError.checkNotNull(
+                  lastName, 'EmployeeUser', 'lastName'),
               roles: roles.build());
     } catch (_) {
       late String _$failedField;

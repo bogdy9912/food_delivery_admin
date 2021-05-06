@@ -1820,10 +1820,14 @@ class _$CreateEmployeeAccountTearOff {
   CreateEmployeeAccount$ call(
       {required String email,
       required String password,
+      required String lastName,
+      required String firstName,
       required List<Role> roles}) {
     return CreateEmployeeAccount$(
       email: email,
       password: password,
+      lastName: lastName,
+      firstName: firstName,
       roles: roles,
     );
   }
@@ -1848,7 +1852,8 @@ const $CreateEmployeeAccount = _$CreateEmployeeAccountTearOff();
 mixin _$CreateEmployeeAccount {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, List<Role> roles)
+    TResult Function(String email, String password, String lastName,
+            String firstName, List<Role> roles)
         $default, {
     required TResult Function(String employeeId) successful,
     required TResult Function(Object error) error,
@@ -1856,7 +1861,8 @@ mixin _$CreateEmployeeAccount {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, List<Role> roles)?
+    TResult Function(String email, String password, String lastName,
+            String firstName, List<Role> roles)?
         $default, {
     TResult Function(String employeeId)? successful,
     TResult Function(Object error)? error,
@@ -1902,7 +1908,12 @@ abstract class $CreateEmployeeAccount$CopyWith<$Res> {
   factory $CreateEmployeeAccount$CopyWith(CreateEmployeeAccount$ value,
           $Res Function(CreateEmployeeAccount$) then) =
       _$CreateEmployeeAccount$CopyWithImpl<$Res>;
-  $Res call({String email, String password, List<Role> roles});
+  $Res call(
+      {String email,
+      String password,
+      String lastName,
+      String firstName,
+      List<Role> roles});
 }
 
 /// @nodoc
@@ -1920,6 +1931,8 @@ class _$CreateEmployeeAccount$CopyWithImpl<$Res>
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
+    Object? lastName = freezed,
+    Object? firstName = freezed,
     Object? roles = freezed,
   }) {
     return _then(CreateEmployeeAccount$(
@@ -1930,6 +1943,14 @@ class _$CreateEmployeeAccount$CopyWithImpl<$Res>
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: lastName == freezed
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      firstName: firstName == freezed
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String,
       roles: roles == freezed
           ? _value.roles
@@ -1942,18 +1963,26 @@ class _$CreateEmployeeAccount$CopyWithImpl<$Res>
 /// @nodoc
 class _$CreateEmployeeAccount$ implements CreateEmployeeAccount$ {
   const _$CreateEmployeeAccount$(
-      {required this.email, required this.password, required this.roles});
+      {required this.email,
+      required this.password,
+      required this.lastName,
+      required this.firstName,
+      required this.roles});
 
   @override
   final String email;
   @override
   final String password;
   @override
+  final String lastName;
+  @override
+  final String firstName;
+  @override
   final List<Role> roles;
 
   @override
   String toString() {
-    return 'CreateEmployeeAccount(email: $email, password: $password, roles: $roles)';
+    return 'CreateEmployeeAccount(email: $email, password: $password, lastName: $lastName, firstName: $firstName, roles: $roles)';
   }
 
   @override
@@ -1965,6 +1994,12 @@ class _$CreateEmployeeAccount$ implements CreateEmployeeAccount$ {
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
                     .equals(other.password, password)) &&
+            (identical(other.lastName, lastName) ||
+                const DeepCollectionEquality()
+                    .equals(other.lastName, lastName)) &&
+            (identical(other.firstName, firstName) ||
+                const DeepCollectionEquality()
+                    .equals(other.firstName, firstName)) &&
             (identical(other.roles, roles) ||
                 const DeepCollectionEquality().equals(other.roles, roles)));
   }
@@ -1974,6 +2009,8 @@ class _$CreateEmployeeAccount$ implements CreateEmployeeAccount$ {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(password) ^
+      const DeepCollectionEquality().hash(lastName) ^
+      const DeepCollectionEquality().hash(firstName) ^
       const DeepCollectionEquality().hash(roles);
 
   @JsonKey(ignore: true)
@@ -1985,25 +2022,27 @@ class _$CreateEmployeeAccount$ implements CreateEmployeeAccount$ {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, List<Role> roles)
+    TResult Function(String email, String password, String lastName,
+            String firstName, List<Role> roles)
         $default, {
     required TResult Function(String employeeId) successful,
     required TResult Function(Object error) error,
   }) {
-    return $default(email, password, roles);
+    return $default(email, password, lastName, firstName, roles);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, List<Role> roles)?
+    TResult Function(String email, String password, String lastName,
+            String firstName, List<Role> roles)?
         $default, {
     TResult Function(String employeeId)? successful,
     TResult Function(Object error)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(email, password, roles);
+      return $default(email, password, lastName, firstName, roles);
     }
     return orElse();
   }
@@ -2037,10 +2076,14 @@ abstract class CreateEmployeeAccount$ implements CreateEmployeeAccount {
   const factory CreateEmployeeAccount$(
       {required String email,
       required String password,
+      required String lastName,
+      required String firstName,
       required List<Role> roles}) = _$CreateEmployeeAccount$;
 
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
   List<Role> get roles => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CreateEmployeeAccount$CopyWith<CreateEmployeeAccount$> get copyWith =>
@@ -2117,7 +2160,8 @@ class _$CreateEmployeeAccountSuccessful
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, List<Role> roles)
+    TResult Function(String email, String password, String lastName,
+            String firstName, List<Role> roles)
         $default, {
     required TResult Function(String employeeId) successful,
     required TResult Function(Object error) error,
@@ -2128,7 +2172,8 @@ class _$CreateEmployeeAccountSuccessful
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, List<Role> roles)?
+    TResult Function(String email, String password, String lastName,
+            String firstName, List<Role> roles)?
         $default, {
     TResult Function(String employeeId)? successful,
     TResult Function(Object error)? error,
@@ -2245,7 +2290,8 @@ class _$CreateEmployeeAccountError implements CreateEmployeeAccountError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, List<Role> roles)
+    TResult Function(String email, String password, String lastName,
+            String firstName, List<Role> roles)
         $default, {
     required TResult Function(String employeeId) successful,
     required TResult Function(Object error) error,
@@ -2256,7 +2302,8 @@ class _$CreateEmployeeAccountError implements CreateEmployeeAccountError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, List<Role> roles)?
+    TResult Function(String email, String password, String lastName,
+            String firstName, List<Role> roles)?
         $default, {
     TResult Function(String employeeId)? successful,
     TResult Function(Object error)? error,
@@ -3812,5 +3859,884 @@ abstract class EditSavedDishesError implements EditSavedDishes, ErrorAction {
   Object get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $EditSavedDishesErrorCopyWith<EditSavedDishesError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$GetEmployeesTearOff {
+  const _$GetEmployeesTearOff();
+
+  GetEmployees$ call({required String adminId}) {
+    return GetEmployees$(
+      adminId: adminId,
+    );
+  }
+
+  GetEmployeesSuccessful successful(Map<String, EmployeeUser> employees) {
+    return GetEmployeesSuccessful(
+      employees,
+    );
+  }
+
+  GetEmployeesError error(Object error) {
+    return GetEmployeesError(
+      error,
+    );
+  }
+}
+
+/// @nodoc
+const $GetEmployees = _$GetEmployeesTearOff();
+
+/// @nodoc
+mixin _$GetEmployees {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String adminId) $default, {
+    required TResult Function(Map<String, EmployeeUser> employees) successful,
+    required TResult Function(Object error) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String adminId)? $default, {
+    TResult Function(Map<String, EmployeeUser> employees)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetEmployees$ value) $default, {
+    required TResult Function(GetEmployeesSuccessful value) successful,
+    required TResult Function(GetEmployeesError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetEmployees$ value)? $default, {
+    TResult Function(GetEmployeesSuccessful value)? successful,
+    TResult Function(GetEmployeesError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetEmployeesCopyWith<$Res> {
+  factory $GetEmployeesCopyWith(
+          GetEmployees value, $Res Function(GetEmployees) then) =
+      _$GetEmployeesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GetEmployeesCopyWithImpl<$Res> implements $GetEmployeesCopyWith<$Res> {
+  _$GetEmployeesCopyWithImpl(this._value, this._then);
+
+  final GetEmployees _value;
+  // ignore: unused_field
+  final $Res Function(GetEmployees) _then;
+}
+
+/// @nodoc
+abstract class $GetEmployees$CopyWith<$Res> {
+  factory $GetEmployees$CopyWith(
+          GetEmployees$ value, $Res Function(GetEmployees$) then) =
+      _$GetEmployees$CopyWithImpl<$Res>;
+  $Res call({String adminId});
+}
+
+/// @nodoc
+class _$GetEmployees$CopyWithImpl<$Res> extends _$GetEmployeesCopyWithImpl<$Res>
+    implements $GetEmployees$CopyWith<$Res> {
+  _$GetEmployees$CopyWithImpl(
+      GetEmployees$ _value, $Res Function(GetEmployees$) _then)
+      : super(_value, (v) => _then(v as GetEmployees$));
+
+  @override
+  GetEmployees$ get _value => super._value as GetEmployees$;
+
+  @override
+  $Res call({
+    Object? adminId = freezed,
+  }) {
+    return _then(GetEmployees$(
+      adminId: adminId == freezed
+          ? _value.adminId
+          : adminId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$GetEmployees$ implements GetEmployees$ {
+  const _$GetEmployees$({required this.adminId});
+
+  @override
+  final String adminId;
+
+  @override
+  String toString() {
+    return 'GetEmployees(adminId: $adminId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GetEmployees$ &&
+            (identical(other.adminId, adminId) ||
+                const DeepCollectionEquality().equals(other.adminId, adminId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(adminId);
+
+  @JsonKey(ignore: true)
+  @override
+  $GetEmployees$CopyWith<GetEmployees$> get copyWith =>
+      _$GetEmployees$CopyWithImpl<GetEmployees$>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String adminId) $default, {
+    required TResult Function(Map<String, EmployeeUser> employees) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return $default(adminId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String adminId)? $default, {
+    TResult Function(Map<String, EmployeeUser> employees)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(adminId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetEmployees$ value) $default, {
+    required TResult Function(GetEmployeesSuccessful value) successful,
+    required TResult Function(GetEmployeesError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetEmployees$ value)? $default, {
+    TResult Function(GetEmployeesSuccessful value)? successful,
+    TResult Function(GetEmployeesError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetEmployees$ implements GetEmployees {
+  const factory GetEmployees$({required String adminId}) = _$GetEmployees$;
+
+  String get adminId => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GetEmployees$CopyWith<GetEmployees$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetEmployeesSuccessfulCopyWith<$Res> {
+  factory $GetEmployeesSuccessfulCopyWith(GetEmployeesSuccessful value,
+          $Res Function(GetEmployeesSuccessful) then) =
+      _$GetEmployeesSuccessfulCopyWithImpl<$Res>;
+  $Res call({Map<String, EmployeeUser> employees});
+}
+
+/// @nodoc
+class _$GetEmployeesSuccessfulCopyWithImpl<$Res>
+    extends _$GetEmployeesCopyWithImpl<$Res>
+    implements $GetEmployeesSuccessfulCopyWith<$Res> {
+  _$GetEmployeesSuccessfulCopyWithImpl(GetEmployeesSuccessful _value,
+      $Res Function(GetEmployeesSuccessful) _then)
+      : super(_value, (v) => _then(v as GetEmployeesSuccessful));
+
+  @override
+  GetEmployeesSuccessful get _value => super._value as GetEmployeesSuccessful;
+
+  @override
+  $Res call({
+    Object? employees = freezed,
+  }) {
+    return _then(GetEmployeesSuccessful(
+      employees == freezed
+          ? _value.employees
+          : employees // ignore: cast_nullable_to_non_nullable
+              as Map<String, EmployeeUser>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$GetEmployeesSuccessful implements GetEmployeesSuccessful {
+  const _$GetEmployeesSuccessful(this.employees);
+
+  @override
+  final Map<String, EmployeeUser> employees;
+
+  @override
+  String toString() {
+    return 'GetEmployees.successful(employees: $employees)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GetEmployeesSuccessful &&
+            (identical(other.employees, employees) ||
+                const DeepCollectionEquality()
+                    .equals(other.employees, employees)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(employees);
+
+  @JsonKey(ignore: true)
+  @override
+  $GetEmployeesSuccessfulCopyWith<GetEmployeesSuccessful> get copyWith =>
+      _$GetEmployeesSuccessfulCopyWithImpl<GetEmployeesSuccessful>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String adminId) $default, {
+    required TResult Function(Map<String, EmployeeUser> employees) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return successful(employees);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String adminId)? $default, {
+    TResult Function(Map<String, EmployeeUser> employees)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(employees);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetEmployees$ value) $default, {
+    required TResult Function(GetEmployeesSuccessful value) successful,
+    required TResult Function(GetEmployeesError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetEmployees$ value)? $default, {
+    TResult Function(GetEmployeesSuccessful value)? successful,
+    TResult Function(GetEmployeesError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetEmployeesSuccessful implements GetEmployees {
+  const factory GetEmployeesSuccessful(Map<String, EmployeeUser> employees) =
+      _$GetEmployeesSuccessful;
+
+  Map<String, EmployeeUser> get employees => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GetEmployeesSuccessfulCopyWith<GetEmployeesSuccessful> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetEmployeesErrorCopyWith<$Res> {
+  factory $GetEmployeesErrorCopyWith(
+          GetEmployeesError value, $Res Function(GetEmployeesError) then) =
+      _$GetEmployeesErrorCopyWithImpl<$Res>;
+  $Res call({Object error});
+}
+
+/// @nodoc
+class _$GetEmployeesErrorCopyWithImpl<$Res>
+    extends _$GetEmployeesCopyWithImpl<$Res>
+    implements $GetEmployeesErrorCopyWith<$Res> {
+  _$GetEmployeesErrorCopyWithImpl(
+      GetEmployeesError _value, $Res Function(GetEmployeesError) _then)
+      : super(_value, (v) => _then(v as GetEmployeesError));
+
+  @override
+  GetEmployeesError get _value => super._value as GetEmployeesError;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(GetEmployeesError(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Object,
+    ));
+  }
+}
+
+@Implements(ErrorAction)
+
+/// @nodoc
+class _$GetEmployeesError implements GetEmployeesError {
+  const _$GetEmployeesError(this.error);
+
+  @override
+  final Object error;
+
+  @override
+  String toString() {
+    return 'GetEmployees.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GetEmployeesError &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+
+  @JsonKey(ignore: true)
+  @override
+  $GetEmployeesErrorCopyWith<GetEmployeesError> get copyWith =>
+      _$GetEmployeesErrorCopyWithImpl<GetEmployeesError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String adminId) $default, {
+    required TResult Function(Map<String, EmployeeUser> employees) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String adminId)? $default, {
+    TResult Function(Map<String, EmployeeUser> employees)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetEmployees$ value) $default, {
+    required TResult Function(GetEmployeesSuccessful value) successful,
+    required TResult Function(GetEmployeesError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetEmployees$ value)? $default, {
+    TResult Function(GetEmployeesSuccessful value)? successful,
+    TResult Function(GetEmployeesError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetEmployeesError implements GetEmployees, ErrorAction {
+  const factory GetEmployeesError(Object error) = _$GetEmployeesError;
+
+  Object get error => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GetEmployeesErrorCopyWith<GetEmployeesError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+class _$DeleteEmployeeTearOff {
+  const _$DeleteEmployeeTearOff();
+
+  DeleteEmployee$ call({required EmployeeUser employee}) {
+    return DeleteEmployee$(
+      employee: employee,
+    );
+  }
+
+  DeleteEmployeeSuccessful successful(EmployeeUser employee) {
+    return DeleteEmployeeSuccessful(
+      employee,
+    );
+  }
+
+  DeleteEmployeeError error(Object error) {
+    return DeleteEmployeeError(
+      error,
+    );
+  }
+}
+
+/// @nodoc
+const $DeleteEmployee = _$DeleteEmployeeTearOff();
+
+/// @nodoc
+mixin _$DeleteEmployee {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(EmployeeUser employee) $default, {
+    required TResult Function(EmployeeUser employee) successful,
+    required TResult Function(Object error) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(EmployeeUser employee)? $default, {
+    TResult Function(EmployeeUser employee)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(DeleteEmployee$ value) $default, {
+    required TResult Function(DeleteEmployeeSuccessful value) successful,
+    required TResult Function(DeleteEmployeeError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(DeleteEmployee$ value)? $default, {
+    TResult Function(DeleteEmployeeSuccessful value)? successful,
+    TResult Function(DeleteEmployeeError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeleteEmployeeCopyWith<$Res> {
+  factory $DeleteEmployeeCopyWith(
+          DeleteEmployee value, $Res Function(DeleteEmployee) then) =
+      _$DeleteEmployeeCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$DeleteEmployeeCopyWithImpl<$Res>
+    implements $DeleteEmployeeCopyWith<$Res> {
+  _$DeleteEmployeeCopyWithImpl(this._value, this._then);
+
+  final DeleteEmployee _value;
+  // ignore: unused_field
+  final $Res Function(DeleteEmployee) _then;
+}
+
+/// @nodoc
+abstract class $DeleteEmployee$CopyWith<$Res> {
+  factory $DeleteEmployee$CopyWith(
+          DeleteEmployee$ value, $Res Function(DeleteEmployee$) then) =
+      _$DeleteEmployee$CopyWithImpl<$Res>;
+  $Res call({EmployeeUser employee});
+}
+
+/// @nodoc
+class _$DeleteEmployee$CopyWithImpl<$Res>
+    extends _$DeleteEmployeeCopyWithImpl<$Res>
+    implements $DeleteEmployee$CopyWith<$Res> {
+  _$DeleteEmployee$CopyWithImpl(
+      DeleteEmployee$ _value, $Res Function(DeleteEmployee$) _then)
+      : super(_value, (v) => _then(v as DeleteEmployee$));
+
+  @override
+  DeleteEmployee$ get _value => super._value as DeleteEmployee$;
+
+  @override
+  $Res call({
+    Object? employee = freezed,
+  }) {
+    return _then(DeleteEmployee$(
+      employee: employee == freezed
+          ? _value.employee
+          : employee // ignore: cast_nullable_to_non_nullable
+              as EmployeeUser,
+    ));
+  }
+}
+
+/// @nodoc
+class _$DeleteEmployee$ implements DeleteEmployee$ {
+  const _$DeleteEmployee$({required this.employee});
+
+  @override
+  final EmployeeUser employee;
+
+  @override
+  String toString() {
+    return 'DeleteEmployee(employee: $employee)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DeleteEmployee$ &&
+            (identical(other.employee, employee) ||
+                const DeepCollectionEquality()
+                    .equals(other.employee, employee)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(employee);
+
+  @JsonKey(ignore: true)
+  @override
+  $DeleteEmployee$CopyWith<DeleteEmployee$> get copyWith =>
+      _$DeleteEmployee$CopyWithImpl<DeleteEmployee$>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(EmployeeUser employee) $default, {
+    required TResult Function(EmployeeUser employee) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return $default(employee);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(EmployeeUser employee)? $default, {
+    TResult Function(EmployeeUser employee)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(employee);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(DeleteEmployee$ value) $default, {
+    required TResult Function(DeleteEmployeeSuccessful value) successful,
+    required TResult Function(DeleteEmployeeError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(DeleteEmployee$ value)? $default, {
+    TResult Function(DeleteEmployeeSuccessful value)? successful,
+    TResult Function(DeleteEmployeeError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteEmployee$ implements DeleteEmployee {
+  const factory DeleteEmployee$({required EmployeeUser employee}) =
+      _$DeleteEmployee$;
+
+  EmployeeUser get employee => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DeleteEmployee$CopyWith<DeleteEmployee$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeleteEmployeeSuccessfulCopyWith<$Res> {
+  factory $DeleteEmployeeSuccessfulCopyWith(DeleteEmployeeSuccessful value,
+          $Res Function(DeleteEmployeeSuccessful) then) =
+      _$DeleteEmployeeSuccessfulCopyWithImpl<$Res>;
+  $Res call({EmployeeUser employee});
+}
+
+/// @nodoc
+class _$DeleteEmployeeSuccessfulCopyWithImpl<$Res>
+    extends _$DeleteEmployeeCopyWithImpl<$Res>
+    implements $DeleteEmployeeSuccessfulCopyWith<$Res> {
+  _$DeleteEmployeeSuccessfulCopyWithImpl(DeleteEmployeeSuccessful _value,
+      $Res Function(DeleteEmployeeSuccessful) _then)
+      : super(_value, (v) => _then(v as DeleteEmployeeSuccessful));
+
+  @override
+  DeleteEmployeeSuccessful get _value =>
+      super._value as DeleteEmployeeSuccessful;
+
+  @override
+  $Res call({
+    Object? employee = freezed,
+  }) {
+    return _then(DeleteEmployeeSuccessful(
+      employee == freezed
+          ? _value.employee
+          : employee // ignore: cast_nullable_to_non_nullable
+              as EmployeeUser,
+    ));
+  }
+}
+
+/// @nodoc
+class _$DeleteEmployeeSuccessful implements DeleteEmployeeSuccessful {
+  const _$DeleteEmployeeSuccessful(this.employee);
+
+  @override
+  final EmployeeUser employee;
+
+  @override
+  String toString() {
+    return 'DeleteEmployee.successful(employee: $employee)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DeleteEmployeeSuccessful &&
+            (identical(other.employee, employee) ||
+                const DeepCollectionEquality()
+                    .equals(other.employee, employee)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(employee);
+
+  @JsonKey(ignore: true)
+  @override
+  $DeleteEmployeeSuccessfulCopyWith<DeleteEmployeeSuccessful> get copyWith =>
+      _$DeleteEmployeeSuccessfulCopyWithImpl<DeleteEmployeeSuccessful>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(EmployeeUser employee) $default, {
+    required TResult Function(EmployeeUser employee) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return successful(employee);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(EmployeeUser employee)? $default, {
+    TResult Function(EmployeeUser employee)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(employee);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(DeleteEmployee$ value) $default, {
+    required TResult Function(DeleteEmployeeSuccessful value) successful,
+    required TResult Function(DeleteEmployeeError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(DeleteEmployee$ value)? $default, {
+    TResult Function(DeleteEmployeeSuccessful value)? successful,
+    TResult Function(DeleteEmployeeError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteEmployeeSuccessful implements DeleteEmployee {
+  const factory DeleteEmployeeSuccessful(EmployeeUser employee) =
+      _$DeleteEmployeeSuccessful;
+
+  EmployeeUser get employee => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DeleteEmployeeSuccessfulCopyWith<DeleteEmployeeSuccessful> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeleteEmployeeErrorCopyWith<$Res> {
+  factory $DeleteEmployeeErrorCopyWith(
+          DeleteEmployeeError value, $Res Function(DeleteEmployeeError) then) =
+      _$DeleteEmployeeErrorCopyWithImpl<$Res>;
+  $Res call({Object error});
+}
+
+/// @nodoc
+class _$DeleteEmployeeErrorCopyWithImpl<$Res>
+    extends _$DeleteEmployeeCopyWithImpl<$Res>
+    implements $DeleteEmployeeErrorCopyWith<$Res> {
+  _$DeleteEmployeeErrorCopyWithImpl(
+      DeleteEmployeeError _value, $Res Function(DeleteEmployeeError) _then)
+      : super(_value, (v) => _then(v as DeleteEmployeeError));
+
+  @override
+  DeleteEmployeeError get _value => super._value as DeleteEmployeeError;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(DeleteEmployeeError(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Object,
+    ));
+  }
+}
+
+@Implements(ErrorAction)
+
+/// @nodoc
+class _$DeleteEmployeeError implements DeleteEmployeeError {
+  const _$DeleteEmployeeError(this.error);
+
+  @override
+  final Object error;
+
+  @override
+  String toString() {
+    return 'DeleteEmployee.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DeleteEmployeeError &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+
+  @JsonKey(ignore: true)
+  @override
+  $DeleteEmployeeErrorCopyWith<DeleteEmployeeError> get copyWith =>
+      _$DeleteEmployeeErrorCopyWithImpl<DeleteEmployeeError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(EmployeeUser employee) $default, {
+    required TResult Function(EmployeeUser employee) successful,
+    required TResult Function(Object error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(EmployeeUser employee)? $default, {
+    TResult Function(EmployeeUser employee)? successful,
+    TResult Function(Object error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(DeleteEmployee$ value) $default, {
+    required TResult Function(DeleteEmployeeSuccessful value) successful,
+    required TResult Function(DeleteEmployeeError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(DeleteEmployee$ value)? $default, {
+    TResult Function(DeleteEmployeeSuccessful value)? successful,
+    TResult Function(DeleteEmployeeError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteEmployeeError implements DeleteEmployee, ErrorAction {
+  const factory DeleteEmployeeError(Object error) = _$DeleteEmployeeError;
+
+  Object get error => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DeleteEmployeeErrorCopyWith<DeleteEmployeeError> get copyWith =>
       throw _privateConstructorUsedError;
 }

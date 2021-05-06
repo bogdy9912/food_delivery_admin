@@ -8,6 +8,8 @@ abstract class AuthState implements Built<AuthState, AuthStateBuilder> {
 
   AdminUser? get user;
 
+  BuiltMap<String, EmployeeUser> get employees;
+
   RegistrationInfo get info;
 
 

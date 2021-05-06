@@ -90,6 +90,8 @@ class AuthApi {
     required String password,
     required String adminId,
     required List<Role> roles,
+    required String lastName,
+    required String firstName,
   }) async {
     final UserCredential user = await _auth.createUserWithEmailAndPassword(
       email: email,
@@ -100,6 +102,8 @@ class AuthApi {
       ..uid = user.user!.uid
       ..email = email
       ..adminId = adminId
+      ..firstName = firstName
+      ..lastName = lastName
       ..roles = ListBuilder<Role>(roles));
     await _firestore.doc('employees/${user.user!.uid}').set(newEmployee.json);
 
@@ -173,5 +177,26 @@ class AuthApi {
       ..image = downloadImage);
     await _firestore.doc('admins/$adminId').update(<String, dynamic>{'savedDishes.$id': newDish.json});
     return newDish;
+  }
+
+  Future<Map<String, EmployeeUser>> getEmployees({required String adminId}) async {
+    final Map<String, EmployeeUser> employees = <String, EmployeeUser>{};
+
+    final QuerySnapshot snapshot = await _firestore //
+        .collection('employees')
+        .where('adminId', isEqualTo: adminId)
+        .get();
+
+    final List<EmployeeUser> employeesList =
+        snapshot.docs.map((QueryDocumentSnapshot e) => EmployeeUser.fromJson(e.data())).toList();
+
+    for (final EmployeeUser employee in employeesList) {
+      employees[employee.uid] = employee;
+    }
+    return employees;
+  }
+
+  Future<void> deleteEmployeeAccount({required String adminId, required EmployeeUser employee}) async {
+    await _firestore.doc('employees/${employee.uid}').delete();
   }
 }

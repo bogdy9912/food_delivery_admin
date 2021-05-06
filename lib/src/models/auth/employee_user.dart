@@ -11,6 +11,10 @@ abstract class EmployeeUser implements Built<EmployeeUser, EmployeeUserBuilder> 
   String get adminId;
 
   String get email;
+  
+  String get firstName;
+
+  String get lastName;
 
   BuiltList<Role> get roles;
 

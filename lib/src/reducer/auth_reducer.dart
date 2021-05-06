@@ -14,6 +14,8 @@ Reducer<AuthState> authReducer = combineReducers(<Reducer<AuthState>>[
   TypedReducer<AuthState, AddSavedDishesSuccessful>(_addSavedDishesSuccessful),
   TypedReducer<AuthState, RemoveSavedDishesSuccessful>(_removeSavedDishesSuccessful),
   TypedReducer<AuthState, EditSavedDishesSuccessful>(_editSavedDishesSuccessful),
+  TypedReducer<AuthState, GetEmployeesSuccessful>(_getEmployeesSuccessful),
+  TypedReducer<AuthState, DeleteEmployeeSuccessful>(_deleteEmployeeSuccessful),
 ]);
 
 AuthState _registerSuccessful(AuthState state, RegisterSuccessful action) {
@@ -115,4 +117,12 @@ AuthState _removeSavedDishesSuccessful(AuthState state, RemoveSavedDishesSuccess
 AuthState _editSavedDishesSuccessful(AuthState state, EditSavedDishesSuccessful action) {
   return state.rebuild((AuthStateBuilder b) =>
       b.user.savedDishes.update((MapBuilder<String, Dish> e) => e['${action.dish.id}'] = action.dish));
-      }
+}
+
+AuthState _getEmployeesSuccessful(AuthState state, GetEmployeesSuccessful action) {
+  return state.rebuild((AuthStateBuilder b) => b.employees = MapBuilder<String, EmployeeUser>(action.employees));
+}
+
+AuthState _deleteEmployeeSuccessful(AuthState state, DeleteEmployeeSuccessful action) {
+  return state.rebuild((AuthStateBuilder b) => b.employees.remove(action.employee.uid));
+}

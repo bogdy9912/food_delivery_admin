@@ -19,6 +19,8 @@ class AuthEpics {
         TypedEpic<AppState, AddSavedDishes$>(_addSavedDishes),
         TypedEpic<AppState, RemoveSavedDishes$>(_removeSavedDishes),
         TypedEpic<AppState, EditSavedDishes$>(_editSavedDishes),
+        TypedEpic<AppState, GetEmployees$>(_getEmployees),
+        TypedEpic<AppState, DeleteEmployee$>(_deleteEmployee),
       ]);
 
   Stream<AppAction> _register(Stream<Register$> actions, EpicStore<AppState> store) {
@@ -71,6 +73,8 @@ class AuthEpics {
                 email: action.email,
                 password: action.password,
                 adminId: store.state.auth.user!.uid,
+                firstName: action.firstName,
+                lastName: action.lastName,
                 roles: action.roles))
             .map((String employeeId) => CreateEmployeeAccount.successful(employeeId))
             .onErrorReturnWith((dynamic error) => CreateEmployeeAccount.error(error)));
@@ -112,5 +116,22 @@ class AuthEpics {
                 image: action.image))
             .map((Dish dish) => EditSavedDishes.successful(dish))
             .onErrorReturnWith((dynamic error) => EditSavedDishes.error(error)));
+  }
+
+  Stream<AppAction> _getEmployees(Stream<GetEmployees$> actions, EpicStore<AppState> store) {
+    return actions //
+        .flatMap((GetEmployees$ action) => Stream<GetEmployees$>.value(action)
+            .asyncMap((GetEmployees$ action) => _api.getEmployees(adminId: action.adminId))
+            .map((Map<String, EmployeeUser> employees) => GetEmployees.successful(employees))
+            .onErrorReturnWith((dynamic error) => GetEmployees.error(error)));
+  }
+
+  Stream<AppAction> _deleteEmployee(Stream<DeleteEmployee$> actions, EpicStore<AppState> store) {
+    return actions //
+        .flatMap((DeleteEmployee$ action) => Stream<DeleteEmployee$>.value(action)
+            .asyncMap((DeleteEmployee$ action) =>
+                _api.deleteEmployeeAccount(adminId: store.state.auth.user!.uid, employee: action.employee))
+            .mapTo(DeleteEmployee.successful(action.employee))
+            .onErrorReturnWith((dynamic error) => DeleteEmployee.error(error)));
   }
 }
