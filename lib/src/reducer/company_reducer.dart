@@ -22,13 +22,15 @@ CompanyState _updateCategories(CompanyState state, UpdateCategories$ action) {
 }
 
 CompanyState _updateDishes(CompanyState state, UpdateDishes$ action) {
+
   return state.rebuild((CompanyStateBuilder b) {
     final int index = b.meniu.items.build().indexWhere((MeniuItem e) => e.id == action.categoryId);
-
-    if (action.add != null) {
+    if (index != -1) {
+      if (action.add != null) {
       b.meniu.items[index] = b.meniu.items[index].rebuild((MeniuItemBuilder e) => e.dishes.add(action.add!));
     } else if (action.remove != null) {
       b.meniu.items[index]=  b.meniu.items[index].rebuild((MeniuItemBuilder e) => e.dishes.remove(action.remove));
+    }
     }
   });
 }

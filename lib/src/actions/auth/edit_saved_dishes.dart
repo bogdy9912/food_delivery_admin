@@ -8,7 +8,7 @@ abstract class EditSavedDishes with _$EditSavedDishes implements AppAction {
     required String description,
     required String price,
     required String quantity,
-    required String image,
+    required String? image,
   }) = EditSavedDishes$;
 
   const factory EditSavedDishes.successful(Dish dish) = EditSavedDishesSuccessful;

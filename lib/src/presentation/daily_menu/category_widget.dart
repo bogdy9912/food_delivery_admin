@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:food_delivery_admin/src/actions/company/index.dart';
 import 'package:food_delivery_admin/src/containers/auth/saved_dishes_container.dart';
 import 'package:food_delivery_admin/src/containers/company/category_container.dart';
 import 'package:food_delivery_admin/src/models/companies/index.dart';
@@ -20,6 +22,9 @@ class CategoryWidget extends StatelessWidget {
           children: <Widget>[
             ListTile(
               title: Text(item.category),
+              onLongPress: () {
+                StoreProvider.of<AppState>(context).dispatch(UpdateCategories(remove: item));
+              },
               trailing: IconButton(
                 onPressed: () {
                   showDialog<AlertDialog>(
@@ -76,17 +81,6 @@ class CategoryWidget extends StatelessWidget {
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () {
-                                  final bool valid = Form.of(context)!.validate();
-                                  if (valid) {
-//                                StoreProvider.of<AppState>(context)
-//                                    .dispatch(UpdateDishes(categoryId: item.id, add: newDish));
-                                    Navigator.pop(context);
-                                  }
-                                },
-                                child: const Text('adauga'),
-                              ),
-                              TextButton(
-                                onPressed: () {
                                   Navigator.pop(context);
                                 },
                                 child: const Text('anuleaza'),
@@ -101,7 +95,26 @@ class CategoryWidget extends StatelessWidget {
                 icon: const Icon(Icons.add),
               ),
             ),
-            Column(children: List<Widget>.generate(item.dishes.length, (int index) => Text(item.dishes[index].name))),
+            Column(
+              children: List<Widget>.generate(
+                item.dishes.length,
+                (int index) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:32.0),
+                  child: ListTile(
+                    title: Text(item.dishes[index].name),
+                    subtitle: Text(item.dishes[index].description ?? ''),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete_outline_rounded, color: Colors.red),
+                      onPressed: () {
+                        print(item);
+                        StoreProvider.of<AppState>(context)
+                            .dispatch(UpdateDishes(categoryId: item.id, remove: item.dishes[index]));
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

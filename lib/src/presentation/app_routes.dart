@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:food_delivery_admin/src/models/index.dart';
 import 'package:food_delivery_admin/src/presentation/daily_menu/add_saved_dish_page.dart';
 import 'package:food_delivery_admin/src/presentation/employee_accounts/employee_acounts_page.dart';
 import 'package:food_delivery_admin/src/presentation/home.dart';
@@ -29,7 +30,10 @@ class AppRoutes {
     login: (BuildContext context) => const LoginPage(),
     dailyMeniu: (BuildContext context) => const DailyMeniuPage(),
     employeeAccounts: (BuildContext context) => const EmployeeAccountsPage(),
-    addSavedDish: (BuildContext context) => const AddSavedDishPage(),
+    addSavedDish: (BuildContext context) {
+      final Dish? arg = ModalRoute.of(context)!.settings.arguments as Dish?;
+      return AddSavedDishPage(arg);
+    },
 
   };
 }

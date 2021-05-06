@@ -5,7 +5,9 @@ import 'package:food_delivery_admin/src/actions/auth/index.dart';
 import 'package:food_delivery_admin/src/models/index.dart';
 
 class AddSavedDishPage extends StatefulWidget {
-  const AddSavedDishPage();
+  const AddSavedDishPage([this.dish]);
+
+  final Dish? dish;
 
   @override
   _AddSavedDishPageState createState() => _AddSavedDishPageState();
@@ -19,6 +21,19 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> {
   final TextEditingController _price = TextEditingController();
 
   final TextEditingController _quantity = TextEditingController();
+
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.dish != null){
+      _name.text = widget.dish!.name;
+      if (widget.dish!.description != null)
+      _description.text = widget.dish!.description!;
+      _price.text = widget.dish!.price.toString();
+      _quantity.text = widget.dish!.quantity.toString();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +86,19 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> {
                   onPressed: () {
                     final bool valid = Form.of(context)!.validate();
                     if (valid) {
-                                StoreProvider.of<AppState>(context)
+                      if (widget.dish == null) {
+                        StoreProvider.of<AppState>(context)
                                     .dispatch(AddSavedDishes(name: _name.text, description: _description.text, price: _price.text, quantity: _quantity.text, image: null));
+                      }
+                      else if (widget.dish != null){
+                        StoreProvider.of<AppState>(context)
+                            .dispatch(EditSavedDishes(id: widget.dish!.id, name: _name.text, description: _description.text, price: _price.text, quantity: _quantity.text, image: widget.dish!.image));
+
+                      }
                       Navigator.pop(context);
                     }
                   },
-                  child: const Text('adauga'),
+                  child: Text(widget.dish == null ?'adauga':'editeaza'),
                 ),
               ],
             ),

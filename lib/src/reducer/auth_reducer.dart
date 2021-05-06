@@ -113,6 +113,6 @@ AuthState _removeSavedDishesSuccessful(AuthState state, RemoveSavedDishesSuccess
 }
 
 AuthState _editSavedDishesSuccessful(AuthState state, EditSavedDishesSuccessful action) {
-  return state.rebuild((AuthStateBuilder b) => b.user.savedDishes
-      .updateValue(action.dish.id, (Dish dish) => dish.rebuild((DishBuilder e) => e = dish.toBuilder())));
-}
+  return state.rebuild((AuthStateBuilder b) =>
+      b.user.savedDishes.update((MapBuilder<String, Dish> e) => e['${action.dish.id}'] = action.dish));
+      }

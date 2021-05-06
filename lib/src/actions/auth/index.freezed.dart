@@ -3282,7 +3282,7 @@ class _$EditSavedDishesTearOff {
       required String description,
       required String price,
       required String quantity,
-      required String image}) {
+      required String? image}) {
     return EditSavedDishes$(
       id: id,
       name: name,
@@ -3314,7 +3314,7 @@ mixin _$EditSavedDishes {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String id, String name, String description, String price,
-            String quantity, String image)
+            String quantity, String? image)
         $default, {
     required TResult Function(Dish dish) successful,
     required TResult Function(Object error) error,
@@ -3323,7 +3323,7 @@ mixin _$EditSavedDishes {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String id, String name, String description, String price,
-            String quantity, String image)?
+            String quantity, String? image)?
         $default, {
     TResult Function(Dish dish)? successful,
     TResult Function(Object error)? error,
@@ -3375,7 +3375,7 @@ abstract class $EditSavedDishes$CopyWith<$Res> {
       String description,
       String price,
       String quantity,
-      String image});
+      String? image});
 }
 
 /// @nodoc
@@ -3422,7 +3422,7 @@ class _$EditSavedDishes$CopyWithImpl<$Res>
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -3448,7 +3448,7 @@ class _$EditSavedDishes$ implements EditSavedDishes$ {
   @override
   final String quantity;
   @override
-  final String image;
+  final String? image;
 
   @override
   String toString() {
@@ -3494,7 +3494,7 @@ class _$EditSavedDishes$ implements EditSavedDishes$ {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String id, String name, String description, String price,
-            String quantity, String image)
+            String quantity, String? image)
         $default, {
     required TResult Function(Dish dish) successful,
     required TResult Function(Object error) error,
@@ -3506,7 +3506,7 @@ class _$EditSavedDishes$ implements EditSavedDishes$ {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String id, String name, String description, String price,
-            String quantity, String image)?
+            String quantity, String? image)?
         $default, {
     TResult Function(Dish dish)? successful,
     TResult Function(Object error)? error,
@@ -3550,14 +3550,14 @@ abstract class EditSavedDishes$ implements EditSavedDishes {
       required String description,
       required String price,
       required String quantity,
-      required String image}) = _$EditSavedDishes$;
+      required String? image}) = _$EditSavedDishes$;
 
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get price => throw _privateConstructorUsedError;
   String get quantity => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $EditSavedDishes$CopyWith<EditSavedDishes$> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3630,7 +3630,7 @@ class _$EditSavedDishesSuccessful implements EditSavedDishesSuccessful {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String id, String name, String description, String price,
-            String quantity, String image)
+            String quantity, String? image)
         $default, {
     required TResult Function(Dish dish) successful,
     required TResult Function(Object error) error,
@@ -3642,7 +3642,7 @@ class _$EditSavedDishesSuccessful implements EditSavedDishesSuccessful {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String id, String name, String description, String price,
-            String quantity, String image)?
+            String quantity, String? image)?
         $default, {
     TResult Function(Dish dish)? successful,
     TResult Function(Object error)? error,
@@ -3757,7 +3757,7 @@ class _$EditSavedDishesError implements EditSavedDishesError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String id, String name, String description, String price,
-            String quantity, String image)
+            String quantity, String? image)
         $default, {
     required TResult Function(Dish dish) successful,
     required TResult Function(Object error) error,
@@ -3769,7 +3769,7 @@ class _$EditSavedDishesError implements EditSavedDishesError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String id, String name, String description, String price,
-            String quantity, String image)?
+            String quantity, String? image)?
         $default, {
     TResult Function(Dish dish)? successful,
     TResult Function(Object error)? error,

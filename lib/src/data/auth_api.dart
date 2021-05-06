@@ -159,8 +159,11 @@ class AuthApi {
       required String description,
       required String price,
       required String quantity,
-      required String image}) async {
-    final String downloadImage = await _uploadImage(adminId, id, image);
+      required String? image}) async {
+    String? downloadImage;
+    if (image != null) {
+      downloadImage = await _uploadImage(adminId, id, image);
+    }
     final Dish newDish = Dish((DishBuilder b) => b
       ..id = id
       ..name = name

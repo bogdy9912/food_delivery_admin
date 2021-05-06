@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:food_delivery_admin/src/actions/company/index.dart';
 import 'package:food_delivery_admin/src/models/index.dart';
+import 'package:food_delivery_admin/src/presentation/app_routes.dart';
 
 class SavedDishWidget extends StatefulWidget {
   SavedDishWidget({required this.dish,required this.categoryId, required this.isPressed});
@@ -22,6 +23,9 @@ class _SavedDishWidgetState extends State<SavedDishWidget> {
     return ListTile(
       title: Text(widget.dish.name),
       subtitle: Text(widget.dish.description ?? ''),
+      onTap: (){
+          Navigator.pushNamed(context, AppRoutes.addSavedDish, arguments: widget.dish);
+      },
       trailing: Column(
         children: <Widget>[
 //          Text(widget.dish.price.toString()),
