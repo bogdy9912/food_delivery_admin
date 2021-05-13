@@ -97,7 +97,6 @@ class AuthApi {
       email: email,
       password: password,
     );
-
     final EmployeeUser newEmployee = EmployeeUser((EmployeeUserBuilder b) => b
       ..uid = user.user!.uid
       ..email = email
@@ -110,6 +109,7 @@ class AuthApi {
     await _firestore.doc('admins/$adminId').update(<String, dynamic>{
       'employees': FieldValue.arrayUnion(<String>[user.user!.uid])
     });
+
 
     return user.user!.uid;
   }
