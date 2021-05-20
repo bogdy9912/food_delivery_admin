@@ -28,8 +28,10 @@ class AuthApi {
   Future<AdminUser> login({required String email, required String password}) async {
     final UserCredential user = await _auth.signInWithEmailAndPassword(email: email, password: password);
     final DocumentSnapshot<Map<String, dynamic>> response = await _firestore.doc('admins/${user.user!.uid}').get();
-
-    return AdminUser.fromJson(response.data());
+    final admin = AdminUser.fromJson(response.data());
+    print(admin.savedDishes.values.toList()[0].choices);
+    print(admin.savedDishes.values.toList()[0].hasMultipleChoice);
+    return admin;
   }
 
   Future<AdminUser> register({
@@ -121,23 +123,24 @@ class AuthApi {
     required String price,
     required String quantity,
     required String? image,
+    required List<DishChoice> choices,
+    required bool hasMultipleChoice,
   }) async {
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('NOT USE').doc();
     String? downloadImage;
     if (image != null) {
       downloadImage = await _uploadImage(adminId, ref.id, image);
     }
-    print('data add saved 1');
     final Dish newDish = Dish((DishBuilder b) => b
       ..id = ref.id
       ..name = name
       ..description = description
       ..quantity = int.parse(quantity)
       ..price = double.parse(price)
-      ..image = downloadImage);
-    print('data add saved 2');
+      ..image = downloadImage
+    ..choices = ListBuilder<DishChoice>(choices)
+    ..hasMultipleChoice = hasMultipleChoice);
     await _firestore.doc('admins/$adminId').update(<String, dynamic>{'savedDishes.${ref.id}': newDish.json});
-    print('data add saved 3');
     return newDish;
   }
 

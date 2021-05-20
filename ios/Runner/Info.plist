@@ -4,6 +4,10 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Permisiune necesara pentru a selecta poze din galerie pentru meniu</string>
+	<key>NSCameraUsageDescription </key>
+	<string>Permisiune necesara pentru a face poze noi pentru meniu</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

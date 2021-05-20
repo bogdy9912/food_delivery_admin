@@ -66,7 +66,7 @@ class DailyMeniuPage extends StatelessWidget {
                       TextButton(
                         child: const Text('ADAUGA'),
                         onPressed: () {
-                          final DocumentReference ref = FirebaseFirestore.instance.collection('NOT USE').doc();
+                          final DocumentReference<Map<String, dynamic>> ref = FirebaseFirestore.instance.collection('NOT USE').doc();
                           final MeniuItem add = MeniuItem((MeniuItemBuilder b) => b
                             ..id = ref.id
                             ..category = _cat.text);

@@ -89,7 +89,9 @@ class AuthEpics {
                 description: action.description,
                 price: action.price,
                 quantity: action.quantity,
-                image: action.image))
+                image: action.image,
+                hasMultipleChoice: action.hasMultipleChoice,
+                choices: action.choices))
             .map((Dish dish) => AddSavedDishes.successful(dish))
             .onErrorReturnWith((dynamic error) => AddSavedDishes.error(error)));
   }

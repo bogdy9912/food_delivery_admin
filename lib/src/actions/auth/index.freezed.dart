@@ -136,6 +136,7 @@ class _$Login$CopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$Login$ implements Login$ {
   const _$Login$(
       {required this.email, required this.password, required this.response});
@@ -276,6 +277,7 @@ class _$LoginSuccessfulCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$LoginSuccessful implements LoginSuccessful {
   const _$LoginSuccessful(this.user);
 
@@ -396,9 +398,9 @@ class _$LoginErrorCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
   }
 }
 
-@Implements(ErrorAction)
-
 /// @nodoc
+
+@Implements(ErrorAction)
 class _$LoginError implements LoginError {
   const _$LoginError(this.error);
 
@@ -594,6 +596,7 @@ class _$Register$CopyWithImpl<$Res> extends _$RegisterCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$Register$ implements Register$ {
   const _$Register$(this.response);
 
@@ -714,6 +717,7 @@ class _$RegisterSuccessfulCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$RegisterSuccessful implements RegisterSuccessful {
   const _$RegisterSuccessful(this.user);
 
@@ -831,9 +835,9 @@ class _$RegisterErrorCopyWithImpl<$Res> extends _$RegisterCopyWithImpl<$Res>
   }
 }
 
-@Implements(ErrorAction)
-
 /// @nodoc
+
+@Implements(ErrorAction)
 class _$RegisterError implements RegisterError {
   const _$RegisterError(this.error);
 
@@ -1223,6 +1227,7 @@ class _$UpdateRegistrationInfo$CopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$UpdateRegistrationInfo$ implements UpdateRegistrationInfo$ {
   const _$UpdateRegistrationInfo$(
       {this.email,
@@ -1502,6 +1507,7 @@ class _$InitializeApp$CopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitializeApp$ implements InitializeApp$ {
   const _$InitializeApp$();
 
@@ -1604,6 +1610,7 @@ class _$InitializeAppSuccessfulCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitializeAppSuccessful implements InitializeAppSuccessful {
   const _$InitializeAppSuccessful(this.user);
 
@@ -1724,9 +1731,9 @@ class _$InitializeAppErrorCopyWithImpl<$Res>
   }
 }
 
-@Implements(ErrorAction)
-
 /// @nodoc
+
+@Implements(ErrorAction)
 class _$InitializeAppError implements InitializeAppError {
   const _$InitializeAppError(this.error);
 
@@ -1961,6 +1968,7 @@ class _$CreateEmployeeAccount$CopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$CreateEmployeeAccount$ implements CreateEmployeeAccount$ {
   const _$CreateEmployeeAccount$(
       {required this.email,
@@ -2126,6 +2134,7 @@ class _$CreateEmployeeAccountSuccessfulCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$CreateEmployeeAccountSuccessful
     implements CreateEmployeeAccountSuccessful {
   const _$CreateEmployeeAccountSuccessful(this.employeeId);
@@ -2254,9 +2263,9 @@ class _$CreateEmployeeAccountErrorCopyWithImpl<$Res>
   }
 }
 
-@Implements(ErrorAction)
-
 /// @nodoc
+
+@Implements(ErrorAction)
 class _$CreateEmployeeAccountError implements CreateEmployeeAccountError {
   const _$CreateEmployeeAccountError(this.error);
 
@@ -2360,13 +2369,17 @@ class _$AddSavedDishesTearOff {
       required String? description,
       required String price,
       required String quantity,
-      required String? image}) {
+      required String? image,
+      required List<DishChoice> choices,
+      required bool hasMultipleChoice}) {
     return AddSavedDishes$(
       name: name,
       description: description,
       price: price,
       quantity: quantity,
       image: image,
+      choices: choices,
+      hasMultipleChoice: hasMultipleChoice,
     );
   }
 
@@ -2390,8 +2403,14 @@ const $AddSavedDishes = _$AddSavedDishesTearOff();
 mixin _$AddSavedDishes {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String name, String? description, String price,
-            String quantity, String? image)
+    TResult Function(
+            String name,
+            String? description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)
         $default, {
     required TResult Function(Dish dish) successful,
     required TResult Function(Object error) error,
@@ -2399,8 +2418,14 @@ mixin _$AddSavedDishes {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String name, String? description, String price,
-            String quantity, String? image)?
+    TResult Function(
+            String name,
+            String? description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)?
         $default, {
     TResult Function(Dish dish)? successful,
     TResult Function(Object error)? error,
@@ -2451,7 +2476,9 @@ abstract class $AddSavedDishes$CopyWith<$Res> {
       String? description,
       String price,
       String quantity,
-      String? image});
+      String? image,
+      List<DishChoice> choices,
+      bool hasMultipleChoice});
 }
 
 /// @nodoc
@@ -2472,6 +2499,8 @@ class _$AddSavedDishes$CopyWithImpl<$Res>
     Object? price = freezed,
     Object? quantity = freezed,
     Object? image = freezed,
+    Object? choices = freezed,
+    Object? hasMultipleChoice = freezed,
   }) {
     return _then(AddSavedDishes$(
       name: name == freezed
@@ -2494,18 +2523,29 @@ class _$AddSavedDishes$CopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      choices: choices == freezed
+          ? _value.choices
+          : choices // ignore: cast_nullable_to_non_nullable
+              as List<DishChoice>,
+      hasMultipleChoice: hasMultipleChoice == freezed
+          ? _value.hasMultipleChoice
+          : hasMultipleChoice // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
+
 class _$AddSavedDishes$ implements AddSavedDishes$ {
   const _$AddSavedDishes$(
       {required this.name,
       required this.description,
       required this.price,
       required this.quantity,
-      required this.image});
+      required this.image,
+      required this.choices,
+      required this.hasMultipleChoice});
 
   @override
   final String name;
@@ -2517,10 +2557,14 @@ class _$AddSavedDishes$ implements AddSavedDishes$ {
   final String quantity;
   @override
   final String? image;
+  @override
+  final List<DishChoice> choices;
+  @override
+  final bool hasMultipleChoice;
 
   @override
   String toString() {
-    return 'AddSavedDishes(name: $name, description: $description, price: $price, quantity: $quantity, image: $image)';
+    return 'AddSavedDishes(name: $name, description: $description, price: $price, quantity: $quantity, image: $image, choices: $choices, hasMultipleChoice: $hasMultipleChoice)';
   }
 
   @override
@@ -2538,7 +2582,13 @@ class _$AddSavedDishes$ implements AddSavedDishes$ {
                 const DeepCollectionEquality()
                     .equals(other.quantity, quantity)) &&
             (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)));
+                const DeepCollectionEquality().equals(other.image, image)) &&
+            (identical(other.choices, choices) ||
+                const DeepCollectionEquality()
+                    .equals(other.choices, choices)) &&
+            (identical(other.hasMultipleChoice, hasMultipleChoice) ||
+                const DeepCollectionEquality()
+                    .equals(other.hasMultipleChoice, hasMultipleChoice)));
   }
 
   @override
@@ -2548,7 +2598,9 @@ class _$AddSavedDishes$ implements AddSavedDishes$ {
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(price) ^
       const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(image);
+      const DeepCollectionEquality().hash(image) ^
+      const DeepCollectionEquality().hash(choices) ^
+      const DeepCollectionEquality().hash(hasMultipleChoice);
 
   @JsonKey(ignore: true)
   @override
@@ -2558,27 +2610,41 @@ class _$AddSavedDishes$ implements AddSavedDishes$ {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String name, String? description, String price,
-            String quantity, String? image)
+    TResult Function(
+            String name,
+            String? description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)
         $default, {
     required TResult Function(Dish dish) successful,
     required TResult Function(Object error) error,
   }) {
-    return $default(name, description, price, quantity, image);
+    return $default(
+        name, description, price, quantity, image, choices, hasMultipleChoice);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String name, String? description, String price,
-            String quantity, String? image)?
+    TResult Function(
+            String name,
+            String? description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)?
         $default, {
     TResult Function(Dish dish)? successful,
     TResult Function(Object error)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(name, description, price, quantity, image);
+      return $default(name, description, price, quantity, image, choices,
+          hasMultipleChoice);
     }
     return orElse();
   }
@@ -2614,13 +2680,17 @@ abstract class AddSavedDishes$ implements AddSavedDishes {
       required String? description,
       required String price,
       required String quantity,
-      required String? image}) = _$AddSavedDishes$;
+      required String? image,
+      required List<DishChoice> choices,
+      required bool hasMultipleChoice}) = _$AddSavedDishes$;
 
   String get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String get price => throw _privateConstructorUsedError;
   String get quantity => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
+  List<DishChoice> get choices => throw _privateConstructorUsedError;
+  bool get hasMultipleChoice => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AddSavedDishes$CopyWith<AddSavedDishes$> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2660,6 +2730,7 @@ class _$AddSavedDishesSuccessfulCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$AddSavedDishesSuccessful implements AddSavedDishesSuccessful {
   const _$AddSavedDishesSuccessful(this.dish);
 
@@ -2692,8 +2763,14 @@ class _$AddSavedDishesSuccessful implements AddSavedDishesSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String name, String? description, String price,
-            String quantity, String? image)
+    TResult Function(
+            String name,
+            String? description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)
         $default, {
     required TResult Function(Dish dish) successful,
     required TResult Function(Object error) error,
@@ -2704,8 +2781,14 @@ class _$AddSavedDishesSuccessful implements AddSavedDishesSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String name, String? description, String price,
-            String quantity, String? image)?
+    TResult Function(
+            String name,
+            String? description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)?
         $default, {
     TResult Function(Dish dish)? successful,
     TResult Function(Object error)? error,
@@ -2784,9 +2867,9 @@ class _$AddSavedDishesErrorCopyWithImpl<$Res>
   }
 }
 
-@Implements(ErrorAction)
-
 /// @nodoc
+
+@Implements(ErrorAction)
 class _$AddSavedDishesError implements AddSavedDishesError {
   const _$AddSavedDishesError(this.error);
 
@@ -2818,8 +2901,14 @@ class _$AddSavedDishesError implements AddSavedDishesError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String name, String? description, String price,
-            String quantity, String? image)
+    TResult Function(
+            String name,
+            String? description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)
         $default, {
     required TResult Function(Dish dish) successful,
     required TResult Function(Object error) error,
@@ -2830,8 +2919,14 @@ class _$AddSavedDishesError implements AddSavedDishesError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String name, String? description, String price,
-            String quantity, String? image)?
+    TResult Function(
+            String name,
+            String? description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)?
         $default, {
     TResult Function(Dish dish)? successful,
     TResult Function(Object error)? error,
@@ -2987,6 +3082,7 @@ class _$RemoveSavedDishes$CopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$RemoveSavedDishes$ implements RemoveSavedDishes$ {
   const _$RemoveSavedDishes$({required this.id});
 
@@ -3108,6 +3204,7 @@ class _$RemoveSavedDishesSuccessfulCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$RemoveSavedDishesSuccessful implements RemoveSavedDishesSuccessful {
   const _$RemoveSavedDishesSuccessful(this.id);
 
@@ -3228,9 +3325,9 @@ class _$RemoveSavedDishesErrorCopyWithImpl<$Res>
   }
 }
 
-@Implements(ErrorAction)
-
 /// @nodoc
+
+@Implements(ErrorAction)
 class _$RemoveSavedDishesError implements RemoveSavedDishesError {
   const _$RemoveSavedDishesError(this.error);
 
@@ -3329,7 +3426,9 @@ class _$EditSavedDishesTearOff {
       required String description,
       required String price,
       required String quantity,
-      required String? image}) {
+      required String? image,
+      required List<DishChoice> choices,
+      required bool hasMultipleChoice}) {
     return EditSavedDishes$(
       id: id,
       name: name,
@@ -3337,6 +3436,8 @@ class _$EditSavedDishesTearOff {
       price: price,
       quantity: quantity,
       image: image,
+      choices: choices,
+      hasMultipleChoice: hasMultipleChoice,
     );
   }
 
@@ -3360,8 +3461,15 @@ const $EditSavedDishes = _$EditSavedDishesTearOff();
 mixin _$EditSavedDishes {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String name, String description, String price,
-            String quantity, String? image)
+    TResult Function(
+            String id,
+            String name,
+            String description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)
         $default, {
     required TResult Function(Dish dish) successful,
     required TResult Function(Object error) error,
@@ -3369,8 +3477,15 @@ mixin _$EditSavedDishes {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String name, String description, String price,
-            String quantity, String? image)?
+    TResult Function(
+            String id,
+            String name,
+            String description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)?
         $default, {
     TResult Function(Dish dish)? successful,
     TResult Function(Object error)? error,
@@ -3422,7 +3537,9 @@ abstract class $EditSavedDishes$CopyWith<$Res> {
       String description,
       String price,
       String quantity,
-      String? image});
+      String? image,
+      List<DishChoice> choices,
+      bool hasMultipleChoice});
 }
 
 /// @nodoc
@@ -3444,6 +3561,8 @@ class _$EditSavedDishes$CopyWithImpl<$Res>
     Object? price = freezed,
     Object? quantity = freezed,
     Object? image = freezed,
+    Object? choices = freezed,
+    Object? hasMultipleChoice = freezed,
   }) {
     return _then(EditSavedDishes$(
       id: id == freezed
@@ -3470,11 +3589,20 @@ class _$EditSavedDishes$CopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      choices: choices == freezed
+          ? _value.choices
+          : choices // ignore: cast_nullable_to_non_nullable
+              as List<DishChoice>,
+      hasMultipleChoice: hasMultipleChoice == freezed
+          ? _value.hasMultipleChoice
+          : hasMultipleChoice // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
+
 class _$EditSavedDishes$ implements EditSavedDishes$ {
   const _$EditSavedDishes$(
       {required this.id,
@@ -3482,7 +3610,9 @@ class _$EditSavedDishes$ implements EditSavedDishes$ {
       required this.description,
       required this.price,
       required this.quantity,
-      required this.image});
+      required this.image,
+      required this.choices,
+      required this.hasMultipleChoice});
 
   @override
   final String id;
@@ -3496,10 +3626,14 @@ class _$EditSavedDishes$ implements EditSavedDishes$ {
   final String quantity;
   @override
   final String? image;
+  @override
+  final List<DishChoice> choices;
+  @override
+  final bool hasMultipleChoice;
 
   @override
   String toString() {
-    return 'EditSavedDishes(id: $id, name: $name, description: $description, price: $price, quantity: $quantity, image: $image)';
+    return 'EditSavedDishes(id: $id, name: $name, description: $description, price: $price, quantity: $quantity, image: $image, choices: $choices, hasMultipleChoice: $hasMultipleChoice)';
   }
 
   @override
@@ -3519,7 +3653,13 @@ class _$EditSavedDishes$ implements EditSavedDishes$ {
                 const DeepCollectionEquality()
                     .equals(other.quantity, quantity)) &&
             (identical(other.image, image) ||
-                const DeepCollectionEquality().equals(other.image, image)));
+                const DeepCollectionEquality().equals(other.image, image)) &&
+            (identical(other.choices, choices) ||
+                const DeepCollectionEquality()
+                    .equals(other.choices, choices)) &&
+            (identical(other.hasMultipleChoice, hasMultipleChoice) ||
+                const DeepCollectionEquality()
+                    .equals(other.hasMultipleChoice, hasMultipleChoice)));
   }
 
   @override
@@ -3530,7 +3670,9 @@ class _$EditSavedDishes$ implements EditSavedDishes$ {
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(price) ^
       const DeepCollectionEquality().hash(quantity) ^
-      const DeepCollectionEquality().hash(image);
+      const DeepCollectionEquality().hash(image) ^
+      const DeepCollectionEquality().hash(choices) ^
+      const DeepCollectionEquality().hash(hasMultipleChoice);
 
   @JsonKey(ignore: true)
   @override
@@ -3540,27 +3682,43 @@ class _$EditSavedDishes$ implements EditSavedDishes$ {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String name, String description, String price,
-            String quantity, String? image)
+    TResult Function(
+            String id,
+            String name,
+            String description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)
         $default, {
     required TResult Function(Dish dish) successful,
     required TResult Function(Object error) error,
   }) {
-    return $default(id, name, description, price, quantity, image);
+    return $default(id, name, description, price, quantity, image, choices,
+        hasMultipleChoice);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String name, String description, String price,
-            String quantity, String? image)?
+    TResult Function(
+            String id,
+            String name,
+            String description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)?
         $default, {
     TResult Function(Dish dish)? successful,
     TResult Function(Object error)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(id, name, description, price, quantity, image);
+      return $default(id, name, description, price, quantity, image, choices,
+          hasMultipleChoice);
     }
     return orElse();
   }
@@ -3597,7 +3755,9 @@ abstract class EditSavedDishes$ implements EditSavedDishes {
       required String description,
       required String price,
       required String quantity,
-      required String? image}) = _$EditSavedDishes$;
+      required String? image,
+      required List<DishChoice> choices,
+      required bool hasMultipleChoice}) = _$EditSavedDishes$;
 
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -3605,6 +3765,8 @@ abstract class EditSavedDishes$ implements EditSavedDishes {
   String get price => throw _privateConstructorUsedError;
   String get quantity => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
+  List<DishChoice> get choices => throw _privateConstructorUsedError;
+  bool get hasMultipleChoice => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $EditSavedDishes$CopyWith<EditSavedDishes$> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3644,6 +3806,7 @@ class _$EditSavedDishesSuccessfulCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$EditSavedDishesSuccessful implements EditSavedDishesSuccessful {
   const _$EditSavedDishesSuccessful(this.dish);
 
@@ -3676,8 +3839,15 @@ class _$EditSavedDishesSuccessful implements EditSavedDishesSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String name, String description, String price,
-            String quantity, String? image)
+    TResult Function(
+            String id,
+            String name,
+            String description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)
         $default, {
     required TResult Function(Dish dish) successful,
     required TResult Function(Object error) error,
@@ -3688,8 +3858,15 @@ class _$EditSavedDishesSuccessful implements EditSavedDishesSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String name, String description, String price,
-            String quantity, String? image)?
+    TResult Function(
+            String id,
+            String name,
+            String description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)?
         $default, {
     TResult Function(Dish dish)? successful,
     TResult Function(Object error)? error,
@@ -3768,9 +3945,9 @@ class _$EditSavedDishesErrorCopyWithImpl<$Res>
   }
 }
 
-@Implements(ErrorAction)
-
 /// @nodoc
+
+@Implements(ErrorAction)
 class _$EditSavedDishesError implements EditSavedDishesError {
   const _$EditSavedDishesError(this.error);
 
@@ -3803,8 +3980,15 @@ class _$EditSavedDishesError implements EditSavedDishesError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String name, String description, String price,
-            String quantity, String? image)
+    TResult Function(
+            String id,
+            String name,
+            String description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)
         $default, {
     required TResult Function(Dish dish) successful,
     required TResult Function(Object error) error,
@@ -3815,8 +3999,15 @@ class _$EditSavedDishesError implements EditSavedDishesError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String id, String name, String description, String price,
-            String quantity, String? image)?
+    TResult Function(
+            String id,
+            String name,
+            String description,
+            String price,
+            String quantity,
+            String? image,
+            List<DishChoice> choices,
+            bool hasMultipleChoice)?
         $default, {
     TResult Function(Dish dish)? successful,
     TResult Function(Object error)? error,
@@ -3970,6 +4161,7 @@ class _$GetEmployees$CopyWithImpl<$Res> extends _$GetEmployeesCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$GetEmployees$ implements GetEmployees$ {
   const _$GetEmployees$({required this.adminId});
 
@@ -4089,6 +4281,7 @@ class _$GetEmployeesSuccessfulCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$GetEmployeesSuccessful implements GetEmployeesSuccessful {
   const _$GetEmployeesSuccessful(this.employees);
 
@@ -4210,9 +4403,9 @@ class _$GetEmployeesErrorCopyWithImpl<$Res>
   }
 }
 
-@Implements(ErrorAction)
-
 /// @nodoc
+
+@Implements(ErrorAction)
 class _$GetEmployeesError implements GetEmployeesError {
   const _$GetEmployeesError(this.error);
 
@@ -4409,6 +4602,7 @@ class _$DeleteEmployee$CopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$DeleteEmployee$ implements DeleteEmployee$ {
   const _$DeleteEmployee$({required this.employee});
 
@@ -4531,6 +4725,7 @@ class _$DeleteEmployeeSuccessfulCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$DeleteEmployeeSuccessful implements DeleteEmployeeSuccessful {
   const _$DeleteEmployeeSuccessful(this.employee);
 
@@ -4652,9 +4847,9 @@ class _$DeleteEmployeeErrorCopyWithImpl<$Res>
   }
 }
 
-@Implements(ErrorAction)
-
 /// @nodoc
+
+@Implements(ErrorAction)
 class _$DeleteEmployeeError implements DeleteEmployeeError {
   const _$DeleteEmployeeError(this.error);
 

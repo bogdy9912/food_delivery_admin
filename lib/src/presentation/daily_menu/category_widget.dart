@@ -99,10 +99,21 @@ class CategoryWidget extends StatelessWidget {
               children: List<Widget>.generate(
                 item.dishes.length,
                 (int index) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:32.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
                   child: ListTile(
                     title: Text(item.dishes[index].name),
                     subtitle: Text(item.dishes[index].description ?? ''),
+                    leading: item.dishes[index].image != null
+                        ? Image.network(
+                            item.dishes[index].image!,
+                            height: 20,
+                            width: 20,
+                          )
+                        : Container(
+                            width: 20,
+                            height: 20,
+                      color: Colors.black,
+                          ),
                     trailing: IconButton(
                       icon: const Icon(Icons.delete_outline_rounded, color: Colors.red),
                       onPressed: () {

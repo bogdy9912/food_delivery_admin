@@ -112,6 +112,7 @@ class _$UpdateCategories$CopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$UpdateCategories$ implements UpdateCategories$ {
   const _$UpdateCategories$({this.add, this.remove});
 
@@ -271,6 +272,7 @@ class _$UpdateDishes$CopyWithImpl<$Res> extends _$UpdateDishesCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$UpdateDishes$ implements UpdateDishes$ {
   const _$UpdateDishes$({this.add, this.remove, required this.categoryId});
 
@@ -419,6 +421,7 @@ class _$PublishMeniu$CopyWithImpl<$Res> extends _$PublishMeniuCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$PublishMeniu$ implements PublishMeniu$ {
   const _$PublishMeniu$();
 
@@ -508,6 +511,7 @@ class _$PublishMeniuSuccessfulCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$PublishMeniuSuccessful implements PublishMeniuSuccessful {
   const _$PublishMeniuSuccessful();
 
@@ -609,9 +613,9 @@ class _$PublishMeniuErrorCopyWithImpl<$Res>
   }
 }
 
-@Implements(ErrorAction)
-
 /// @nodoc
+
+@Implements(ErrorAction)
 class _$PublishMeniuError implements PublishMeniuError {
   const _$PublishMeniuError(this.error);
 
@@ -793,6 +797,7 @@ class _$GetDailyMeniu$CopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$GetDailyMeniu$ implements GetDailyMeniu$ {
   const _$GetDailyMeniu$();
 
@@ -895,6 +900,7 @@ class _$GetDailyMeniuSuccessfulCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$GetDailyMeniuSuccessful implements GetDailyMeniuSuccessful {
   const _$GetDailyMeniuSuccessful(this.meniu);
 
@@ -1015,9 +1021,9 @@ class _$GetDailyMeniuErrorCopyWithImpl<$Res>
   }
 }
 
-@Implements(ErrorAction)
-
 /// @nodoc
+
+@Implements(ErrorAction)
 class _$GetDailyMeniuError implements GetDailyMeniuError {
   const _$GetDailyMeniuError(this.error);
 

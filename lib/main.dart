@@ -26,7 +26,7 @@ class _FoodDeliveryAdminState extends State<FoodDeliveryAdmin> with InitMixin<Fo
           return StoreProvider<AppState>(
             store: store,
             child: MaterialApp(
-              title: 'Post it',
+              title: 'Admin',
               theme: appThemeData(context),
               routes: AppRoutes.routes,
             ),
@@ -37,7 +37,7 @@ class _FoodDeliveryAdminState extends State<FoodDeliveryAdmin> with InitMixin<Fo
         }
 
         return MaterialApp(
-          title: 'Post it',
+          title: 'Admin',
           theme: ThemeData.dark(),
           home: const Scaffold(
             body: Center(child: CircularProgressIndicator()),

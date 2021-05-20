@@ -9,6 +9,8 @@ abstract class EditSavedDishes with _$EditSavedDishes implements AppAction {
     required String price,
     required String quantity,
     required String? image,
+    required List<DishChoice> choices,
+    required bool hasMultipleChoice,
   }) = EditSavedDishes$;
 
   const factory EditSavedDishes.successful(Dish dish) = EditSavedDishesSuccessful;

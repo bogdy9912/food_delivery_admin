@@ -7,7 +7,10 @@ abstract class AddSavedDishes with _$AddSavedDishes implements AppAction {
       required String? description,
       required String price,
       required String quantity,
-      required String? image}) = AddSavedDishes$;
+      required String? image,
+      required List<DishChoice> choices,
+        required bool hasMultipleChoice,
+      }) = AddSavedDishes$;
 
   const factory AddSavedDishes.successful(Dish dish) = AddSavedDishesSuccessful;
 
