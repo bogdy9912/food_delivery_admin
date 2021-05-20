@@ -12,3 +12,4 @@ part 'delivery_option.dart';
 part 'dish.dart';
 part 'meniu.dart';
 part 'company_state.dart';
+part 'dish_choice.dart';

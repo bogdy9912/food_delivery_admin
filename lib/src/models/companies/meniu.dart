@@ -10,8 +10,6 @@ abstract class Meniu implements Built<Meniu, MeniuBuilder> {
 
   BuiltList<MeniuItem> get items;
 
-
-
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 
   static Serializer<Meniu> get serializer => _$meniuSerializer;
@@ -28,7 +26,6 @@ abstract class MeniuItem implements Built<MeniuItem, MeniuItemBuilder> {
   String get category;
 
   BuiltList<Dish> get dishes;
-
 
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 

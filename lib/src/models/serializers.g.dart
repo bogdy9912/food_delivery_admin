@@ -14,6 +14,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CompanyState.serializer)
       ..add(DeliveryOption.serializer)
       ..add(Dish.serializer)
+      ..add(DishChoice.serializer)
       ..add(EmployeeUser.serializer)
       ..add(Meniu.serializer)
       ..add(MeniuItem.serializer)
@@ -23,6 +24,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Dish)]),
           () => new ListBuilder<Dish>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(DishChoice)]),
+          () => new ListBuilder<DishChoice>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(MeniuItem)]),
           () => new ListBuilder<MeniuItem>())
@@ -44,6 +48,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Role)]),
           () => new ListBuilder<Role>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

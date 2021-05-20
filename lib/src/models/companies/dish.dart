@@ -19,6 +19,11 @@ abstract class Dish implements Built<Dish, DishBuilder> {
 
   String? get image;
 
+  bool get hasMultipleChoice;
+
+  BuiltList<DishChoice> get choices;
+
+
   Map<String, dynamic>? get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>?;
 
   static Serializer<Dish> get serializer => _$dishSerializer;

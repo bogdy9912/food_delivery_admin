@@ -21,13 +21,13 @@ class AuthApi {
 
   Future<AdminUser> initializeApp() async {
     final User user = _auth.currentUser!;
-    final DocumentSnapshot result = await _firestore.doc('admins/${user.uid}').get();
+    final DocumentSnapshot<Map<String, dynamic>> result = await _firestore.doc('admins/${user.uid}').get();
     return AdminUser.fromJson(result.data());
   }
 
   Future<AdminUser> login({required String email, required String password}) async {
     final UserCredential user = await _auth.signInWithEmailAndPassword(email: email, password: password);
-    final DocumentSnapshot response = await _firestore.doc('admins/${user.user!.uid}').get();
+    final DocumentSnapshot<Map<String, dynamic>> response = await _firestore.doc('admins/${user.user!.uid}').get();
 
     return AdminUser.fromJson(response.data());
   }
@@ -48,7 +48,7 @@ class AuthApi {
 //    required List<DeliveryOption> deliveryOptions,
 //    required List<PaymentMethod> paymentMethods,
   }) async {
-    final DocumentReference ref = _firestore.collection('NOT USE').doc();
+    final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('NOT USE').doc();
     final Company newCompany = Company((CompanyBuilder b) {
       b
         ..id = ref.id
@@ -122,7 +122,7 @@ class AuthApi {
     required String quantity,
     required String? image,
   }) async {
-    final DocumentReference ref = _firestore.collection('NOT USE').doc();
+    final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('NOT USE').doc();
     String? downloadImage;
     if (image != null) {
       downloadImage = await _uploadImage(adminId, ref.id, image);
@@ -182,13 +182,13 @@ class AuthApi {
   Future<Map<String, EmployeeUser>> getEmployees({required String adminId}) async {
     final Map<String, EmployeeUser> employees = <String, EmployeeUser>{};
 
-    final QuerySnapshot snapshot = await _firestore //
+    final QuerySnapshot<Map<String, dynamic>> snapshot = await _firestore //
         .collection('employees')
         .where('adminId', isEqualTo: adminId)
         .get();
 
     final List<EmployeeUser> employeesList =
-        snapshot.docs.map((QueryDocumentSnapshot e) => EmployeeUser.fromJson(e.data())).toList();
+        snapshot.docs.map((QueryDocumentSnapshot<Object> e) => EmployeeUser.fromJson(e.data())).toList();
 
     for (final EmployeeUser employee in employeesList) {
       employees[employee.uid] = employee;

@@ -2,13 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_delivery_admin/src/models/index.dart';
 
 class CompanyApi {
-  const CompanyApi({required FirebaseFirestore firestore}) : _firestore = firestore;
+  const CompanyApi({required FirebaseFirestore firestore, required this.f}) : _firestore = firestore;
 
   final FirebaseFirestore _firestore;
+  final dynamic f;
 
   Future<Meniu> getDailyMeniu({required String companyId}) async {
-    final QuerySnapshot meniu = await _firestore.collection('companies/$companyId/meniu').get();
-    return meniu.docs.map((QueryDocumentSnapshot e) => Meniu.fromJson(e.data())).first;
+    final QuerySnapshot<Map<String, dynamic>> meniu = await _firestore.collection('companies/$companyId/meniu').get();
+    return meniu.docs.map((QueryDocumentSnapshot<Object> e) => Meniu.fromJson(e.data())).first;
 
   }
 

@@ -34,6 +34,7 @@ Serializer<Meniu> _$meniuSerializer = new _$MeniuSerializer();
 Serializer<MeniuItem> _$meniuItemSerializer = new _$MeniuItemSerializer();
 Serializer<CompanyState> _$companyStateSerializer =
     new _$CompanyStateSerializer();
+Serializer<DishChoice> _$dishChoiceSerializer = new _$DishChoiceSerializer();
 
 class _$CompanySerializer implements StructuredSerializer<Company> {
   @override
@@ -226,6 +227,13 @@ class _$DishSerializer implements StructuredSerializer<Dish> {
       'quantity',
       serializers.serialize(object.quantity,
           specifiedType: const FullType(int)),
+      'hasMultipleChoice',
+      serializers.serialize(object.hasMultipleChoice,
+          specifiedType: const FullType(bool)),
+      'choices',
+      serializers.serialize(object.choices,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(DishChoice)])),
     ];
     Object? value;
     value = object.description;
@@ -279,6 +287,16 @@ class _$DishSerializer implements StructuredSerializer<Dish> {
         case 'image':
           result.image = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
+          break;
+        case 'hasMultipleChoice':
+          result.hasMultipleChoice = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
+        case 'choices':
+          result.choices.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(DishChoice)]))!
+              as BuiltList<Object>);
           break;
       }
     }
@@ -439,6 +457,67 @@ class _$CompanyStateSerializer implements StructuredSerializer<CompanyState> {
         case 'meniu':
           result.meniu.replace(serializers.deserialize(value,
               specifiedType: const FullType(Meniu))! as Meniu);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$DishChoiceSerializer implements StructuredSerializer<DishChoice> {
+  @override
+  final Iterable<Type> types = const [DishChoice, _$DishChoice];
+  @override
+  final String wireName = 'DishChoice';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, DishChoice object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'options',
+      serializers.serialize(object.options,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(String)])),
+      'min',
+      serializers.serialize(object.min, specifiedType: const FullType(int)),
+      'max',
+      serializers.serialize(object.max, specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  DishChoice deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new DishChoiceBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'options':
+          result.options.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object>);
+          break;
+        case 'min':
+          result.min = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'max':
+          result.max = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
           break;
       }
     }
@@ -751,6 +830,10 @@ class _$Dish extends Dish {
   final int quantity;
   @override
   final String? image;
+  @override
+  final bool hasMultipleChoice;
+  @override
+  final BuiltList<DishChoice> choices;
 
   factory _$Dish([void Function(DishBuilder)? updates]) =>
       (new DishBuilder()..update(updates)).build();
@@ -761,12 +844,17 @@ class _$Dish extends Dish {
       this.description,
       required this.price,
       required this.quantity,
-      this.image})
+      this.image,
+      required this.hasMultipleChoice,
+      required this.choices})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, 'Dish', 'id');
     BuiltValueNullFieldError.checkNotNull(name, 'Dish', 'name');
     BuiltValueNullFieldError.checkNotNull(price, 'Dish', 'price');
     BuiltValueNullFieldError.checkNotNull(quantity, 'Dish', 'quantity');
+    BuiltValueNullFieldError.checkNotNull(
+        hasMultipleChoice, 'Dish', 'hasMultipleChoice');
+    BuiltValueNullFieldError.checkNotNull(choices, 'Dish', 'choices');
   }
 
   @override
@@ -785,7 +873,9 @@ class _$Dish extends Dish {
         description == other.description &&
         price == other.price &&
         quantity == other.quantity &&
-        image == other.image;
+        image == other.image &&
+        hasMultipleChoice == other.hasMultipleChoice &&
+        choices == other.choices;
   }
 
   @override
@@ -793,11 +883,15 @@ class _$Dish extends Dish {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, id.hashCode), name.hashCode),
-                    description.hashCode),
-                price.hashCode),
-            quantity.hashCode),
-        image.hashCode));
+                $jc(
+                    $jc(
+                        $jc($jc($jc(0, id.hashCode), name.hashCode),
+                            description.hashCode),
+                        price.hashCode),
+                    quantity.hashCode),
+                image.hashCode),
+            hasMultipleChoice.hashCode),
+        choices.hashCode));
   }
 
   @override
@@ -808,7 +902,9 @@ class _$Dish extends Dish {
           ..add('description', description)
           ..add('price', price)
           ..add('quantity', quantity)
-          ..add('image', image))
+          ..add('image', image)
+          ..add('hasMultipleChoice', hasMultipleChoice)
+          ..add('choices', choices))
         .toString();
   }
 }
@@ -840,6 +936,16 @@ class DishBuilder implements Builder<Dish, DishBuilder> {
   String? get image => _$this._image;
   set image(String? image) => _$this._image = image;
 
+  bool? _hasMultipleChoice;
+  bool? get hasMultipleChoice => _$this._hasMultipleChoice;
+  set hasMultipleChoice(bool? hasMultipleChoice) =>
+      _$this._hasMultipleChoice = hasMultipleChoice;
+
+  ListBuilder<DishChoice>? _choices;
+  ListBuilder<DishChoice> get choices =>
+      _$this._choices ??= new ListBuilder<DishChoice>();
+  set choices(ListBuilder<DishChoice>? choices) => _$this._choices = choices;
+
   DishBuilder();
 
   DishBuilder get _$this {
@@ -851,6 +957,8 @@ class DishBuilder implements Builder<Dish, DishBuilder> {
       _price = $v.price;
       _quantity = $v.quantity;
       _image = $v.image;
+      _hasMultipleChoice = $v.hasMultipleChoice;
+      _choices = $v.choices.toBuilder();
       _$v = null;
     }
     return this;
@@ -869,16 +977,32 @@ class DishBuilder implements Builder<Dish, DishBuilder> {
 
   @override
   _$Dish build() {
-    final _$result = _$v ??
-        new _$Dish._(
-            id: BuiltValueNullFieldError.checkNotNull(id, 'Dish', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(name, 'Dish', 'name'),
-            description: description,
-            price:
-                BuiltValueNullFieldError.checkNotNull(price, 'Dish', 'price'),
-            quantity: BuiltValueNullFieldError.checkNotNull(
-                quantity, 'Dish', 'quantity'),
-            image: image);
+    _$Dish _$result;
+    try {
+      _$result = _$v ??
+          new _$Dish._(
+              id: BuiltValueNullFieldError.checkNotNull(id, 'Dish', 'id'),
+              name: BuiltValueNullFieldError.checkNotNull(name, 'Dish', 'name'),
+              description: description,
+              price:
+                  BuiltValueNullFieldError.checkNotNull(price, 'Dish', 'price'),
+              quantity: BuiltValueNullFieldError.checkNotNull(
+                  quantity, 'Dish', 'quantity'),
+              image: image,
+              hasMultipleChoice: BuiltValueNullFieldError.checkNotNull(
+                  hasMultipleChoice, 'Dish', 'hasMultipleChoice'),
+              choices: choices.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'choices';
+        choices.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Dish', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
@@ -1192,6 +1316,140 @@ class CompanyStateBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'CompanyState', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$DishChoice extends DishChoice {
+  @override
+  final String name;
+  @override
+  final BuiltList<String> options;
+  @override
+  final int min;
+  @override
+  final int max;
+
+  factory _$DishChoice([void Function(DishChoiceBuilder)? updates]) =>
+      (new DishChoiceBuilder()..update(updates)).build();
+
+  _$DishChoice._(
+      {required this.name,
+      required this.options,
+      required this.min,
+      required this.max})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(name, 'DishChoice', 'name');
+    BuiltValueNullFieldError.checkNotNull(options, 'DishChoice', 'options');
+    BuiltValueNullFieldError.checkNotNull(min, 'DishChoice', 'min');
+    BuiltValueNullFieldError.checkNotNull(max, 'DishChoice', 'max');
+  }
+
+  @override
+  DishChoice rebuild(void Function(DishChoiceBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  DishChoiceBuilder toBuilder() => new DishChoiceBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is DishChoice &&
+        name == other.name &&
+        options == other.options &&
+        min == other.min &&
+        max == other.max;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc($jc(0, name.hashCode), options.hashCode), min.hashCode),
+        max.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('DishChoice')
+          ..add('name', name)
+          ..add('options', options)
+          ..add('min', min)
+          ..add('max', max))
+        .toString();
+  }
+}
+
+class DishChoiceBuilder implements Builder<DishChoice, DishChoiceBuilder> {
+  _$DishChoice? _$v;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  ListBuilder<String>? _options;
+  ListBuilder<String> get options =>
+      _$this._options ??= new ListBuilder<String>();
+  set options(ListBuilder<String>? options) => _$this._options = options;
+
+  int? _min;
+  int? get min => _$this._min;
+  set min(int? min) => _$this._min = min;
+
+  int? _max;
+  int? get max => _$this._max;
+  set max(int? max) => _$this._max = max;
+
+  DishChoiceBuilder();
+
+  DishChoiceBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _options = $v.options.toBuilder();
+      _min = $v.min;
+      _max = $v.max;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(DishChoice other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$DishChoice;
+  }
+
+  @override
+  void update(void Function(DishChoiceBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$DishChoice build() {
+    _$DishChoice _$result;
+    try {
+      _$result = _$v ??
+          new _$DishChoice._(
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, 'DishChoice', 'name'),
+              options: options.build(),
+              min: BuiltValueNullFieldError.checkNotNull(
+                  min, 'DishChoice', 'min'),
+              max: BuiltValueNullFieldError.checkNotNull(
+                  max, 'DishChoice', 'max'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'options';
+        options.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'DishChoice', _$failedField, e.toString());
       }
       rethrow;
     }
