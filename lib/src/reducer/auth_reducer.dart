@@ -10,10 +10,13 @@ Reducer<AuthState> authReducer = combineReducers(<Reducer<AuthState>>[
   TypedReducer<AuthState, LoginSuccessful>(_loginSuccessful),
   TypedReducer<AuthState, RegisterSuccessful>(_registerSuccessful),
   TypedReducer<AuthState, UpdateRegistrationInfo$>(_updateRegistrationInfo),
-  TypedReducer<AuthState, CreateEmployeeAccountSuccessful>(_createEmployeeAccountSuccessful),
+  TypedReducer<AuthState, CreateEmployeeAccountSuccessful>(
+      _createEmployeeAccountSuccessful),
   TypedReducer<AuthState, AddSavedDishesSuccessful>(_addSavedDishesSuccessful),
-  TypedReducer<AuthState, RemoveSavedDishesSuccessful>(_removeSavedDishesSuccessful),
-  TypedReducer<AuthState, EditSavedDishesSuccessful>(_editSavedDishesSuccessful),
+  TypedReducer<AuthState, RemoveSavedDishesSuccessful>(
+      _removeSavedDishesSuccessful),
+  TypedReducer<AuthState, EditSavedDishesSuccessful>(
+      _editSavedDishesSuccessful),
   TypedReducer<AuthState, GetEmployeesSuccessful>(_getEmployeesSuccessful),
   TypedReducer<AuthState, DeleteEmployeeSuccessful>(_deleteEmployeeSuccessful),
 ]);
@@ -25,7 +28,8 @@ AuthState _registerSuccessful(AuthState state, RegisterSuccessful action) {
   });
 }
 
-AuthState _updateRegistrationInfo(AuthState state, UpdateRegistrationInfo$ action) {
+AuthState _updateRegistrationInfo(
+    AuthState state, UpdateRegistrationInfo$ action) {
   return state.rebuild((AuthStateBuilder b) {
     if (action.email != null) {
       print('reducer email');
@@ -60,10 +64,12 @@ AuthState _updateRegistrationInfo(AuthState state, UpdateRegistrationInfo$ actio
       b.info.address = action.address;
     }
     if (action.paymentMethods != null) {
-      b.info.paymentMethods = ListBuilder<PaymentMethod>(action.paymentMethods!);
+      b.info.paymentMethods =
+          ListBuilder<PaymentMethod>(action.paymentMethods!);
     }
     if (action.deliveryOptions != null) {
-      b.info.deliveryOptions = ListBuilder<DeliveryOption>(action.deliveryOptions!);
+      b.info.deliveryOptions =
+          ListBuilder<DeliveryOption>(action.deliveryOptions!);
     }
     if (action.deliveryFee != null) {
       b.info.deliveryFee = action.deliveryFee;
@@ -94,35 +100,50 @@ AuthState _updateRegistrationInfo(AuthState state, UpdateRegistrationInfo$ actio
 }
 
 AuthState _loginSuccessful(AuthState state, LoginSuccessful action) {
-  return state.rebuild((AuthStateBuilder b) => b.user = action.user.toBuilder());
+  return state
+      .rebuild((AuthStateBuilder b) => b.user = action.user.toBuilder());
 }
 
-AuthState _initializeAppSuccessful(AuthState state, InitializeAppSuccessful action) {
-  return state.rebuild((AuthStateBuilder b) => b.user = action.user.toBuilder());
+AuthState _initializeAppSuccessful(
+    AuthState state, InitializeAppSuccessful action) {
+  return state
+      .rebuild((AuthStateBuilder b) => b.user = action.user.toBuilder());
 }
 
-AuthState _createEmployeeAccountSuccessful(AuthState state, CreateEmployeeAccountSuccessful action) {
-  return state.rebuild((AuthStateBuilder b) => b.user.employees.add(action.employeeId));
+AuthState _createEmployeeAccountSuccessful(
+    AuthState state, CreateEmployeeAccountSuccessful action) {
+  return state
+      .rebuild((AuthStateBuilder b) => b.user.employees.add(action.employeeId));
 }
 
-AuthState _addSavedDishesSuccessful(AuthState state, AddSavedDishesSuccessful action) {
+AuthState _addSavedDishesSuccessful(
+    AuthState state, AddSavedDishesSuccessful action) {
+  return state.rebuild((AuthStateBuilder b) => b.user.savedDishes
+          .addEntries(<MapEntry<String, Dish>>[
+        MapEntry<String, Dish>(action.dish.id, action.dish)
+      ]));
+}
+
+AuthState _removeSavedDishesSuccessful(
+    AuthState state, RemoveSavedDishesSuccessful action) {
+  return state
+      .rebuild((AuthStateBuilder b) => b.user.savedDishes.remove(action.id));
+}
+
+AuthState _editSavedDishesSuccessful(
+    AuthState state, EditSavedDishesSuccessful action) {
+  return state.rebuild((AuthStateBuilder b) => b.user.savedDishes.update(
+      (MapBuilder<String, Dish> e) => e['${action.dish.id}'] = action.dish));
+}
+
+AuthState _getEmployeesSuccessful(
+    AuthState state, GetEmployeesSuccessful action) {
   return state.rebuild((AuthStateBuilder b) =>
-      b.user.savedDishes.addEntries(<MapEntry<String, Dish>>[MapEntry<String, Dish>(action.dish.id, action.dish)]));
+      b.employees = MapBuilder<String, EmployeeUser>(action.employees));
 }
 
-AuthState _removeSavedDishesSuccessful(AuthState state, RemoveSavedDishesSuccessful action) {
-  return state.rebuild((AuthStateBuilder b) => b.user.savedDishes.remove(action.id));
-}
-
-AuthState _editSavedDishesSuccessful(AuthState state, EditSavedDishesSuccessful action) {
-  return state.rebuild((AuthStateBuilder b) =>
-      b.user.savedDishes.update((MapBuilder<String, Dish> e) => e['${action.dish.id}'] = action.dish));
-}
-
-AuthState _getEmployeesSuccessful(AuthState state, GetEmployeesSuccessful action) {
-  return state.rebuild((AuthStateBuilder b) => b.employees = MapBuilder<String, EmployeeUser>(action.employees));
-}
-
-AuthState _deleteEmployeeSuccessful(AuthState state, DeleteEmployeeSuccessful action) {
-  return state.rebuild((AuthStateBuilder b) => b.employees.remove(action.employee.uid));
+AuthState _deleteEmployeeSuccessful(
+    AuthState state, DeleteEmployeeSuccessful action) {
+  return state
+      .rebuild((AuthStateBuilder b) => b.employees.remove(action.employee.uid));
 }

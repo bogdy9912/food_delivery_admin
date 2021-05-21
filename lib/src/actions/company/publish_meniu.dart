@@ -1,6 +1,5 @@
 part of company_actions;
 
-
 @freezed
 class PublishMeniu with _$PublishMeniu implements AppAction {
   const factory PublishMeniu() = PublishMeniu$;

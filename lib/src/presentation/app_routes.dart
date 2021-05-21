@@ -21,7 +21,6 @@ class AppRoutes {
   static const String employeeAccounts = '/employeeAccounts';
   static const String addSavedDish = '/addSavedDish';
 
-
   static Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
     home: (BuildContext context) => const Home(),
     homePage: (BuildContext context) => const HomePage(),
@@ -34,6 +33,5 @@ class AppRoutes {
       final Dish? arg = ModalRoute.of(context)!.settings.arguments as Dish?;
       return AddSavedDishPage(arg);
     },
-
   };
 }

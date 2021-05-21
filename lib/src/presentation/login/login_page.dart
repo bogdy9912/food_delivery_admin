@@ -14,17 +14,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> with DialogMixin {
-
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
-
   void _response(AppAction action) {
     if (action is LoginError) {
-      showErrorDialog(context, 'Login error', action.error);
+      showErrorDialog(context: context, title: 'Login error', error: action.error);
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,40 +29,41 @@ class _LoginPageState extends State<LoginPage> with DialogMixin {
       body: SafeArea(
         child: Form(
           child: Builder(
-            builder: (BuildContext context) =>
-                SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      TextFormField(
-                        controller: _email,
-                        decoration: const InputDecoration(
-                          hintText: 'email',
-                        ),
-                      ),
-                      TextFormField(
-                        controller: _password,
-                        decoration: const InputDecoration(
-                          hintText: 'password',
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          print(_email.text);
-                          print(_password.text);
-                          StoreProvider.of<AppState>(context).dispatch(
-                              Login(email: _email.text, password: _password.text, response: _response));
-                        },
-                        child: const Text('LOGIN'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, AppRoutes.adminRegister);
-                        },
-                        child: const Text('Create an admin account!'),
-                      ),
-                    ],
+            builder: (BuildContext context) => SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                    controller: _email,
+                    decoration: const InputDecoration(
+                      hintText: 'email',
+                    ),
                   ),
-                ),
+                  TextFormField(
+                    controller: _password,
+                    decoration: const InputDecoration(
+                      hintText: 'password',
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      print(_email.text);
+                      print(_password.text);
+                      StoreProvider.of<AppState>(context).dispatch(Login(
+                          email: _email.text,
+                          password: _password.text,
+                          response: _response));
+                    },
+                    child: const Text('LOGIN'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoutes.adminRegister);
+                    },
+                    child: const Text('Create an admin account!'),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),

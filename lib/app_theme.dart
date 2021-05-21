@@ -25,8 +25,6 @@ ThemeData appThemeData(BuildContext context) {
         elevation: 0,
         backgroundColor: Colors.transparent,
         iconTheme: const IconThemeData(color: Colors.black),
-
-        textTheme: const TextTheme(headline6: TextStyle(color: Colors.black))
-        ),
+        textTheme: const TextTheme(headline6: TextStyle(color: Colors.black))),
   );
 }

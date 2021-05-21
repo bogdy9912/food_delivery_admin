@@ -13,7 +13,8 @@ class EditSavedDishes with _$EditSavedDishes implements AppAction {
     required bool hasMultipleChoice,
   }) = EditSavedDishes$;
 
-  const factory EditSavedDishes.successful(Dish dish) = EditSavedDishesSuccessful;
+  const factory EditSavedDishes.successful(Dish dish) =
+      EditSavedDishesSuccessful;
 
   @Implements(ErrorAction)
   const factory EditSavedDishes.error(Object error) = EditSavedDishesError;

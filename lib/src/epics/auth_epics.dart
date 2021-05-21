@@ -23,7 +23,8 @@ class AuthEpics {
         TypedEpic<AppState, DeleteEmployee$>(_deleteEmployee),
       ]);
 
-  Stream<AppAction> _register(Stream<Register$> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _register(
+      Stream<Register$> actions, EpicStore<AppState> store) {
     return actions //
         .flatMap((Register$ action) => Stream<Register$>.value(action)
             .asyncMap((Register$ action) {
@@ -38,7 +39,8 @@ class AuthEpics {
                 closeHour: store.state.auth.info.closeHour!,
                 city: store.state.auth.info.city!,
                 deliveryFee: store.state.auth.info.deliveryFee!,
-                deliveryFeeThreshold: store.state.auth.info.deliveryFeeThreshold!,
+                deliveryFeeThreshold:
+                    store.state.auth.info.deliveryFeeThreshold!,
                 deliveryThreshold: store.state.auth.info.deliveryThreshold!,
 //                  deliveryOptions: store.state.auth.info.deliveryOptions.toList(),
 //                  paymentMethods: store.state.auth.info.paymentMethods.toList(),
@@ -52,13 +54,15 @@ class AuthEpics {
   Stream<AppAction> _login(Stream<Login$> actions, EpicStore<AppState> store) {
     return actions //
         .flatMap((Login$ action) => Stream<Login$>.value(action)
-            .asyncMap((Login$ action) => _api.login(email: action.email, password: action.password))
+            .asyncMap((Login$ action) =>
+                _api.login(email: action.email, password: action.password))
             .map((AdminUser user) => Login.successful(user))
             .onErrorReturnWith((dynamic error) => Login.error(error))
             .doOnData(action.response));
   }
 
-  Stream<AppAction> _initializeApp(Stream<InitializeApp$> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _initializeApp(
+      Stream<InitializeApp$> actions, EpicStore<AppState> store) {
     return actions //
         .flatMap((InitializeApp$ action) => Stream<InitializeApp$>.value(action)
             .asyncMap((InitializeApp$ action) => _api.initializeApp())
@@ -66,23 +70,31 @@ class AuthEpics {
             .onErrorReturnWith((dynamic error) => InitializeApp.error(error)));
   }
 
-  Stream<AppAction> _createEmployeeAccount(Stream<CreateEmployeeAccount$> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _createEmployeeAccount(
+      Stream<CreateEmployeeAccount$> actions, EpicStore<AppState> store) {
     return actions //
-        .flatMap((CreateEmployeeAccount$ action) => Stream<CreateEmployeeAccount$>.value(action)
-            .asyncMap((CreateEmployeeAccount$ action) => _api.createEmployeeAccount(
-                email: action.email,
-                password: action.password,
-                adminId: store.state.auth.user!.uid,
-                firstName: action.firstName,
-                lastName: action.lastName,
-                roles: action.roles))
-            .map((String employeeId) => CreateEmployeeAccount.successful(employeeId))
-            .onErrorReturnWith((dynamic error) => CreateEmployeeAccount.error(error)));
+        .flatMap((CreateEmployeeAccount$ action) =>
+            Stream<CreateEmployeeAccount$>.value(action)
+                .asyncMap((CreateEmployeeAccount$ action) =>
+                    _api.createEmployeeAccount(
+                        email: action.email,
+                        password: action.password,
+                        adminId: store.state.auth.user!.uid,
+                        firstName: action.firstName,
+                        lastName: action.lastName,
+                        companyId: store.state.auth.user!.companyId,
+                        roles: action.roles))
+                .map((String employeeId) =>
+                    CreateEmployeeAccount.successful(employeeId))
+                .onErrorReturnWith(
+                    (dynamic error) => CreateEmployeeAccount.error(error)));
   }
 
-  Stream<AppAction> _addSavedDishes(Stream<AddSavedDishes$> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _addSavedDishes(
+      Stream<AddSavedDishes$> actions, EpicStore<AppState> store) {
     return actions //
-        .flatMap((AddSavedDishes$ action) => Stream<AddSavedDishes$>.value(action)
+        .flatMap((AddSavedDishes$ action) => Stream<AddSavedDishes$>.value(
+                action)
             .asyncMap((AddSavedDishes$ action) => _api.addSavedDishes(
                 adminId: store.state.auth.user!.uid,
                 name: action.name,
@@ -96,43 +108,55 @@ class AuthEpics {
             .onErrorReturnWith((dynamic error) => AddSavedDishes.error(error)));
   }
 
-  Stream<AppAction> _removeSavedDishes(Stream<RemoveSavedDishes$> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _removeSavedDishes(
+      Stream<RemoveSavedDishes$> actions, EpicStore<AppState> store) {
     return actions //
-        .flatMap((RemoveSavedDishes$ action) => Stream<RemoveSavedDishes$>.value(action)
-            .asyncMap((RemoveSavedDishes$ action) =>
-                _api.removeSavedDishes(adminId: store.state.auth.user!.uid, id: action.id))
-            .map((String id) => RemoveSavedDishes.successful(id))
-            .onErrorReturnWith((dynamic error) => RemoveSavedDishes.error(error)));
+        .flatMap((RemoveSavedDishes$ action) =>
+            Stream<RemoveSavedDishes$>.value(action)
+                .asyncMap((RemoveSavedDishes$ action) => _api.removeSavedDishes(
+                    adminId: store.state.auth.user!.uid, id: action.id))
+                .map((String id) => RemoveSavedDishes.successful(id))
+                .onErrorReturnWith(
+                    (dynamic error) => RemoveSavedDishes.error(error)));
   }
 
-  Stream<AppAction> _editSavedDishes(Stream<EditSavedDishes$> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _editSavedDishes(
+      Stream<EditSavedDishes$> actions, EpicStore<AppState> store) {
     return actions //
-        .flatMap((EditSavedDishes$ action) => Stream<EditSavedDishes$>.value(action)
-            .asyncMap((EditSavedDishes$ action) => _api.editSavedDishes(
-                adminId: store.state.auth.user!.uid,
-                id: action.id,
-                name: action.name,
-                description: action.description,
-                price: action.price,
-                quantity: action.quantity,
-                image: action.image))
-            .map((Dish dish) => EditSavedDishes.successful(dish))
-            .onErrorReturnWith((dynamic error) => EditSavedDishes.error(error)));
+        .flatMap(
+            (EditSavedDishes$ action) =>
+                Stream<EditSavedDishes$>.value(action)
+                    .asyncMap((EditSavedDishes$ action) => _api.editSavedDishes(
+                        adminId: store.state.auth.user!.uid,
+                        id: action.id,
+                        name: action.name,
+                        description: action.description,
+                        price: action.price,
+                        quantity: action.quantity,
+                        image: action.image))
+                    .map((Dish dish) => EditSavedDishes.successful(dish))
+                    .onErrorReturnWith(
+                        (dynamic error) => EditSavedDishes.error(error)));
   }
 
-  Stream<AppAction> _getEmployees(Stream<GetEmployees$> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _getEmployees(
+      Stream<GetEmployees$> actions, EpicStore<AppState> store) {
     return actions //
         .flatMap((GetEmployees$ action) => Stream<GetEmployees$>.value(action)
-            .asyncMap((GetEmployees$ action) => _api.getEmployees(adminId: action.adminId))
-            .map((Map<String, EmployeeUser> employees) => GetEmployees.successful(employees))
+            .asyncMap((GetEmployees$ action) =>
+                _api.getEmployees(adminId: action.adminId))
+            .map((Map<String, EmployeeUser> employees) =>
+                GetEmployees.successful(employees))
             .onErrorReturnWith((dynamic error) => GetEmployees.error(error)));
   }
 
-  Stream<AppAction> _deleteEmployee(Stream<DeleteEmployee$> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _deleteEmployee(
+      Stream<DeleteEmployee$> actions, EpicStore<AppState> store) {
     return actions //
-        .flatMap((DeleteEmployee$ action) => Stream<DeleteEmployee$>.value(action)
-            .asyncMap((DeleteEmployee$ action) =>
-                _api.deleteEmployeeAccount(adminId: store.state.auth.user!.uid, employee: action.employee))
+        .flatMap((DeleteEmployee$ action) => Stream<DeleteEmployee$>.value(
+                action)
+            .asyncMap((DeleteEmployee$ action) => _api.deleteEmployeeAccount(
+                adminId: store.state.auth.user!.uid, employee: action.employee))
             .mapTo(DeleteEmployee.successful(action.employee))
             .onErrorReturnWith((dynamic error) => DeleteEmployee.error(error)));
   }

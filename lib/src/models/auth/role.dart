@@ -1,6 +1,5 @@
 part of auth_models;
 
-
 class Role extends EnumClass {
   const Role._(String name) : super(name);
 

@@ -3,7 +3,8 @@ part of companies_models;
 abstract class Dish implements Built<Dish, DishBuilder> {
   factory Dish([void Function(DishBuilder b)? updates]) = _$Dish;
 
-  factory Dish.fromJson(dynamic json) => serializers.deserializeWith(serializer, json)!;
+  factory Dish.fromJson(dynamic json) =>
+      serializers.deserializeWith(serializer, json)!;
 
   Dish._();
 
@@ -23,8 +24,8 @@ abstract class Dish implements Built<Dish, DishBuilder> {
 
   BuiltList<DishChoice> get choices;
 
-
-  Map<String, dynamic>? get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>?;
+  Map<String, dynamic>? get json =>
+      serializers.serializeWith(serializer, this) as Map<String, dynamic>?;
 
   static Serializer<Dish> get serializer => _$dishSerializer;
 }

@@ -10,7 +10,10 @@ import 'package:food_delivery_admin/src/models/index.dart';
 import 'package:food_delivery_admin/src/models/orders/index.dart';
 
 class AuthApi {
-  AuthApi({required FirebaseAuth auth, required FirebaseFirestore firestore, required FirebaseStorage storage})
+  AuthApi(
+      {required FirebaseAuth auth,
+      required FirebaseFirestore firestore,
+      required FirebaseStorage storage})
       : _auth = auth,
         _firestore = firestore,
         _storage = storage;
@@ -21,13 +24,17 @@ class AuthApi {
 
   Future<AdminUser> initializeApp() async {
     final User user = _auth.currentUser!;
-    final DocumentSnapshot<Map<String, dynamic>> result = await _firestore.doc('admins/${user.uid}').get();
+    final DocumentSnapshot<Map<String, dynamic>> result =
+        await _firestore.doc('admins/${user.uid}').get();
     return AdminUser.fromJson(result.data());
   }
 
-  Future<AdminUser> login({required String email, required String password}) async {
-    final UserCredential user = await _auth.signInWithEmailAndPassword(email: email, password: password);
-    final DocumentSnapshot<Map<String, dynamic>> response = await _firestore.doc('admins/${user.user!.uid}').get();
+  Future<AdminUser> login(
+      {required String email, required String password}) async {
+    final UserCredential user = await _auth.signInWithEmailAndPassword(
+        email: email, password: password);
+    final DocumentSnapshot<Map<String, dynamic>> response =
+        await _firestore.doc('admins/${user.user!.uid}').get();
     final AdminUser admin = AdminUser.fromJson(response.data());
     return admin;
   }
@@ -48,7 +55,8 @@ class AuthApi {
 //    required List<DeliveryOption> deliveryOptions,
 //    required List<PaymentMethod> paymentMethods,
   }) async {
-    final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('NOT USE').doc();
+    final DocumentReference<Map<String, dynamic>> ref =
+        _firestore.collection('NOT USE').doc();
     final Company newCompany = Company((CompanyBuilder b) {
       b
         ..id = ref.id
@@ -63,13 +71,17 @@ class AuthApi {
         ..deliveryThreshold = deliveryThreshold
         ..image = null
 //        ..deliveryOptions = ListBuilder<DeliveryOption>(deliveryOptions)
-        ..deliveryOptions = ListBuilder<DeliveryOption>(<DeliveryOption>[DeliveryOption.home, DeliveryOption.pickup])
+        ..deliveryOptions = ListBuilder<DeliveryOption>(
+            <DeliveryOption>[DeliveryOption.home, DeliveryOption.pickup])
 //        ..paymentMethods = ListBuilder<PaymentMethod>(paymentMethods)
-        ..paymentMethods = ListBuilder<PaymentMethod>(<PaymentMethod>[PaymentMethod.card, PaymentMethod.cash])
-        ..searchIndex = ListBuilder<String>(<String>[companyName].searchIndexAll);
+        ..paymentMethods = ListBuilder<PaymentMethod>(
+            <PaymentMethod>[PaymentMethod.card, PaymentMethod.cash])
+        ..searchIndex =
+            ListBuilder<String>(<String>[companyName].searchIndexAll);
     });
     await _firestore.doc('companies/${newCompany.id}').set(newCompany.json!);
-    final UserCredential user = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    final UserCredential user = await _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
     final AdminUser admin = AdminUser((AdminUserBuilder b) {
       b
         ..uid = user.user!.uid
@@ -85,14 +97,14 @@ class AuthApi {
     return admin;
   }
 
-  Future<String> createEmployeeAccount({
-    required String email,
-    required String password,
-    required String adminId,
-    required List<Role> roles,
-    required String lastName,
-    required String firstName,
-  }) async {
+  Future<String> createEmployeeAccount(
+      {required String email,
+      required String password,
+      required String adminId,
+      required List<Role> roles,
+      required String lastName,
+      required String firstName,
+      required String companyId}) async {
     final UserCredential user = await _auth.createUserWithEmailAndPassword(
       email: email,
       password: password,
@@ -103,13 +115,13 @@ class AuthApi {
       ..adminId = adminId
       ..firstName = firstName
       ..lastName = lastName
+      ..companyId = companyId
       ..roles = ListBuilder<Role>(roles));
     await _firestore.doc('employees/${user.user!.uid}').set(newEmployee.json);
 
     await _firestore.doc('admins/$adminId').update(<String, dynamic>{
       'employees': FieldValue.arrayUnion(<String>[user.user!.uid])
     });
-
 
     return user.user!.uid;
   }
@@ -124,7 +136,8 @@ class AuthApi {
     required List<DishChoice> choices,
     required bool hasMultipleChoice,
   }) async {
-    final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('NOT USE').doc();
+    final DocumentReference<Map<String, dynamic>> ref =
+        _firestore.collection('NOT USE').doc();
     String? downloadImage;
     if (image != null) {
       downloadImage = await _uploadImage(adminId, ref.id, image);
@@ -136,14 +149,18 @@ class AuthApi {
       ..quantity = int.parse(quantity)
       ..price = double.parse(price)
       ..image = downloadImage
-    ..choices = ListBuilder<DishChoice>(choices)
-    ..hasMultipleChoice = hasMultipleChoice);
-    await _firestore.doc('admins/$adminId').update(<String, dynamic>{'savedDishes.${ref.id}': newDish.json});
+      ..choices = ListBuilder<DishChoice>(choices)
+      ..hasMultipleChoice = hasMultipleChoice);
+    await _firestore
+        .doc('admins/$adminId')
+        .update(<String, dynamic>{'savedDishes.${ref.id}': newDish.json});
     return newDish;
   }
 
-  Future<String> _uploadImage(String adminId, String dishId, String path) async {
-    final Reference refResult = _storage.ref('admins/$adminId/savedDishes/$dishId');
+  Future<String> _uploadImage(
+      String adminId, String dishId, String path) async {
+    final Reference refResult =
+        _storage.ref('admins/$adminId/savedDishes/$dishId');
     await refResult.putFile(File(path));
 
     final String url = await refResult.getDownloadURL();
@@ -151,8 +168,11 @@ class AuthApi {
     return url;
   }
 
-  Future<String> removeSavedDishes({required String adminId, required String id}) async {
-    await _firestore.doc('admins/$adminId').update(<String, dynamic>{'savedDishes.$id': FieldValue.delete()});
+  Future<String> removeSavedDishes(
+      {required String adminId, required String id}) async {
+    await _firestore
+        .doc('admins/$adminId')
+        .update(<String, dynamic>{'savedDishes.$id': FieldValue.delete()});
     await _storage.ref('admins/$adminId/savedDishes/$id').delete();
     return id;
   }
@@ -176,11 +196,14 @@ class AuthApi {
       ..quantity = int.parse(quantity)
       ..price = double.parse(price)
       ..image = downloadImage);
-    await _firestore.doc('admins/$adminId').update(<String, dynamic>{'savedDishes.$id': newDish.json});
+    await _firestore
+        .doc('admins/$adminId')
+        .update(<String, dynamic>{'savedDishes.$id': newDish.json});
     return newDish;
   }
 
-  Future<Map<String, EmployeeUser>> getEmployees({required String adminId}) async {
+  Future<Map<String, EmployeeUser>> getEmployees(
+      {required String adminId}) async {
     final Map<String, EmployeeUser> employees = <String, EmployeeUser>{};
 
     final QuerySnapshot<Map<String, dynamic>> snapshot = await _firestore //
@@ -188,8 +211,10 @@ class AuthApi {
         .where('adminId', isEqualTo: adminId)
         .get();
 
-    final List<EmployeeUser> employeesList =
-        snapshot.docs.map((QueryDocumentSnapshot<Object> e) => EmployeeUser.fromJson(e.data())).toList();
+    final List<EmployeeUser> employeesList = snapshot.docs
+        .map((QueryDocumentSnapshot<Object> e) =>
+            EmployeeUser.fromJson(e.data()))
+        .toList();
 
     for (final EmployeeUser employee in employeesList) {
       employees[employee.uid] = employee;
@@ -197,7 +222,8 @@ class AuthApi {
     return employees;
   }
 
-  Future<void> deleteEmployeeAccount({required String adminId, required EmployeeUser employee}) async {
+  Future<void> deleteEmployeeAccount(
+      {required String adminId, required EmployeeUser employee}) async {
     await _firestore.doc('employees/${employee.uid}').delete();
   }
 }

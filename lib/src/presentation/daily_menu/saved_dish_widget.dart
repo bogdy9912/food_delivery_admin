@@ -5,7 +5,8 @@ import 'package:food_delivery_admin/src/models/index.dart';
 import 'package:food_delivery_admin/src/presentation/app_routes.dart';
 
 class SavedDishWidget extends StatefulWidget {
-  const SavedDishWidget({required this.dish, required this.categoryId, required this.isPressed});
+  const SavedDishWidget(
+      {required this.dish, required this.categoryId, required this.isPressed});
 
   final Dish dish;
   final String categoryId;
@@ -30,7 +31,8 @@ class _SavedDishWidgetState extends State<SavedDishWidget> {
       title: Text(widget.dish.name),
       subtitle: Text(widget.dish.description ?? ''),
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.addSavedDish, arguments: widget.dish);
+        Navigator.pushNamed(context, AppRoutes.addSavedDish,
+            arguments: widget.dish);
       },
       trailing: Column(
         children: <Widget>[
@@ -47,11 +49,11 @@ class _SavedDishWidgetState extends State<SavedDishWidget> {
                 isPressed = !isPressed;
               });
               if (isPressed) {
-                StoreProvider.of<AppState>(context)
-                    .dispatch(UpdateDishes(categoryId: widget.categoryId, add: widget.dish));
+                StoreProvider.of<AppState>(context).dispatch(UpdateDishes(
+                    categoryId: widget.categoryId, add: widget.dish));
               } else {
-                StoreProvider.of<AppState>(context)
-                    .dispatch(UpdateDishes(categoryId: widget.categoryId, remove: widget.dish));
+                StoreProvider.of<AppState>(context).dispatch(UpdateDishes(
+                    categoryId: widget.categoryId, remove: widget.dish));
               }
             },
           )

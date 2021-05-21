@@ -1,8 +1,10 @@
 part of companies_models;
 
 abstract class DishChoice implements Built<DishChoice, DishChoiceBuilder> {
-  factory DishChoice([void Function(DishChoiceBuilder b) updates]) = _$DishChoice;
-  factory DishChoice.fromJson(dynamic json) => serializers.deserializeWith(serializer, json)!;
+  factory DishChoice([void Function(DishChoiceBuilder b) updates]) =
+      _$DishChoice;
+  factory DishChoice.fromJson(dynamic json) =>
+      serializers.deserializeWith(serializer, json)!;
 
   DishChoice._();
 
@@ -14,7 +16,8 @@ abstract class DishChoice implements Built<DishChoice, DishChoiceBuilder> {
 
   int get max;
 
-  Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
+  Map<String, dynamic> get json =>
+      serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 
   static Serializer<DishChoice> get serializer => _$dishChoiceSerializer;
 }

@@ -20,11 +20,11 @@ class DailyMeniuPage extends StatelessWidget {
             title: const Text('Meniul zilei'),
             centerTitle: true,
             elevation: 0,
-
             actions: <Widget>[
               TextButton(
                 onPressed: () {
-                  StoreProvider.of<AppState>(context).dispatch(const PublishMeniu());
+                  StoreProvider.of<AppState>(context)
+                      .dispatch(const PublishMeniu());
                 },
                 child: const Text(
                   'SALVEAZA',
@@ -40,10 +40,12 @@ class DailyMeniuPage extends StatelessWidget {
                   ),
                 )
               : ListView.builder(
-                  itemCount: meniu.items.length+1,
+                  itemCount: meniu.items.length + 1,
                   itemBuilder: (BuildContext context, int index) {
-                    if (index == meniu.items.length ){
-                      return SizedBox(height: MediaQuery.of(context).size.height*0.1,);
+                    if (index == meniu.items.length) {
+                      return SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                      );
                     }
                     return CategoryWidget(index);
                   },
@@ -67,11 +69,16 @@ class DailyMeniuPage extends StatelessWidget {
                       TextButton(
                         child: const Text('ADAUGA'),
                         onPressed: () {
-                          final DocumentReference<Map<String, dynamic>> ref = FirebaseFirestore.instance.collection('NOT USE').doc();
-                          final MeniuItem add = MeniuItem((MeniuItemBuilder b) => b
-                            ..id = ref.id
-                            ..category = _cat.text);
-                          StoreProvider.of<AppState>(context).dispatch(UpdateCategories(add: add));
+                          final DocumentReference<Map<String, dynamic>> ref =
+                              FirebaseFirestore.instance
+                                  .collection('NOT USE')
+                                  .doc();
+                          final MeniuItem add =
+                              MeniuItem((MeniuItemBuilder b) => b
+                                ..id = ref.id
+                                ..category = _cat.text);
+                          StoreProvider.of<AppState>(context)
+                              .dispatch(UpdateCategories(add: add));
                           Navigator.pop(context);
                         },
                       ),

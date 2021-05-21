@@ -15,11 +15,13 @@ class CompanyEpics {
         TypedEpic<AppState, PublishMeniu$>(_publishMeniu),
       ]);
 
-  Stream<AppAction> _publishMeniu(Stream<PublishMeniu$> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _publishMeniu(
+      Stream<PublishMeniu$> actions, EpicStore<AppState> store) {
     return actions //
         .flatMap((PublishMeniu$ action) => Stream<PublishMeniu$>.value(action)
                 .asyncMap((PublishMeniu$ action) => _api.publishMeniu(
-                    companyId: store.state.auth.user!.companyId, meniu: store.state.companyState.meniu!))
+                    companyId: store.state.auth.user!.companyId,
+                    meniu: store.state.companyState.meniu!))
                 .mapTo(const PublishMeniu.successful())
                 .onErrorReturnWith((dynamic error) {
               print(error);
@@ -27,12 +29,14 @@ class CompanyEpics {
             }));
   }
 
-  Stream<AppAction> _getDailyMeniu(Stream<GetDailyMeniu$> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _getDailyMeniu(
+      Stream<GetDailyMeniu$> actions, EpicStore<AppState> store) {
     return actions //
         .flatMap((GetDailyMeniu$ action) => Stream<GetDailyMeniu$>.value(action)
-            .asyncMap((GetDailyMeniu$ action) => _api.getDailyMeniu(companyId: store.state.auth.user!.companyId))
-            .map((Meniu meniu) => GetDailyMeniu.successful(meniu))
-            .onErrorReturnWith((dynamic error) {
+                .asyncMap((GetDailyMeniu$ action) => _api.getDailyMeniu(
+                    companyId: store.state.auth.user!.companyId))
+                .map((Meniu meniu) => GetDailyMeniu.successful(meniu))
+                .onErrorReturnWith((dynamic error) {
               print(error);
               return GetDailyMeniu.error(error);
             }));

@@ -15,7 +15,8 @@ class FoodDeliveryAdmin extends StatefulWidget {
   _FoodDeliveryAdminState createState() => _FoodDeliveryAdminState();
 }
 
-class _FoodDeliveryAdminState extends State<FoodDeliveryAdmin> with InitMixin<FoodDeliveryAdmin> {
+class _FoodDeliveryAdminState extends State<FoodDeliveryAdmin>
+    with InitMixin<FoodDeliveryAdmin> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Store<AppState>>(

@@ -9,8 +9,10 @@ class CreateEmployeeAccount with _$CreateEmployeeAccount implements AppAction {
       required String firstName,
       required List<Role> roles}) = CreateEmployeeAccount$;
 
-  const factory CreateEmployeeAccount.successful(String employeeId) = CreateEmployeeAccountSuccessful;
+  const factory CreateEmployeeAccount.successful(String employeeId) =
+      CreateEmployeeAccountSuccessful;
 
   @Implements(ErrorAction)
-  const factory CreateEmployeeAccount.error(Object error) = CreateEmployeeAccountError;
+  const factory CreateEmployeeAccount.error(Object error) =
+      CreateEmployeeAccountError;
 }

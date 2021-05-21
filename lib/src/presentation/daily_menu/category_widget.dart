@@ -16,14 +16,16 @@ class CategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SavedDishesContainer(
-      builder: (BuildContext context, Map<String, Dish> savedDishes) => CategoryContainer(
+      builder: (BuildContext context, Map<String, Dish> savedDishes) =>
+          CategoryContainer(
         index: ind,
         builder: (BuildContext context, MeniuItem item) => Column(
           children: <Widget>[
             ListTile(
               title: Text(item.category),
               onLongPress: () {
-                StoreProvider.of<AppState>(context).dispatch(UpdateCategories(remove: item));
+                StoreProvider.of<AppState>(context)
+                    .dispatch(UpdateCategories(remove: item));
               },
               trailing: IconButton(
                 onPressed: () {
@@ -43,10 +45,15 @@ class CategoryWidget extends StatelessWidget {
                                   ],
                                 ),
                                 onPressed: () {
-                                  Navigator.pushNamed(context, AppRoutes.addSavedDish);
+                                  Navigator.pushNamed(
+                                      context, AppRoutes.addSavedDish);
                                 },
                               ),
-                              actions: <Widget>[TextButton(onPressed: () {}, child: const Text('anuleaza'))],
+                              actions: <Widget>[
+                                TextButton(
+                                    onPressed: () {},
+                                    child: const Text('anuleaza'))
+                              ],
                             );
                           }
                           return AlertDialog(
@@ -58,18 +65,21 @@ class CategoryWidget extends StatelessWidget {
                                   if (index == 0) {
                                     return OutlinedButton(
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: const <Widget>[
                                           Icon(Icons.add_circle_outline),
                                           Text('Adauga'),
                                         ],
                                       ),
                                       onPressed: () {
-                                        Navigator.pushNamed(context, AppRoutes.addSavedDish);
+                                        Navigator.pushNamed(
+                                            context, AppRoutes.addSavedDish);
                                       },
                                     );
                                   }
-                                  final Dish dish = savedDishes.values.toList()[index - 1];
+                                  final Dish dish =
+                                      savedDishes.values.toList()[index - 1];
                                   return SavedDishWidget(
                                     dish: dish,
                                     categoryId: item.id,
@@ -112,14 +122,17 @@ class CategoryWidget extends StatelessWidget {
                         : Container(
                             width: 20,
                             height: 20,
-                      color: Colors.black,
+                            color: Colors.black,
                           ),
                     trailing: IconButton(
-                      icon: const Icon(Icons.delete_outline_rounded, color: Colors.red),
+                      icon: const Icon(Icons.delete_outline_rounded,
+                          color: Colors.red),
                       onPressed: () {
                         print(item);
-                        StoreProvider.of<AppState>(context)
-                            .dispatch(UpdateDishes(categoryId: item.id, remove: item.dishes[index]));
+                        StoreProvider.of<AppState>(context).dispatch(
+                            UpdateDishes(
+                                categoryId: item.id,
+                                remove: item.dishes[index]));
                       },
                     ),
                   ),

@@ -9,7 +9,8 @@ Reducer<CompanyState> companyReducer = combineReducers(<Reducer<CompanyState>>[
 ]);
 
 CompanyState _updateCategories(CompanyState state, UpdateCategories$ action) {
-  final Meniu meniuState = state.meniu ?? Meniu((MeniuBuilder b) => b.id = '1315');
+  final Meniu meniuState =
+      state.meniu ?? Meniu((MeniuBuilder b) => b.id = '1315');
 
   return state.rebuild((CompanyStateBuilder b) {
     if (action.add != null) {
@@ -22,19 +23,24 @@ CompanyState _updateCategories(CompanyState state, UpdateCategories$ action) {
 }
 
 CompanyState _updateDishes(CompanyState state, UpdateDishes$ action) {
-
   return state.rebuild((CompanyStateBuilder b) {
-    final int index = b.meniu.items.build().indexWhere((MeniuItem e) => e.id == action.categoryId);
+    final int index = b.meniu.items
+        .build()
+        .indexWhere((MeniuItem e) => e.id == action.categoryId);
     if (index != -1) {
       if (action.add != null) {
-      b.meniu.items[index] = b.meniu.items[index].rebuild((MeniuItemBuilder e) => e.dishes.add(action.add!));
-    } else if (action.remove != null) {
-      b.meniu.items[index]=  b.meniu.items[index].rebuild((MeniuItemBuilder e) => e.dishes.remove(action.remove));
-    }
+        b.meniu.items[index] = b.meniu.items[index]
+            .rebuild((MeniuItemBuilder e) => e.dishes.add(action.add!));
+      } else if (action.remove != null) {
+        b.meniu.items[index] = b.meniu.items[index]
+            .rebuild((MeniuItemBuilder e) => e.dishes.remove(action.remove));
+      }
     }
   });
 }
 
-CompanyState _getDailyMeniuSuccessful(CompanyState state, GetDailyMeniuSuccessful action) {
-  return state.rebuild((CompanyStateBuilder b) => b.meniu = action.meniu.toBuilder());
+CompanyState _getDailyMeniuSuccessful(
+    CompanyState state, GetDailyMeniuSuccessful action) {
+  return state
+      .rebuild((CompanyStateBuilder b) => b.meniu = action.meniu.toBuilder());
 }

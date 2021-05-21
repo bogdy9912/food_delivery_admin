@@ -6,11 +6,9 @@ import 'package:food_delivery_admin/src/models/auth/index.dart';
 import 'package:food_delivery_admin/src/models/companies/index.dart';
 import 'package:food_delivery_admin/src/models/serializers.dart';
 
-
 export 'auth/index.dart';
 export 'companies/index.dart';
 export 'orders/index.dart';
-
 
 part 'index.g.dart';
 part 'app_state.dart';

@@ -14,9 +14,13 @@ import 'package:redux_epics/redux_epics.dart';
 Future<Store<AppState>> init() async {
   await Firebase.initializeApp();
 
-  final AuthApi authApi = AuthApi(auth: FirebaseAuth.instance, firestore: FirebaseFirestore.instance,storage: FirebaseStorage.instance);
-  final CompanyApi companyApi = CompanyApi(firestore: FirebaseFirestore.instance, f: FirebaseFirestore.instance.collection('companies/'));
-
+  final AuthApi authApi = AuthApi(
+      auth: FirebaseAuth.instance,
+      firestore: FirebaseFirestore.instance,
+      storage: FirebaseStorage.instance);
+  final CompanyApi companyApi = CompanyApi(
+      firestore: FirebaseFirestore.instance,
+      f: FirebaseFirestore.instance.collection('companies/'));
 
   final AppEpics epic = AppEpics(authApi: authApi, companyApi: companyApi);
 

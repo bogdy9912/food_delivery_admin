@@ -136,11 +136,12 @@ class EmployeeAccountsPage extends StatelessWidget {
                                   final bool valid = Form.of(context)!.validate();
                                   if (valid && roles.isNotEmpty) {
                                     StoreProvider.of<AppState>(context).dispatch(CreateEmployeeAccount(
-                                        email: _email.text,
-                                        password: _password.text,
-                                        lastName: _lastName.text,
-                                        firstName: _firstName.text,
-                                        roles: roles));
+                                      email: _email.text,
+                                      password: _password.text,
+                                      lastName: _lastName.text,
+                                      firstName: _firstName.text,
+                                      roles: roles,
+                                    ));
                                   }
                                 },
                                 child: const Text('Adauga')),

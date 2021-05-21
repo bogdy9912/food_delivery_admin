@@ -36,13 +36,13 @@ class _AdminRegisterPageState extends State<AdminRegisterPage> {
                 ),
                 TextFormField(
                   controller: _password,
-
                   decoration: const InputDecoration(hintText: 'password admin'),
                   textInputAction: TextInputAction.next,
                 ),
                 TextFormField(
                   controller: _confirmPassword,
-                  decoration: const InputDecoration(hintText: 'confirm password admin'),
+                  decoration:
+                      const InputDecoration(hintText: 'confirm password admin'),
                   textInputAction: TextInputAction.next,
                 ),
                 TextFormField(
@@ -58,11 +58,12 @@ class _AdminRegisterPageState extends State<AdminRegisterPage> {
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoutes.companyRegister);
-                    StoreProvider.of<AppState>(context).dispatch(UpdateRegistrationInfo(
-                        email: _email.text,
-                        password: _password.text,
-                        firstName: _firstName.text,
-                        lastName: _lastName.text));
+                    StoreProvider.of<AppState>(context).dispatch(
+                        UpdateRegistrationInfo(
+                            email: _email.text,
+                            password: _password.text,
+                            firstName: _firstName.text,
+                            lastName: _lastName.text));
                   },
                   child: const Text('continua'),
                 ),

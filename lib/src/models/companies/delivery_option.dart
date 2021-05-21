@@ -1,6 +1,5 @@
 part of companies_models;
 
-
 class DeliveryOption extends EnumClass {
   const DeliveryOption._(String name) : super(name);
 
@@ -11,5 +10,6 @@ class DeliveryOption extends EnumClass {
 
   static DeliveryOption valueOf(String name) => _$valueOf(name);
 
-  static Serializer<DeliveryOption> get serializer => _$deliveryOptionSerializer;
+  static Serializer<DeliveryOption> get serializer =>
+      _$deliveryOptionSerializer;
 }

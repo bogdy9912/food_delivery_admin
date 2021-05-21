@@ -18,7 +18,8 @@ class AppDrawer extends StatelessWidget {
               title: const Text('Gestionare Meniul Zilei'),
               leading: const Icon(Icons.done),
               onTap: () {
-                StoreProvider.of<AppState>(context).dispatch(const GetDailyMeniu());
+                StoreProvider.of<AppState>(context)
+                    .dispatch(const GetDailyMeniu());
                 Navigator.pushNamed(context, AppRoutes.dailyMeniu);
               },
             ),
@@ -47,7 +48,8 @@ class AppDrawer extends StatelessWidget {
               title: const Text('Gestionare conturi angajati'),
               leading: const Icon(Icons.done),
               onTap: () {
-                StoreProvider.of<AppState>(context).dispatch(GetEmployees(adminId: admin!.uid));
+                StoreProvider.of<AppState>(context)
+                    .dispatch(GetEmployees(adminId: admin!.uid));
                 Navigator.pushNamed(context, AppRoutes.employeeAccounts);
               },
             ),

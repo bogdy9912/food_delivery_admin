@@ -1,8 +1,11 @@
 part of auth_models;
 
-abstract class EmployeeUser implements Built<EmployeeUser, EmployeeUserBuilder> {
-  factory EmployeeUser([void Function(EmployeeUserBuilder b) updates]) = _$EmployeeUser;
-  factory EmployeeUser.fromJson(dynamic json) => serializers.deserializeWith(serializer, json)!;
+abstract class EmployeeUser
+    implements Built<EmployeeUser, EmployeeUserBuilder> {
+  factory EmployeeUser([void Function(EmployeeUserBuilder b) updates]) =
+      _$EmployeeUser;
+  factory EmployeeUser.fromJson(dynamic json) =>
+      serializers.deserializeWith(serializer, json)!;
 
   EmployeeUser._();
 
@@ -11,7 +14,7 @@ abstract class EmployeeUser implements Built<EmployeeUser, EmployeeUserBuilder> 
   String get adminId;
 
   String get email;
-  
+
   String get firstName;
 
   String get lastName;
@@ -20,7 +23,8 @@ abstract class EmployeeUser implements Built<EmployeeUser, EmployeeUserBuilder> 
 
   BuiltList<Role> get roles;
 
-  Map<String, dynamic> get json => serializers.serializeWith(serializer, this) as Map<String, dynamic>;
+  Map<String, dynamic> get json =>
+      serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 
   static Serializer<EmployeeUser> get serializer => _$employeeUserSerializer;
 }

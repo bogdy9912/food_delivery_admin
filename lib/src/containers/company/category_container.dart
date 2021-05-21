@@ -13,7 +13,8 @@ class CategoryContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, MeniuItem>(
       builder: builder,
-      converter: (Store<AppState> store) => store.state.companyState.meniu!.items[index],
+      converter: (Store<AppState> store) =>
+          store.state.companyState.meniu!.items[index],
     );
   }
 }

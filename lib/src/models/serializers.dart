@@ -9,7 +9,7 @@ part 'serializers.g.dart';
   AppState,
   EmployeeUser,
 ])
-Serializers serializers = (_$serializers.toBuilder()//
-  ..addPlugin(StandardJsonPlugin()) //
-)
+Serializers serializers = (_$serializers.toBuilder() //
+      ..addPlugin(StandardJsonPlugin()) //
+    )
     .build();
