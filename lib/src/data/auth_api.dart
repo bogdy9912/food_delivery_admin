@@ -28,9 +28,7 @@ class AuthApi {
   Future<AdminUser> login({required String email, required String password}) async {
     final UserCredential user = await _auth.signInWithEmailAndPassword(email: email, password: password);
     final DocumentSnapshot<Map<String, dynamic>> response = await _firestore.doc('admins/${user.user!.uid}').get();
-    final admin = AdminUser.fromJson(response.data());
-    print(admin.savedDishes.values.toList()[0].choices);
-    print(admin.savedDishes.values.toList()[0].hasMultipleChoice);
+    final AdminUser admin = AdminUser.fromJson(response.data());
     return admin;
   }
 

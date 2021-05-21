@@ -1,7 +1,7 @@
 part of auth_actions;
 
 @freezed
-abstract class RemoveSavedDishes with _$RemoveSavedDishes implements AppAction {
+class RemoveSavedDishes with _$RemoveSavedDishes implements AppAction {
   const factory RemoveSavedDishes({required String id}) = RemoveSavedDishes$;
 
   const factory RemoveSavedDishes.successful(String id) = RemoveSavedDishesSuccessful;

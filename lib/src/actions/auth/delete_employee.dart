@@ -1,7 +1,7 @@
 part of auth_actions;
 
 @freezed
-abstract class DeleteEmployee with _$DeleteEmployee implements AppAction {
+class DeleteEmployee with _$DeleteEmployee implements AppAction {
   const factory DeleteEmployee({required EmployeeUser employee}) = DeleteEmployee$;
 
   const factory DeleteEmployee.successful(EmployeeUser employee) = DeleteEmployeeSuccessful;

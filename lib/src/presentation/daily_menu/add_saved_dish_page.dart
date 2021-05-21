@@ -179,7 +179,7 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> {
                           },
                         ),
                       ),
-                      ...List.generate(_listOfCategories[index].options.length, (int indexOptions) {
+                      ...List<Text>.generate(_listOfCategories[index].options.length, (int indexOptions) {
                         final String option = _listOfCategories[index].options[indexOptions];
                         return Text(option);
                       })

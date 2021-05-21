@@ -1,7 +1,7 @@
 part of auth_actions;
 
 @freezed
-abstract class EditSavedDishes with _$EditSavedDishes implements AppAction {
+class EditSavedDishes with _$EditSavedDishes implements AppAction {
   const factory EditSavedDishes({
     required String id,
     required String name,
