@@ -2,7 +2,7 @@ part of company_actions;
 
 
 @freezed
-abstract class PublishMeniu with _$PublishMeniu implements AppAction {
+class PublishMeniu with _$PublishMeniu implements AppAction {
   const factory PublishMeniu() = PublishMeniu$;
 
   const factory PublishMeniu.successful() = PublishMeniuSuccessful;

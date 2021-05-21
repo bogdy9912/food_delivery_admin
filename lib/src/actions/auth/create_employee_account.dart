@@ -1,7 +1,7 @@
 part of auth_actions;
 
 @freezed
-abstract class CreateEmployeeAccount with _$CreateEmployeeAccount implements AppAction {
+class CreateEmployeeAccount with _$CreateEmployeeAccount implements AppAction {
   const factory CreateEmployeeAccount(
       {required String email,
       required String password,

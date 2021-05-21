@@ -1,7 +1,7 @@
 part of auth_actions;
 
 @freezed
-abstract class AddSavedDishes with _$AddSavedDishes implements AppAction {
+class AddSavedDishes with _$AddSavedDishes implements AppAction {
   const factory AddSavedDishes(
       {required String name,
       required String? description,
