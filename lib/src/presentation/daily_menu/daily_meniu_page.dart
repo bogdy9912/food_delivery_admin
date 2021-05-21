@@ -40,11 +40,12 @@ class DailyMeniuPage extends StatelessWidget {
                   ),
                 )
               : ListView.builder(
-                  itemCount: meniu.items.length,
+                  itemCount: meniu.items.length+1,
                   itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      child: CategoryWidget(index),
-                    );
+                    if (index == meniu.items.length ){
+                      return SizedBox(height: MediaQuery.of(context).size.height*0.1,);
+                    }
+                    return CategoryWidget(index);
                   },
                 ),
           floatingActionButton: FloatingActionButton(

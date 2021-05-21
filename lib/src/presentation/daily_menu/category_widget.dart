@@ -99,7 +99,7 @@ class CategoryWidget extends StatelessWidget {
               children: List<Widget>.generate(
                 item.dishes.length,
                 (int index) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: ListTile(
                     title: Text(item.dishes[index].name),
                     subtitle: Text(item.dishes[index].description ?? ''),
