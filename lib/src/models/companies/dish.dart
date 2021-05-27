@@ -16,7 +16,7 @@ abstract class Dish implements Built<Dish, DishBuilder> {
 
   double get price;
 
-  int get quantity;
+  int? get quantity;
 
   String? get image;
 

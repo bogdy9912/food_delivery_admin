@@ -224,9 +224,6 @@ class _$DishSerializer implements StructuredSerializer<Dish> {
       'price',
       serializers.serialize(object.price,
           specifiedType: const FullType(double)),
-      'quantity',
-      serializers.serialize(object.quantity,
-          specifiedType: const FullType(int)),
       'hasMultipleChoice',
       serializers.serialize(object.hasMultipleChoice,
           specifiedType: const FullType(bool)),
@@ -242,6 +239,12 @@ class _$DishSerializer implements StructuredSerializer<Dish> {
         ..add('description')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.quantity;
+    if (value != null) {
+      result
+        ..add('quantity')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     value = object.image;
     if (value != null) {
@@ -827,7 +830,7 @@ class _$Dish extends Dish {
   @override
   final double price;
   @override
-  final int quantity;
+  final int? quantity;
   @override
   final String? image;
   @override
@@ -843,7 +846,7 @@ class _$Dish extends Dish {
       required this.name,
       this.description,
       required this.price,
-      required this.quantity,
+      this.quantity,
       this.image,
       required this.hasMultipleChoice,
       required this.choices})
@@ -851,7 +854,6 @@ class _$Dish extends Dish {
     BuiltValueNullFieldError.checkNotNull(id, 'Dish', 'id');
     BuiltValueNullFieldError.checkNotNull(name, 'Dish', 'name');
     BuiltValueNullFieldError.checkNotNull(price, 'Dish', 'price');
-    BuiltValueNullFieldError.checkNotNull(quantity, 'Dish', 'quantity');
     BuiltValueNullFieldError.checkNotNull(
         hasMultipleChoice, 'Dish', 'hasMultipleChoice');
     BuiltValueNullFieldError.checkNotNull(choices, 'Dish', 'choices');
@@ -986,8 +988,7 @@ class DishBuilder implements Builder<Dish, DishBuilder> {
               description: description,
               price:
                   BuiltValueNullFieldError.checkNotNull(price, 'Dish', 'price'),
-              quantity: BuiltValueNullFieldError.checkNotNull(
-                  quantity, 'Dish', 'quantity'),
+              quantity: quantity,
               image: image,
               hasMultipleChoice: BuiltValueNullFieldError.checkNotNull(
                   hasMultipleChoice, 'Dish', 'hasMultipleChoice'),
