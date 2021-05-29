@@ -109,7 +109,7 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                       FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}'))
                     ],
                     validator: (String? value) {
-                      if (value == null || value.isEmpty || double.tryParse(value) == null) {
+                      if (value == null || value.isEmpty || int.tryParse(value) == null) {
                         return 'Cantitate invalida';
                       }
                       return null;
