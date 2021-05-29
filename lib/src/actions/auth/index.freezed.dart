@@ -1829,13 +1829,15 @@ class _$CreateEmployeeAccountTearOff {
       required String password,
       required String lastName,
       required String firstName,
-      required List<Role> roles}) {
+      required List<Role> roles,
+      required void Function(AppAction) response}) {
     return CreateEmployeeAccount$(
       email: email,
       password: password,
       lastName: lastName,
       firstName: firstName,
       roles: roles,
+      response: response,
     );
   }
 
@@ -1859,8 +1861,13 @@ const $CreateEmployeeAccount = _$CreateEmployeeAccountTearOff();
 mixin _$CreateEmployeeAccount {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, String lastName,
-            String firstName, List<Role> roles)
+    TResult Function(
+            String email,
+            String password,
+            String lastName,
+            String firstName,
+            List<Role> roles,
+            void Function(AppAction) response)
         $default, {
     required TResult Function(String employeeId) successful,
     required TResult Function(Object error) error,
@@ -1868,8 +1875,13 @@ mixin _$CreateEmployeeAccount {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, String lastName,
-            String firstName, List<Role> roles)?
+    TResult Function(
+            String email,
+            String password,
+            String lastName,
+            String firstName,
+            List<Role> roles,
+            void Function(AppAction) response)?
         $default, {
     TResult Function(String employeeId)? successful,
     TResult Function(Object error)? error,
@@ -1920,7 +1932,8 @@ abstract class $CreateEmployeeAccount$CopyWith<$Res> {
       String password,
       String lastName,
       String firstName,
-      List<Role> roles});
+      List<Role> roles,
+      void Function(AppAction) response});
 }
 
 /// @nodoc
@@ -1941,6 +1954,7 @@ class _$CreateEmployeeAccount$CopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? firstName = freezed,
     Object? roles = freezed,
+    Object? response = freezed,
   }) {
     return _then(CreateEmployeeAccount$(
       email: email == freezed
@@ -1963,6 +1977,10 @@ class _$CreateEmployeeAccount$CopyWithImpl<$Res>
           ? _value.roles
           : roles // ignore: cast_nullable_to_non_nullable
               as List<Role>,
+      response: response == freezed
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as void Function(AppAction),
     ));
   }
 }
@@ -1975,7 +1993,8 @@ class _$CreateEmployeeAccount$ implements CreateEmployeeAccount$ {
       required this.password,
       required this.lastName,
       required this.firstName,
-      required this.roles});
+      required this.roles,
+      required this.response});
 
   @override
   final String email;
@@ -1987,10 +2006,12 @@ class _$CreateEmployeeAccount$ implements CreateEmployeeAccount$ {
   final String firstName;
   @override
   final List<Role> roles;
+  @override
+  final void Function(AppAction) response;
 
   @override
   String toString() {
-    return 'CreateEmployeeAccount(email: $email, password: $password, lastName: $lastName, firstName: $firstName, roles: $roles)';
+    return 'CreateEmployeeAccount(email: $email, password: $password, lastName: $lastName, firstName: $firstName, roles: $roles, response: $response)';
   }
 
   @override
@@ -2009,7 +2030,10 @@ class _$CreateEmployeeAccount$ implements CreateEmployeeAccount$ {
                 const DeepCollectionEquality()
                     .equals(other.firstName, firstName)) &&
             (identical(other.roles, roles) ||
-                const DeepCollectionEquality().equals(other.roles, roles)));
+                const DeepCollectionEquality().equals(other.roles, roles)) &&
+            (identical(other.response, response) ||
+                const DeepCollectionEquality()
+                    .equals(other.response, response)));
   }
 
   @override
@@ -2019,7 +2043,8 @@ class _$CreateEmployeeAccount$ implements CreateEmployeeAccount$ {
       const DeepCollectionEquality().hash(password) ^
       const DeepCollectionEquality().hash(lastName) ^
       const DeepCollectionEquality().hash(firstName) ^
-      const DeepCollectionEquality().hash(roles);
+      const DeepCollectionEquality().hash(roles) ^
+      const DeepCollectionEquality().hash(response);
 
   @JsonKey(ignore: true)
   @override
@@ -2030,27 +2055,37 @@ class _$CreateEmployeeAccount$ implements CreateEmployeeAccount$ {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, String lastName,
-            String firstName, List<Role> roles)
+    TResult Function(
+            String email,
+            String password,
+            String lastName,
+            String firstName,
+            List<Role> roles,
+            void Function(AppAction) response)
         $default, {
     required TResult Function(String employeeId) successful,
     required TResult Function(Object error) error,
   }) {
-    return $default(email, password, lastName, firstName, roles);
+    return $default(email, password, lastName, firstName, roles, response);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, String lastName,
-            String firstName, List<Role> roles)?
+    TResult Function(
+            String email,
+            String password,
+            String lastName,
+            String firstName,
+            List<Role> roles,
+            void Function(AppAction) response)?
         $default, {
     TResult Function(String employeeId)? successful,
     TResult Function(Object error)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(email, password, lastName, firstName, roles);
+      return $default(email, password, lastName, firstName, roles, response);
     }
     return orElse();
   }
@@ -2086,13 +2121,15 @@ abstract class CreateEmployeeAccount$ implements CreateEmployeeAccount {
       required String password,
       required String lastName,
       required String firstName,
-      required List<Role> roles}) = _$CreateEmployeeAccount$;
+      required List<Role> roles,
+      required void Function(AppAction) response}) = _$CreateEmployeeAccount$;
 
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   List<Role> get roles => throw _privateConstructorUsedError;
+  void Function(AppAction) get response => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CreateEmployeeAccount$CopyWith<CreateEmployeeAccount$> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2169,8 +2206,13 @@ class _$CreateEmployeeAccountSuccessful
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, String lastName,
-            String firstName, List<Role> roles)
+    TResult Function(
+            String email,
+            String password,
+            String lastName,
+            String firstName,
+            List<Role> roles,
+            void Function(AppAction) response)
         $default, {
     required TResult Function(String employeeId) successful,
     required TResult Function(Object error) error,
@@ -2181,8 +2223,13 @@ class _$CreateEmployeeAccountSuccessful
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, String lastName,
-            String firstName, List<Role> roles)?
+    TResult Function(
+            String email,
+            String password,
+            String lastName,
+            String firstName,
+            List<Role> roles,
+            void Function(AppAction) response)?
         $default, {
     TResult Function(String employeeId)? successful,
     TResult Function(Object error)? error,
@@ -2299,8 +2346,13 @@ class _$CreateEmployeeAccountError implements CreateEmployeeAccountError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, String lastName,
-            String firstName, List<Role> roles)
+    TResult Function(
+            String email,
+            String password,
+            String lastName,
+            String firstName,
+            List<Role> roles,
+            void Function(AppAction) response)
         $default, {
     required TResult Function(String employeeId) successful,
     required TResult Function(Object error) error,
@@ -2311,8 +2363,13 @@ class _$CreateEmployeeAccountError implements CreateEmployeeAccountError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, String lastName,
-            String firstName, List<Role> roles)?
+    TResult Function(
+            String email,
+            String password,
+            String lastName,
+            String firstName,
+            List<Role> roles,
+            void Function(AppAction) response)?
         $default, {
     TResult Function(String employeeId)? successful,
     TResult Function(Object error)? error,
