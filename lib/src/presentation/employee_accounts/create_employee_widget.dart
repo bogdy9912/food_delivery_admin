@@ -12,7 +12,8 @@ class CreateEmployeeWidget extends StatefulWidget {
   _CreateEmployeeWidgetState createState() => _CreateEmployeeWidgetState();
 }
 
-class _CreateEmployeeWidgetState extends State<CreateEmployeeWidget> with DialogMixin{
+class _CreateEmployeeWidgetState extends State<CreateEmployeeWidget>
+    with DialogMixin {
   final TextEditingController _email = TextEditingController();
 
   final TextEditingController _password = TextEditingController();
@@ -29,9 +30,9 @@ class _CreateEmployeeWidgetState extends State<CreateEmployeeWidget> with Dialog
 
   void _response(AppAction action) {
     if (action is CreateEmployeeAccountError) {
-      showErrorDialog(context: context, title: 'Server Error', error: action.error);
-    }
-    else if (action is CreateEmployeeAccountSuccessful) {
+      showErrorDialog(
+          context: context, title: 'Server Error', error: action.error);
+    } else if (action is CreateEmployeeAccountSuccessful) {
       Navigator.pop(context);
     }
   }
@@ -51,7 +52,9 @@ class _CreateEmployeeWidgetState extends State<CreateEmployeeWidget> with Dialog
                     decoration: const InputDecoration(labelText: 'email'),
                     keyboardType: TextInputType.emailAddress,
                     validator: (String? value) {
-                      if (value == null || !value.contains('@') || !value.contains('.')) {
+                      if (value == null ||
+                          !value.contains('@') ||
+                          !value.contains('.')) {
                         return 'Introduce-ti o adresa valida';
                       }
                       return null;
@@ -72,7 +75,8 @@ class _CreateEmployeeWidgetState extends State<CreateEmployeeWidget> with Dialog
                     textInputAction: TextInputAction.next,
                   ),
                   TextFormField(
-                    decoration: const InputDecoration(labelText: 'confirm password'),
+                    decoration:
+                        const InputDecoration(labelText: 'confirm password'),
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     validator: (String? value) {
@@ -142,15 +146,14 @@ class _CreateEmployeeWidgetState extends State<CreateEmployeeWidget> with Dialog
                   onPressed: () {
                     final bool valid = Form.of(context)!.validate();
                     if (valid && roles.isNotEmpty) {
-                      StoreProvider.of<AppState>(context).dispatch(CreateEmployeeAccount(
-                          email: _email.text.trim(),
-                          password: _password.text,
-                          lastName: _lastName.text.trim(),
-                          firstName: _firstName.text.trim(),
-                          roles: roles,
-                          response: _response));
-
-
+                      StoreProvider.of<AppState>(context).dispatch(
+                          CreateEmployeeAccount(
+                              email: _email.text.trim(),
+                              password: _password.text,
+                              lastName: _lastName.text.trim(),
+                              firstName: _firstName.text.trim(),
+                              roles: roles,
+                              response: _response));
                     }
                   },
                   child: const Text('Adauga')),

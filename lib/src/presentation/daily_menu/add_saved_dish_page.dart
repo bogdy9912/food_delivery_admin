@@ -51,7 +51,8 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
   }
 
   Future<void> getImage() async {
-    final PickedFile? pickedFile = await picker.getImage(source: ImageSource.camera);
+    final PickedFile? pickedFile =
+        await picker.getImage(source: ImageSource.camera);
 
     setState(() {
       if (pickedFile != null) {
@@ -85,17 +86,21 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                   ),
                   TextFormField(
                     controller: _description,
-                    decoration: const InputDecoration(hintText: 'descriere produs'),
+                    decoration:
+                        const InputDecoration(hintText: 'descriere produs'),
                   ),
                   TextFormField(
                     controller: _price,
                     decoration: const InputDecoration(hintText: 'pret'),
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}'))
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'^(\d+)?\.?\d{0,2}'))
                     ],
                     keyboardType: const TextInputType.numberWithOptions(),
                     validator: (String? value) {
-                      if (value == null || value.isEmpty || double.tryParse(value) == null) {
+                      if (value == null ||
+                          value.isEmpty ||
+                          double.tryParse(value) == null) {
                         return 'Pret invalid';
                       }
                       return null;
@@ -106,10 +111,13 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                     decoration: const InputDecoration(hintText: 'cantitate'),
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?\.?\d{0,2}'))
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'^(\d+)?\.?\d{0,2}'))
                     ],
                     validator: (String? value) {
-                      if (value == null || value.isEmpty || int.tryParse(value) == null) {
+                      if (value == null ||
+                          value.isEmpty ||
+                          int.tryParse(value) == null) {
                         return 'Cantitate invalida';
                       }
                       return null;
@@ -131,18 +139,21 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                   ),
                   ...List<Widget>.generate(
                     _listOfCategories.length,
-                        (int index) => Column(
+                    (int index) => Column(
                       children: <Widget>[
                         ListTile(
                           title: Text(_listOfCategories[index].name),
                           trailing: IconButton(
                             icon: const Icon(Icons.add),
                             onPressed: () {
-                              final TextEditingController _choice = TextEditingController();
+                              final TextEditingController _choice =
+                                  TextEditingController();
                               showDialog<Widget>(
                                 context: context,
-                                builder: (BuildContext context) => StatefulBuilder(
-                                  builder: (BuildContext context, StateSetter setStateAlert) {
+                                builder: (BuildContext context) =>
+                                    StatefulBuilder(
+                                  builder: (BuildContext context,
+                                      StateSetter setStateAlert) {
                                     String? err;
                                     return AlertDialog(
                                       title: const Text('Adauga optiune'),
@@ -163,12 +174,20 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                                             onPressed: () {
                                               if (_choice.text.isEmpty) {
                                                 setStateAlert(() {
-                                                  err = 'Nu ai introdus nicio valoare';
+                                                  err =
+                                                      'Nu ai introdus nicio valoare';
                                                 });
                                               } else {
                                                 setState(() {
-                                                  _listOfCategories[index] = _listOfCategories[index]
-                                                      .rebuild((DishChoiceBuilder b) => b.options.add(_choice.text));
+                                                  _listOfCategories[
+                                                      index] = _listOfCategories[
+                                                          index]
+                                                      .rebuild(
+                                                          (DishChoiceBuilder
+                                                                  b) =>
+                                                              b.options.add(
+                                                                  _choice
+                                                                      .text));
                                                   Navigator.pop(context);
                                                 });
                                               }
@@ -182,8 +201,11 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                             },
                           ),
                         ),
-                        ...List<Text>.generate(_listOfCategories[index].options.length, (int indexOptions) {
-                          final String option = _listOfCategories[index].options[indexOptions];
+                        ...List<Text>.generate(
+                            _listOfCategories[index].options.length,
+                            (int indexOptions) {
+                          final String option =
+                              _listOfCategories[index].options[indexOptions];
                           return Text(option);
                         })
                       ],
@@ -195,9 +217,12 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                           showDialog<Widget>(
                             context: context,
                             builder: (BuildContext context) {
-                              final TextEditingController _category = TextEditingController();
-                              final TextEditingController _min = TextEditingController();
-                              final TextEditingController _max = TextEditingController();
+                              final TextEditingController _category =
+                                  TextEditingController();
+                              final TextEditingController _min =
+                                  TextEditingController();
+                              final TextEditingController _max =
+                                  TextEditingController();
                               return Form(
                                 child: AlertDialog(
                                   title: const Text('Adauga categorie'),
@@ -207,10 +232,12 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                                         TextFormField(
                                             controller: _category,
                                             decoration: const InputDecoration(
-                                              hintText: 'Salate, sosuri, etc...',
+                                              hintText:
+                                                  'Salate, sosuri, etc...',
                                             ),
                                             validator: (String? value) {
-                                              if (value == null || value.isEmpty) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
                                                 return 'Nu ai introdus nicio valoare';
                                               }
                                               return null;
@@ -218,12 +245,15 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                                         TextFormField(
                                             controller: _min,
                                             decoration: const InputDecoration(
-                                              hintText: 'Nr min de optiuni obligatorii',
+                                              hintText:
+                                                  'Nr min de optiuni obligatorii',
                                             ),
                                             validator: (String? value) {
-                                              if (value == null || value.isEmpty) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
                                                 return 'Nu ai introdus nicio valoare';
-                                              } else if (int.tryParse(value) == null) {
+                                              } else if (int.tryParse(value) ==
+                                                  null) {
                                                 return 'Nu ai introdus un numar';
                                               }
 
@@ -232,14 +262,18 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                                         TextFormField(
                                             controller: _max,
                                             decoration: const InputDecoration(
-                                              hintText: 'Nr max de optiuni pe care le poate alege',
+                                              hintText:
+                                                  'Nr max de optiuni pe care le poate alege',
                                             ),
                                             validator: (String? value) {
-                                              if (value == null || value.isEmpty) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
                                                 return 'Nu ai introdus nicio valoare';
-                                              } else if (int.tryParse(value) == null) {
+                                              } else if (int.tryParse(value) ==
+                                                  null) {
                                                 return 'Nu ai introdus un numar';
-                                              } else if (int.parse(value) < int.parse(_min.text)) {
+                                              } else if (int.parse(value) <
+                                                  int.parse(_min.text)) {
                                                 return 'Nr max trb sa fie mai mare decat min';
                                               }
                                               return null;
@@ -255,13 +289,15 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                                       child: const Text('anuleaza'),
                                     ),
                                     Builder(
-                                      builder: (BuildContext context) => TextButton(
+                                      builder: (BuildContext context) =>
+                                          TextButton(
                                         onPressed: () {
-                                          final bool valid = Form.of(context)!.validate();
+                                          final bool valid =
+                                              Form.of(context)!.validate();
                                           if (valid) {
                                             setState(() {
                                               _listOfCategories.add(DishChoice(
-                                                    (DishChoiceBuilder b) => b
+                                                (DishChoiceBuilder b) => b
                                                   ..name = _category.text
                                                   ..min = int.parse(_min.text)
                                                   ..max = int.parse(_max.text),
@@ -288,13 +324,13 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
 //                      color: _image == null ? Colors.black : Colors.blueAccent,
                         child: _image != null
                             ? Image.file(
-                          _image!,
-                          width: 50,
-                          height: 50,
-                        )
+                                _image!,
+                                width: 50,
+                                height: 50,
+                              )
                             : _imagePath != null
-                            ? Image.network(_imagePath!)
-                            : null,
+                                ? Image.network(_imagePath!)
+                                : null,
                       ),
                       ElevatedButton(
                         onPressed: getImage,
@@ -308,12 +344,16 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                       bool validExtra = true;
                       if (_hasMultipleChoice) {
                         for (final DishChoice cat in _listOfCategories) {
-                          validExtra = validExtra && cat.options.length >= cat.min && cat.options.length >= cat.max;
+                          validExtra = validExtra &&
+                              cat.options.length >= cat.min &&
+                              cat.options.length >= cat.max;
                         }
                       }
-                      if ((valid && _hasMultipleChoice == false) || (valid && _hasMultipleChoice && validExtra)) {
+                      if ((valid && _hasMultipleChoice == false) ||
+                          (valid && _hasMultipleChoice && validExtra)) {
                         if (widget.dish == null) {
-                          StoreProvider.of<AppState>(context).dispatch(AddSavedDishes(
+                          StoreProvider.of<AppState>(context)
+                              .dispatch(AddSavedDishes(
                             name: _name.text,
                             description: _description.text,
                             price: _price.text,
@@ -323,7 +363,8 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                             hasMultipleChoice: _hasMultipleChoice,
                           ));
                         } else if (widget.dish != null) {
-                          StoreProvider.of<AppState>(context).dispatch(EditSavedDishes(
+                          StoreProvider.of<AppState>(context)
+                              .dispatch(EditSavedDishes(
                             id: widget.dish!.id,
                             name: _name.text,
                             description: _description.text,
@@ -341,13 +382,13 @@ class _AddSavedDishPageState extends State<AddSavedDishPage> with DialogMixin {
                               context: context,
                               title: 'Eroare',
                               error:
-                              'Ai selectat ca produsul este personalizabil, dar nu ai adaugat optiuni de personalizare');
+                                  'Ai selectat ca produsul este personalizabil, dar nu ai adaugat optiuni de personalizare');
                         } else if (_hasMultipleChoice && validExtra == false) {
                           showErrorDialog(
                               context: context,
                               title: 'Eroare',
                               error:
-                              'Una dintre optiuni are nr min mai mare decat numarul total de optiuni sau nr max este mai mare decat numarul total de optiuni');
+                                  'Una dintre optiuni are nr min mai mare decat numarul total de optiuni sau nr max este mai mare decat numarul total de optiuni');
                         }
                       }
                     },

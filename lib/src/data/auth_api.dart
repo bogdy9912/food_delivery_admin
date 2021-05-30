@@ -211,7 +211,6 @@ class AuthApi {
         .where('adminId', isEqualTo: adminId)
         .get();
 
-
     final List<EmployeeUser> employeesList = snapshot.docs
         .map((QueryDocumentSnapshot<Object> e) =>
             EmployeeUser.fromJson(e.data()))
@@ -224,7 +223,7 @@ class AuthApi {
     if (snapshot.metadata.isFromCache) {
       throw 'Nu este conexiune la internet';
     }
-      return employees;
+    return employees;
   }
 
   Future<void> deleteEmployeeAccount(

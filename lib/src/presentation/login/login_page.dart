@@ -19,7 +19,8 @@ class _LoginPageState extends State<LoginPage> with DialogMixin {
 
   void _response(AppAction action) {
     if (action is LoginError) {
-      showErrorDialog(context: context, title: 'Login error', error: action.error);
+      showErrorDialog(
+          context: context, title: 'Login error', error: action.error);
     }
   }
 

@@ -79,7 +79,7 @@ class AuthEpics {
                 roles: action.roles))
             .expand(
               (String employeeId) => <AppAction>[
-                GetEmployees(adminId: store.state.auth.user!.uid,response: action.response),
+                GetEmployees(adminId: store.state.auth.user!.uid, response: action.response),
                 CreateEmployeeAccount.successful(employeeId)
               ],
             )
@@ -132,7 +132,8 @@ class AuthEpics {
         .flatMap((GetEmployees$ action) => Stream<GetEmployees$>.value(action)
             .asyncMap((GetEmployees$ action) => _api.getEmployees(adminId: action.adminId))
             .map((Map<String, EmployeeUser> employees) => GetEmployees.successful(employees))
-            .onErrorReturnWith((dynamic error) => GetEmployees.error(error)).doOnData(action.response));
+            .onErrorReturnWith((dynamic error) => GetEmployees.error(error))
+            .doOnData(action.response));
   }
 
   Stream<AppAction> _deleteEmployee(Stream<DeleteEmployee$> actions, EpicStore<AppState> store) {

@@ -8,17 +8,15 @@ import 'package:food_delivery_admin/src/models/index.dart';
 import 'package:food_delivery_admin/src/presentation/app_routes.dart';
 import 'package:food_delivery_admin/src/presentation/mixin/dialog_mixin.dart';
 
-class AppDrawer extends StatelessWidget with DialogMixin{
+class AppDrawer extends StatelessWidget with DialogMixin {
   void _response(AppAction action, BuildContext context) {
-    if (action is GetEmployeesError){
+    if (action is GetEmployeesError) {
       showErrorDialog(context: context, title: 'Error', error: action.error);
-    }
-    else if (action is GetEmployeesSuccessful){
+    } else if (action is GetEmployeesSuccessful) {
       Navigator.pushNamed(context, AppRoutes.employeeAccounts);
-    }else if (action is GetDailyMeniuError){
+    } else if (action is GetDailyMeniuError) {
       showErrorDialog(context: context, title: 'Error', error: action.error);
-    }
-    else if (action is GetDailyMeniuSuccessful){
+    } else if (action is GetDailyMeniuSuccessful) {
       Navigator.pushNamed(context, AppRoutes.dailyMeniu);
     }
   }
@@ -34,9 +32,9 @@ class AppDrawer extends StatelessWidget with DialogMixin{
               title: const Text('Gestionare Meniul Zilei'),
               leading: const Icon(Icons.done),
               onTap: () {
-                StoreProvider.of<AppState>(context)
-                    .dispatch(GetDailyMeniu(response: (AppAction action) => _response(action, context)));
-
+                StoreProvider.of<AppState>(context).dispatch(GetDailyMeniu(
+                    response: (AppAction action) =>
+                        _response(action, context)));
               },
             ),
             ListTile(
@@ -64,9 +62,10 @@ class AppDrawer extends StatelessWidget with DialogMixin{
               title: const Text('Gestionare conturi angajati'),
               leading: const Icon(Icons.done),
               onTap: () {
-                StoreProvider.of<AppState>(context)
-                    .dispatch(GetEmployees(adminId: admin!.uid, response:(AppAction action) => _response(action, context)));
-
+                StoreProvider.of<AppState>(context).dispatch(GetEmployees(
+                    adminId: admin!.uid,
+                    response: (AppAction action) =>
+                        _response(action, context)));
               },
             ),
           ],

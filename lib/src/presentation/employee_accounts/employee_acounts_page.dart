@@ -9,13 +9,11 @@ import 'package:food_delivery_admin/src/presentation/employee_accounts/employee_
 class EmployeeAccountsPage extends StatelessWidget {
   const EmployeeAccountsPage();
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return EmployeesContainer(
-      builder: (BuildContext context, Map<String, EmployeeUser> employees) => Scaffold(
+      builder: (BuildContext context, Map<String, EmployeeUser> employees) =>
+          Scaffold(
         appBar: AppBar(
           title: const Text('Gestionare conturi'),
           centerTitle: true,
