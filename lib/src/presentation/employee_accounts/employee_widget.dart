@@ -13,6 +13,7 @@ class EmployeeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(employee.firstName + ' ' + employee.lastName),
+      subtitle: Text(employee.roles.join(', ')),
       trailing: IconButton(
         onPressed: () {
           StoreProvider.of<AppState>(context)

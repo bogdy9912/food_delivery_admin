@@ -30,14 +30,14 @@ class AppDrawer extends StatelessWidget with DialogMixin {
           children: <Widget>[
             ListTile(
               title: const Text('Gestionare Meniul Zilei'),
-              leading: const Icon(Icons.done),
+              leading: const Icon(Icons.fastfood_rounded),
               onTap: () {
                 StoreProvider.of<AppState>(context).dispatch(GetDailyMeniu(
                     response: (AppAction action) =>
                         _response(action, context)));
               },
             ),
-            ListTile(
+          /*  ListTile(
               title: const Text('Gestionare Meniu'),
               leading: const Icon(Icons.done),
               onTap: () {
@@ -57,10 +57,10 @@ class AppDrawer extends StatelessWidget with DialogMixin {
               onTap: () {
                 Navigator.pushNamed(context, AppRoutes.dailyMeniu);
               },
-            ),
+            ),*/
             ListTile(
               title: const Text('Gestionare conturi angajati'),
-              leading: const Icon(Icons.done),
+              leading: const Icon(Icons.group),
               onTap: () {
                 StoreProvider.of<AppState>(context).dispatch(GetEmployees(
                     adminId: admin!.uid,
