@@ -19,7 +19,7 @@ class EmployeeWidget extends StatelessWidget {
           StoreProvider.of<AppState>(context)
               .dispatch(DeleteEmployee(employee: employee));
         },
-        icon: const Icon(Icons.delete_outline_rounded),
+        icon: const Icon(Icons.delete_outline_rounded, color: Colors.red,),
       ),
     );
   }
