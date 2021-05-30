@@ -706,8 +706,10 @@ abstract class PublishMeniuError implements PublishMeniu, ErrorAction {
 class _$GetDailyMeniuTearOff {
   const _$GetDailyMeniuTearOff();
 
-  GetDailyMeniu$ call() {
-    return const GetDailyMeniu$();
+  GetDailyMeniu$ call({required void Function(AppAction) response}) {
+    return GetDailyMeniu$(
+      response: response,
+    );
   }
 
   GetDailyMeniuSuccessful successful(Meniu meniu) {
@@ -730,14 +732,14 @@ const $GetDailyMeniu = _$GetDailyMeniuTearOff();
 mixin _$GetDailyMeniu {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function() $default, {
+    TResult Function(void Function(AppAction) response) $default, {
     required TResult Function(Meniu meniu) successful,
     required TResult Function(Object error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
+    TResult Function(void Function(AppAction) response)? $default, {
     TResult Function(Meniu meniu)? successful,
     TResult Function(Object error)? error,
     required TResult orElse(),
@@ -782,6 +784,7 @@ abstract class $GetDailyMeniu$CopyWith<$Res> {
   factory $GetDailyMeniu$CopyWith(
           GetDailyMeniu$ value, $Res Function(GetDailyMeniu$) then) =
       _$GetDailyMeniu$CopyWithImpl<$Res>;
+  $Res call({void Function(AppAction) response});
 }
 
 /// @nodoc
@@ -794,46 +797,71 @@ class _$GetDailyMeniu$CopyWithImpl<$Res>
 
   @override
   GetDailyMeniu$ get _value => super._value as GetDailyMeniu$;
+
+  @override
+  $Res call({
+    Object? response = freezed,
+  }) {
+    return _then(GetDailyMeniu$(
+      response: response == freezed
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as void Function(AppAction),
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetDailyMeniu$ implements GetDailyMeniu$ {
-  const _$GetDailyMeniu$();
+  const _$GetDailyMeniu$({required this.response});
+
+  @override
+  final void Function(AppAction) response;
 
   @override
   String toString() {
-    return 'GetDailyMeniu()';
+    return 'GetDailyMeniu(response: $response)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GetDailyMeniu$);
+    return identical(this, other) ||
+        (other is GetDailyMeniu$ &&
+            (identical(other.response, response) ||
+                const DeepCollectionEquality()
+                    .equals(other.response, response)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(response);
+
+  @JsonKey(ignore: true)
+  @override
+  $GetDailyMeniu$CopyWith<GetDailyMeniu$> get copyWith =>
+      _$GetDailyMeniu$CopyWithImpl<GetDailyMeniu$>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function() $default, {
+    TResult Function(void Function(AppAction) response) $default, {
     required TResult Function(Meniu meniu) successful,
     required TResult Function(Object error) error,
   }) {
-    return $default();
+    return $default(response);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
+    TResult Function(void Function(AppAction) response)? $default, {
     TResult Function(Meniu meniu)? successful,
     TResult Function(Object error)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default();
+      return $default(response);
     }
     return orElse();
   }
@@ -864,7 +892,13 @@ class _$GetDailyMeniu$ implements GetDailyMeniu$ {
 }
 
 abstract class GetDailyMeniu$ implements GetDailyMeniu {
-  const factory GetDailyMeniu$() = _$GetDailyMeniu$;
+  const factory GetDailyMeniu$({required void Function(AppAction) response}) =
+      _$GetDailyMeniu$;
+
+  void Function(AppAction) get response => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GetDailyMeniu$CopyWith<GetDailyMeniu$> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -933,7 +967,7 @@ class _$GetDailyMeniuSuccessful implements GetDailyMeniuSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function() $default, {
+    TResult Function(void Function(AppAction) response) $default, {
     required TResult Function(Meniu meniu) successful,
     required TResult Function(Object error) error,
   }) {
@@ -943,7 +977,7 @@ class _$GetDailyMeniuSuccessful implements GetDailyMeniuSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
+    TResult Function(void Function(AppAction) response)? $default, {
     TResult Function(Meniu meniu)? successful,
     TResult Function(Object error)? error,
     required TResult orElse(),
@@ -1055,7 +1089,7 @@ class _$GetDailyMeniuError implements GetDailyMeniuError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function() $default, {
+    TResult Function(void Function(AppAction) response) $default, {
     required TResult Function(Meniu meniu) successful,
     required TResult Function(Object error) error,
   }) {
@@ -1065,7 +1099,7 @@ class _$GetDailyMeniuError implements GetDailyMeniuError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function()? $default, {
+    TResult Function(void Function(AppAction) response)? $default, {
     TResult Function(Meniu meniu)? successful,
     TResult Function(Object error)? error,
     required TResult orElse(),

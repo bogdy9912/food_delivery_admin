@@ -36,9 +36,6 @@ class CompanyEpics {
                 .asyncMap((GetDailyMeniu$ action) => _api.getDailyMeniu(
                     companyId: store.state.auth.user!.companyId))
                 .map((Meniu meniu) => GetDailyMeniu.successful(meniu))
-                .onErrorReturnWith((dynamic error) {
-              print(error);
-              return GetDailyMeniu.error(error);
-            }));
+                .onErrorReturnWith((dynamic error) => GetDailyMeniu.error(error)).doOnData(action.response));
   }
 }

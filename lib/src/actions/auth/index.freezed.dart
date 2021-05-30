@@ -4114,9 +4114,11 @@ abstract class EditSavedDishesError implements EditSavedDishes, ErrorAction {
 class _$GetEmployeesTearOff {
   const _$GetEmployeesTearOff();
 
-  GetEmployees$ call({required String adminId}) {
+  GetEmployees$ call(
+      {required String adminId, required void Function(AppAction) response}) {
     return GetEmployees$(
       adminId: adminId,
+      response: response,
     );
   }
 
@@ -4140,14 +4142,16 @@ const $GetEmployees = _$GetEmployeesTearOff();
 mixin _$GetEmployees {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String adminId) $default, {
+    TResult Function(String adminId, void Function(AppAction) response)
+        $default, {
     required TResult Function(Map<String, EmployeeUser> employees) successful,
     required TResult Function(Object error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String adminId)? $default, {
+    TResult Function(String adminId, void Function(AppAction) response)?
+        $default, {
     TResult Function(Map<String, EmployeeUser> employees)? successful,
     TResult Function(Object error)? error,
     required TResult orElse(),
@@ -4191,7 +4195,7 @@ abstract class $GetEmployees$CopyWith<$Res> {
   factory $GetEmployees$CopyWith(
           GetEmployees$ value, $Res Function(GetEmployees$) then) =
       _$GetEmployees$CopyWithImpl<$Res>;
-  $Res call({String adminId});
+  $Res call({String adminId, void Function(AppAction) response});
 }
 
 /// @nodoc
@@ -4207,12 +4211,17 @@ class _$GetEmployees$CopyWithImpl<$Res> extends _$GetEmployeesCopyWithImpl<$Res>
   @override
   $Res call({
     Object? adminId = freezed,
+    Object? response = freezed,
   }) {
     return _then(GetEmployees$(
       adminId: adminId == freezed
           ? _value.adminId
           : adminId // ignore: cast_nullable_to_non_nullable
               as String,
+      response: response == freezed
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as void Function(AppAction),
     ));
   }
 }
@@ -4220,14 +4229,16 @@ class _$GetEmployees$CopyWithImpl<$Res> extends _$GetEmployeesCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetEmployees$ implements GetEmployees$ {
-  const _$GetEmployees$({required this.adminId});
+  const _$GetEmployees$({required this.adminId, required this.response});
 
   @override
   final String adminId;
+  @override
+  final void Function(AppAction) response;
 
   @override
   String toString() {
-    return 'GetEmployees(adminId: $adminId)';
+    return 'GetEmployees(adminId: $adminId, response: $response)';
   }
 
   @override
@@ -4235,12 +4246,18 @@ class _$GetEmployees$ implements GetEmployees$ {
     return identical(this, other) ||
         (other is GetEmployees$ &&
             (identical(other.adminId, adminId) ||
-                const DeepCollectionEquality().equals(other.adminId, adminId)));
+                const DeepCollectionEquality()
+                    .equals(other.adminId, adminId)) &&
+            (identical(other.response, response) ||
+                const DeepCollectionEquality()
+                    .equals(other.response, response)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(adminId);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(adminId) ^
+      const DeepCollectionEquality().hash(response);
 
   @JsonKey(ignore: true)
   @override
@@ -4250,23 +4267,25 @@ class _$GetEmployees$ implements GetEmployees$ {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String adminId) $default, {
+    TResult Function(String adminId, void Function(AppAction) response)
+        $default, {
     required TResult Function(Map<String, EmployeeUser> employees) successful,
     required TResult Function(Object error) error,
   }) {
-    return $default(adminId);
+    return $default(adminId, response);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String adminId)? $default, {
+    TResult Function(String adminId, void Function(AppAction) response)?
+        $default, {
     TResult Function(Map<String, EmployeeUser> employees)? successful,
     TResult Function(Object error)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(adminId);
+      return $default(adminId, response);
     }
     return orElse();
   }
@@ -4297,9 +4316,12 @@ class _$GetEmployees$ implements GetEmployees$ {
 }
 
 abstract class GetEmployees$ implements GetEmployees {
-  const factory GetEmployees$({required String adminId}) = _$GetEmployees$;
+  const factory GetEmployees$(
+      {required String adminId,
+      required void Function(AppAction) response}) = _$GetEmployees$;
 
   String get adminId => throw _privateConstructorUsedError;
+  void Function(AppAction) get response => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GetEmployees$CopyWith<GetEmployees$> get copyWith =>
       throw _privateConstructorUsedError;
@@ -4372,7 +4394,8 @@ class _$GetEmployeesSuccessful implements GetEmployeesSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String adminId) $default, {
+    TResult Function(String adminId, void Function(AppAction) response)
+        $default, {
     required TResult Function(Map<String, EmployeeUser> employees) successful,
     required TResult Function(Object error) error,
   }) {
@@ -4382,7 +4405,8 @@ class _$GetEmployeesSuccessful implements GetEmployeesSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String adminId)? $default, {
+    TResult Function(String adminId, void Function(AppAction) response)?
+        $default, {
     TResult Function(Map<String, EmployeeUser> employees)? successful,
     TResult Function(Object error)? error,
     required TResult orElse(),
@@ -4494,7 +4518,8 @@ class _$GetEmployeesError implements GetEmployeesError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String adminId) $default, {
+    TResult Function(String adminId, void Function(AppAction) response)
+        $default, {
     required TResult Function(Map<String, EmployeeUser> employees) successful,
     required TResult Function(Object error) error,
   }) {
@@ -4504,7 +4529,8 @@ class _$GetEmployeesError implements GetEmployeesError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String adminId)? $default, {
+    TResult Function(String adminId, void Function(AppAction) response)?
+        $default, {
     TResult Function(Map<String, EmployeeUser> employees)? successful,
     TResult Function(Object error)? error,
     required TResult orElse(),
